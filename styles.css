@@ -1,10 +1,8 @@
 h1 {
     color: red;
+    font-size: 150%
 }
 
-p, li {
-    color: brown;
-}
 
 a:link {
     color: rgb(228, 93, 115);
