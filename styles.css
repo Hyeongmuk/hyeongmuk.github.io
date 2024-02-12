@@ -1,0 +1,20 @@
+h1 {
+    color: red;
+}
+
+p, li {
+    color: brown;
+}
+
+a:link {
+    color: rgb(228, 93, 115);
+}
+  
+a:visited {
+    color: green;
+}
+  
+a:hover {
+    text-decoration: none;
+}
+  
