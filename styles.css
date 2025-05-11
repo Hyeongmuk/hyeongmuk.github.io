@@ -1,18 +1,82 @@
-h1 {
-    /*color: red;*/
-    font-size: 200%
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
 
+.title {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.navbar li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.navbar li a:hover {
+    text-decoration: underline;
+}
+
+/* 본문 스타일 */
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+/* 링크 스타일 (기존 유지) */
 a:link {
     color: rgb(228, 93, 115);
 }
-  
+
 a:visited {
     color: green;
 }
-  
+
 a:hover {
     text-decoration: none;
 }
-  
+
+/* ✅ 반응형: 모바일 화면에 최적화 */
+@media (max-width: 600px) {
+    .title {
+        font-size: 1.5em;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav {
+        margin-top: 5px;
+    }
+
+    main {
+        padding: 10px;
+    }
+}
+
