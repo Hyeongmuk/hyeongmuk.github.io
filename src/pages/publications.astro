@@ -1,0 +1,36 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PaperCard from '../components/PaperCard.astro';
+import { publications } from '../lib/publications.mjs';
+const years = [...new Set(publications.map((paper) => paper.year))];
+---
+<SiteLayout active="publications" title="Publications · Hyeongmuk Lim">
+  <section class="container page-intro">
+    <p class="eyebrow">PUBLICATIONS</p><h1>Research <em>papers.</em></h1>
+    <p class="intro-lead">A selected collection of research papers and preprints. The source is a BibTeX file, so new publications can be added without editing this page.</p>
+    <p class="source-note">The initial records were cross-checked against public arXiv and group publication pages; please review before treating this as a complete Google Scholar export.</p>
+    <div class="filter-bar"><label for="paper-search">Find a paper</label><input id="paper-search" type="search" placeholder="Search titles, authors, keywords…" aria-label="Search publications"/></div>
+  </section>
+  <section class="container publications-section" id="papers-list">
+    {years.map((year) => <section class="year-group" data-year={year}>
+      <h2 class="year-header">{year}</h2>
+      <div class="papers-list">
+        {publications.filter((paper) => paper.year === year).map((paper) => <div id={paper.id} class="searchable-paper" data-search={`${paper.title} ${paper.authors.join(' ')} ${paper.keywords || ''}`.toLowerCase()}><PaperCard paper={paper} /></div>)}
+      </div>
+    </section>)}
+    <p id="no-results" class="no-results" hidden>No publications match this search.</p>
+    <div class="scholar-callout">For bibliometric information and citations, see the <a href="https://scholar.google.com/citations?user=bp9_2lwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar profile ↗</a>.</div>
+  </section>
+  <script>
+    const search = document.querySelector<HTMLInputElement>('#paper-search');
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.searchable-paper'));
+    search?.addEventListener('input', () => {
+      const query = (search.value || '').trim().toLowerCase();
+      let visible = 0;
+      cards.forEach((card) => { const matched = (card.dataset.search || '').includes(query); card.hidden = !matched; if (matched) visible++; });
+      document.querySelectorAll<HTMLElement>('.year-group').forEach((group) => { group.hidden = !Array.from(group.querySelectorAll<HTMLElement>('.searchable-paper')).some((el) => !el.hidden); });
+      const empty = document.querySelector<HTMLElement>('#no-results');
+      if (empty) empty.hidden = visible !== 0;
+    });
+  </script>
+</SiteLayout>

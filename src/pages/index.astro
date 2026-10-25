@@ -1,0 +1,70 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PaperCard from '../components/PaperCard.astro';
+import { featuredPublications } from '../lib/publications.mjs';
+---
+<SiteLayout active="home" title="Hyeongmuk Lim · Theoretical Physics">
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="little-dot"></span> HYEONGMUK LIM · THEORETICAL PHYSICS</p>
+      <h1>Ideas at the intersection of <em>geometry, topology,</em> and quantum matter.</h1>
+      <p class="hero-lead">I study how the geometry of quantum states and the topology of energy bands shape the physics of condensed matter systems.</p>
+      <div class="hero-actions">
+        <a class="button-primary" href="/research/">Explore research <span aria-hidden="true">↗</span></a>
+        <a class="button-link" href="/publications/">View publications <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="hero-affiliation">Department of Physics and Astronomy · Seoul National University</p>
+    </div>
+    <div class="hero-art" aria-label="Abstract illustration of quantum geometry">
+      <div class="art-grid"></div>
+      <svg viewBox="0 0 520 520" role="img" aria-label="Interlocking spheres and curves inspired by quantum geometry">
+        <defs>
+          <linearGradient id="ringg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#d2a467"/><stop offset="1" stop-color="#597e82"/></linearGradient>
+          <radialGradient id="orb"><stop stop-color="#8eb6b1" stop-opacity=".20"/><stop offset="1" stop-color="#8eb6b1" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle cx="262" cy="254" r="200" fill="url(#orb)"/>
+        <circle cx="260" cy="260" r="157" fill="none" stroke="#a9b8b5" stroke-opacity=".47" stroke-width="1.3"/>
+        <ellipse cx="260" cy="260" rx="157" ry="54" fill="none" stroke="#597e82" stroke-width="1.5" transform="rotate(-34 260 260)"/>
+        <ellipse cx="260" cy="260" rx="157" ry="54" fill="none" stroke="#be9a62" stroke-width="1.2" transform="rotate(56 260 260)"/>
+        <ellipse cx="260" cy="260" rx="157" ry="54" fill="none" stroke="#96aaa2" stroke-width="1" transform="rotate(90 260 260)"/>
+        <path d="M121 338 C205 105 373 107 403 290" fill="none" stroke="url(#ringg)" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="260" cy="260" r="9" fill="#c49a5e"/><circle cx="121" cy="338" r="5" fill="#527f81"/>
+        <circle cx="403" cy="290" r="5" fill="#527f81"/>
+        <g font-family="Georgia,serif" font-size="19" fill="#547477" opacity=".85"><text x="390" y="374">ℱ</text><text x="110" y="164">gᵢⱼ</text></g>
+      </svg>
+      <span class="art-caption">geometric structure of quantum states</span>
+    </div>
+  </section>
+
+  <section class="light-section">
+    <div class="container section-pad">
+      <div class="section-heading"><div><p class="eyebrow">RESEARCH AREAS</p><h2>Questions that guide my work</h2></div><a class="text-arrow" href="/research/">All research →</a></div>
+      <div class="research-grid">
+        <a href="/research/#quantum-geometry" class="research-card">
+          <div class="research-visual geo-visual"><span>g<sub>μν</sub></span><i></i><i></i><i></i></div>
+          <p class="tagline">01 / GEOMETRY</p><h3>Quantum Geometry</h3><p>How the geometry of Bloch states constrains response and correlation.</p><span class="card-arrow">↗</span>
+        </a>
+        <a href="/research/#band-topology" class="research-card">
+          <div class="research-visual topo-visual"><span>ν ∈ ℤ</span><i></i><i></i></div>
+          <p class="tagline">02 / TOPOLOGY</p><h3>Band Topology</h3><p>Delicate invariants, Hopf structures, and unconventional transitions.</p><span class="card-arrow">↗</span>
+        </a>
+        <a href="/research/#many-body" class="research-card">
+          <div class="research-visual many-visual"><span>⟨Ψ|Ψ⟩</span><i></i><i></i></div>
+          <p class="tagline">03 / QUANTUM MATTER</p><h3>Many-Body Physics</h3><p>Interaction effects and geometric approaches to correlated states.</p><span class="card-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section-pad">
+    <div class="section-heading"><div><p class="eyebrow">SELECTED WORK</p><h2>Selected publications</h2></div><a class="text-arrow" href="/publications/">Full list →</a></div>
+    <div class="papers-list">{featuredPublications.map((paper) => <PaperCard paper={paper} numbered />)}</div>
+  </section>
+
+  <section class="notes-promo">
+    <div class="container notes-promo-grid">
+      <div><p class="eyebrow">OPEN NOTES</p><h2>Learning in public.</h2><p>Study notes and computational notebooks on topology, quantum field theory, and mathematical physics. Read in the browser or keep a local copy.</p><a class="button-primary" href="/notes/">Explore study notes ↗</a></div>
+      <div class="formula-card" aria-hidden="true"><span>notes / 001</span><div>H = −∑<sub>j</sub> Z<sub>j−1</sub> X<sub>j</sub> Z<sub>j+1</sub></div><p>From a lattice Hamiltonian to symmetry-protected topology</p></div>
+    </div>
+  </section>
+</SiteLayout>

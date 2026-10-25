@@ -1,0 +1,18 @@
+{
+  "lim2026quaternion": {
+    "featured": true,
+    "summary": "Quaternionic quantum geometry of Kramers pairs and non-Abelian analogues of ideal bands."
+  },
+  "kim2024unconventional": {
+    "featured": true,
+    "summary": "Why band-touching trajectories alone need not characterize a topological phase transition."
+  },
+  "jung2024quadratic": {
+    "featured": false,
+    "summary": "Connections between wave-function geometry and Landau levels near quadratic band crossings."
+  },
+  "lim2023hopf": {
+    "featured": true,
+    "summary": "Delicate three-dimensional topology of real-valued four-band Hamiltonians."
+  }
+}

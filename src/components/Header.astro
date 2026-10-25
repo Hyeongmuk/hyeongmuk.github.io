@@ -1,0 +1,29 @@
+---
+const { active = '' } = Astro.props;
+const links = [
+  ['/', 'Home', 'home'],
+  ['/research/', 'Research', 'research'],
+  ['/publications/', 'Publications', 'publications'],
+  ['/notes/', 'Notes', 'notes'],
+  ['/about/', 'About', 'about'],
+];
+---
+<header class="site-header">
+  <div class="container nav-bar">
+    <a href="/" class="brand" aria-label="Mook homepage">
+      <svg class="brand-mark" width="35" height="35" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <circle cx="18" cy="18" r="15.5" stroke="currentColor" stroke-width="1" opacity=".45"/>
+        <ellipse cx="18" cy="18" rx="14" ry="6" stroke="currentColor" stroke-width="1.1" transform="rotate(-35 18 18)"/>
+        <circle cx="18" cy="18" r="3" fill="currentColor"/>
+      </svg>
+      <span>mook<span class="brand-dot">.</span></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {links.map(([url, label, key]) => <a href={url} class:list={['nav-link', { 'is-active': active === key }]}>{label}</a>)}
+    </nav>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation">Menu <span aria-hidden="true">☰</span></summary>
+      <nav aria-label="Mobile navigation">{links.map(([url, label]) => <a href={url}>{label}</a>)}</nav>
+    </details>
+  </div>
+</header>
