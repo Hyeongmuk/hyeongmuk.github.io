@@ -1,31 +1,54 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getCollection } from 'astro:content';
+
 const notes = (await getCollection('notes', ({ data }) => data.status === 'published'))
   .sort((a,b) => b.data.date.getTime()-a.data.date.getTime());
+
+const categories = [
+  { id: 'qft', title: 'Quantum Field Theory', summary: 'Quantization, field theory, and the mathematical structures behind them.', number: '01' },
+  { id: 'mathematics', title: 'Mathematics', summary: 'Algebra, geometry, topology, and categorical perspectives.', number: '02' },
+  { id: 'condensed', title: 'Condensed Matter Physics', summary: 'Topological phases, quantum matter, and computational models.', number: '03' },
+];
 ---
 <SiteLayout active="notes" title="Study Notes · Hyeongmuk Lim">
-  <section class="container page-intro">
-    <p class="eyebrow">STUDY NOTES</p><h1>A growing <em>reading room.</em></h1>
-    <p class="intro-lead">Personal study notes, computational notebooks, and mathematical physics resources. Open materials to read online or download the original files.</p>
+  <section class="container page-intro notes-page-intro">
+    <p class="eyebrow">PERSONAL LEARNING ARCHIVE</p>
+    <h1>Notes from <em>ongoing study.</em></h1>
+    <p class="intro-lead">A growing collection of study notes in quantum field theory, mathematics, and condensed matter physics. Selected manuscripts are available to read online as PDFs and to download.</p>
+    <nav aria-label="Study note categories" class="notes-category-nav">
+      {categories.map(category => <a href={`#${category.id}`}>{category.title} ↓</a>)}
+    </nav>
   </section>
   <section class="container notes-list-section">
-    <div class="notes-grid">
-      {notes.map(note => <a class="note-card" href={`/notes/${note.id}/`}>
-        <span class="note-type">{note.data.topic}</span>
-        <div class="note-ornament">∮</div>
-        <h2>{note.data.title}</h2>
-        <p>{note.data.description}</p>
-        <div class="note-bottom"><span>Read in browser · Downloads</span><span>↗</span></div>
-      </a>)}
-      <a class="note-card external" href="https://aboard-cardboard-df8.notion.site/Quantum-Field-Theory-Derived-Algebraic-Geometry-1f00e579eb6881bbb318fd148b00a7cb?pvs=74" target="_blank" rel="noopener noreferrer">
-        <span class="note-type">Mathematical physics · External</span>
-        <div class="note-ornament">∂</div>
-        <h2>Quantum Field Theory & Derived Algebraic Geometry</h2>
-        <p>Existing study notebook hosted on Notion. Opens an external reading page.</p>
-        <div class="note-bottom"><span>Open Notion notes</span><span>↗</span></div>
-      </a>
-    </div>
-    <aside class="content-hint"><strong>Publishing a new note</strong><p>Put a Markdown file in <code>src/content/notes/</code>, or add a PDF under <code>public/downloads/</code>. The site builds an entry and download buttons automatically from frontmatter. Private drafts are excluded.</p></aside>
+    {categories.map(category => (
+      <section id={category.id} class="notes-category-section" aria-label={category.title}>
+        <div class="notes-category-heading">
+          <span class="notes-category-num">{category.number} / STUDY AREA</span>
+          <div>
+            <h2>{category.title}</h2>
+            <p>{category.summary}</p>
+          </div>
+        </div>
+        <div class="notes-grid">
+          {notes.filter(note => note.data.category === category.id).map(note => (
+            <article class="note-card">
+              <span class="note-type">{note.data.topic}</span>
+              <div class="note-ornament" aria-hidden="true">∮</div>
+              <h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3>
+              <p>{note.data.description}</p>
+              <div class="note-metadata">
+                <span>{note.data.complete ? 'Complete note' : 'Open study resource'}</span>
+                {note.data.pages && <span>{note.data.pages} pages</span>}
+              </div>
+              <div class="note-bottom note-actions">
+                <a href={`/notes/${note.id}/`}>Overview →</a>
+                {note.data.pdf && <a href={note.data.pdf} target="_blank" rel="noopener noreferrer" aria-label={`Read PDF: ${note.data.title} (opens a new tab)`}>Read PDF ↗</a>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
   </section>
 </SiteLayout>
