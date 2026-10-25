@@ -1,0 +1,99 @@
+/* Production-only refinements. Single, shared search/filter system across publications and notes. */
+html{scroll-padding-top:45px}
+.design-b .site-header{top:0}
+.design-b .site-body{max-width:1480px;min-height:100vh}
+.design-h .site-header{background:#f0eee5}
+.design-h .header-inner{padding-top:35px;padding-bottom:25px}
+.design-h .brand{font-size:43px}
+.design-h .home-affiliation{font-size:12px;color:var(--muted);margin:28px 0 0}
+.design-h .home-hero{border-bottom:1px solid var(--line);padding-bottom:43px}
+.design-h .home-research{padding-top:33px}
+.design-h .home-publications{padding-top:47px}
+.design-h .home-notes{margin-top:15px;padding-bottom:24px}
+.design-h .page-heading{padding-top:45px}
+.design-h .page-heading h1{font-size:clamp(40px,4.8vw,55px)}
+.design-h .research-chapter{scroll-margin-top:25px}
+.design-h .research-chapter .related-papers{max-width:850px}
+.design-h .paper-row{border-bottom:0}
+.design-h .paper-row:last-child{border-bottom:1px solid var(--line)}
+.design-h .paper-title{overflow-wrap:anywhere}
+.design-h .paper-links{min-width:52px}
+.design-h .paper-row .paper-main{min-width:0}
+.design-h .year-group{margin:22px 0 34px}
+.design-h .year-header{color:var(--accent);font-size:14px;font-family:var(--sans);letter-spacing:.03em;font-weight:650;margin:0 0 7px}
+.design-h .results-toolbar{border-bottom:1px solid var(--line);margin-bottom:16px}
+.design-h .publication-results .paper-row{padding:21px 0}
+.design-h .notes-results .note-row{margin:0 0 10px}
+.design-h .note-group{margin-bottom:30px;scroll-margin-top:30px}
+.design-h .note-row{align-items:start}
+.design-h .note-meta{display:flex;gap:8px;flex-wrap:wrap}
+.design-h .note-row h3{font-size:22px}
+.design-h .note-actions .pdf-button{white-space:nowrap}
+.design-h .note-details .details-inner{max-width:700px}
+.design-h .note-details .details-inner p{margin:7px 0 10px;line-height:1.6}
+.design-h .note-details .details-inner strong{font-weight:650;color:var(--ink)}
+.design-h .complete-label{font-size:10px}
+.design-h .small-notes{margin-bottom:4px}
+.design-h .notes-results .archive-footnote,.design-h .publication-results .archive-footnote{margin-top:20px}
+.design-h .note-prose{line-height:1.8;max-width:790px;color:var(--ink)}
+.design-h .note-prose h2{font-size:25px;margin-bottom:15px}
+.design-h .note-prose h3{font-size:21px;margin:24px 0 10px}
+.design-h .note-prose p{color:var(--muted)}
+.design-h .note-prose li{margin-bottom:7px;color:var(--muted)}
+.design-h .note-prose .katex-display{overflow-x:auto;overflow-y:hidden}
+.design-h .detail-heading .detail-description{font-size:15px;line-height:1.8;color:var(--muted);margin:22px 0 0;max-width:790px}
+.design-h .detail-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:25px 0 36px}
+.design-h .detail-keywords{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 26px}
+.design-h .detail-keywords span{font-size:11px;padding:5px 9px;border:1px solid #cbd6c8;color:var(--accent);border-radius:4px}
+.design-h .detail-body aside h2{font-size:23px}
+.design-h .contact-panel .text-link{margin-top:8px}
+.design-h .empty-state{padding:34px 22px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:4px}
+.design-h .empty-state h2{font-size:23px;margin-bottom:8px}
+.design-h .empty-state p{color:var(--muted);font-size:13px}
+.design-h .empty-state button{margin-top:5px}
+/* Unified Search & Filter: intentional duplicate on every library page, one component + one style */
+.design-h .unified-search{display:grid;grid-template-columns:minmax(210px,310px) minmax(0,1fr);align-items:end;column-gap:22px;row-gap:19px;margin:4px 0 20px;padding:21px 23px 19px;background:#efeee4;border:1px solid var(--line);border-radius:4px}
+.design-h .unified-search .search-wrap{max-width:none;min-width:0;width:100%;flex:none}
+.design-h .unified-search .filter-wrap{flex:none;min-width:0}
+.design-h .unified-search .filter-buttons{gap:7px}
+.design-h .unified-search .filter-buttons button{white-space:normal;font-size:11px;padding:8px 11px;min-height:41px;line-height:1.35}
+.design-h .unified-search .keyword-wrap{grid-column:1 / -1;min-width:0;border-top:1px solid #d6d9cd;padding-top:14px}
+.design-h .unified-search .keywords-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.design-h .unified-search .keywords-heading .control-label{margin:0}
+.design-h .unified-search .keyword-help{font-size:11px;color:var(--muted)}
+.design-h .unified-search .keyword-buttons button{min-height:32px;padding:5px 10px;font-size:11px;background:#fffdf8;border-color:#d2d9cd}
+.design-h .unified-search .keyword-buttons button[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.design-h .unified-search .keyword-buttons button:hover{border-color:var(--accent)}
+.design-h .unified-search input[type=search]{font-size:13px}
+.design-h .unified-search button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.design-h [data-filter-item][hidden],.design-h [data-filter-group][hidden]{display:none!important}
+@media(max-width:1250px){.design-h .unified-search{grid-template-columns:1fr}.design-h .unified-search .keyword-wrap{grid-column:1}.design-h .unified-search .search-wrap{width:100%;max-width:510px}}
+@media(max-width:900px) and (min-width:761px){.design-h .paper-row{grid-template-columns:40px minmax(0,1fr)}.design-h .paper-links{grid-column:2;flex-direction:row}.design-h .research-strip{grid-template-columns:1fr}.design-h .research-strip>a,.design-h .research-strip>a+a{border-left:0;padding:14px 0}.design-h .research-strip>a+a{border-top:1px solid var(--line)}}
+@media(max-width:760px){
+ html{scroll-padding-top:90px}
+ .design-b .site-header{top:0}
+ .design-h .header-inner{height:72px;padding:0 22px}
+ .design-h .brand{font-size:35px}
+ .design-h .site-body{padding:0 22px}
+ .design-h .home-hero{padding-top:38px;padding-bottom:30px}
+ .design-h .page-heading{padding-top:34px}
+ .design-h .unified-search{padding:15px;gap:13px}
+ .design-h .unified-search .search-wrap{max-width:none}
+ .design-h .unified-search .filter-buttons button{font-size:11px;min-height:40px}
+ .design-h .unified-search .keyword-buttons button{min-height:34px}
+ .design-h .note-row{padding:17px 16px}
+ .design-h .paper-row{grid-template-columns:33px minmax(0,1fr)}
+ .design-h .paper-links{grid-column:2;flex-direction:row;gap:17px}
+ .design-h .note-actions{flex-direction:row;align-items:center;justify-content:flex-start;gap:14px}
+ .design-h .research-chapter{grid-template-columns:1fr}
+ .design-h .home-affiliation{margin-top:23px}
+ .design-h .site-footer{align-items:flex-start}
+}
+/* Progressive disclosure makes a growing archive feel intentional rather than crowded. */
+.design-h .more-keywords{display:inline-flex;flex-direction:column;align-items:flex-start;width:auto;max-width:100%;position:relative}
+.design-h .more-keywords summary{list-style:none;display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:5px 11px;border:1px dashed #acbaa9;border-radius:4px;color:var(--accent);cursor:pointer;font-size:11px;font-weight:650}
+.design-h .more-keywords summary::-webkit-details-marker{display:none}
+.design-h .more-keywords summary:after{content:'＋';font-size:14px}
+.design-h .more-keywords[open] summary:after{content:'−'}
+.design-h .more-keywords .extra-keywords{margin-top:9px;display:flex;gap:7px;flex-wrap:wrap;min-width:180px;max-width:700px}
+.design-h .more-keywords summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}

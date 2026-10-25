@@ -1,116 +1,76 @@
-# Mook — Academic Website (Astro prototype)
+# Mook — academic website (Astro)
 
-This is an Astro-based academic website for **Hyeongmuk Lim**. It is a prototype derived from the existing `hyeongmuk.github.io` repository and its public learning notebook.
+An Astro-based personal website for **Hyeongmuk Lim**, targeting **https://mookphysics.org**. This project implements the approved hybrid design: **B's fixed desktop sidebar / mobile menu and A's publications and study-note cards**.
 
-**Default publication URL:** `https://hyeongmuk.github.io/`. The desired address `mook.github.io` is already claimed by a different GitHub user. The site *branding* can still be "mook". If a custom domain is purchased, update `site` in `astro.config.mjs` and configure GitHub Pages/DNS.
+## Publishing safely with GitHub Desktop
 
-## Preview without installation
+1. Open the repository `Hyeongmuk/hyeongmuk.github.io` in GitHub Desktop. Select `main` and **Pull origin**.
+2. Create a fresh branch, such as `hybrid-design-release`.
+3. **Back up any newer site-specific changes** that are not in this package. Unzip this package, then copy the **contents** (not the enclosing folder) to the root of your GitHub Desktop checkout. Replace same-named files. **Never replace/delete `.git/`.**
+4. Remove old files superseded by this release if still present: `src/styles/global.css`, `src/styles/notes-compact.css`, `src/content/notes/cluster-model.md`, old `public/downloads/cluster_*`, and any obsolete `preview/` content. These legacy files should not be used in the published website. Only delete them if you are sure they're no longer needed.
+5. In GitHub Desktop **Changes** inspect the actual modifications, especially `src/layouts/SiteLayout.astro`, `src/components/`, `src/pages/`, `src/styles/`, `public/scripts/`, `public/downloads/` and `src/content/notes/`.
+6. Commit to the new branch, **Push/Publish branch**, create a pull request to `main`, and wait for **Verify Astro pull request** to report a successful build. Merge only after verification.
+7. A push to `main` triggers GitHub Pages deployment. Check Actions for a green **Deploy academic homepage** run; then hard refresh https://mookphysics.org.
 
-Open `preview/index.html` in a web browser after unzipping. This is a **static visual mockup**, not the final Astro production build. Other offline preview pages are also linked in the preview navigation.
+This source archive is **not** itself a compiled `dist/` directory. GitHub Actions compiles it. Keep `Settings → Pages → Source: GitHub Actions`, with the custom domain configured as `mookphysics.org`.
 
-## Local Astro development
+## Content management
 
-Install Node.js 20.19+ or 22+, then run in the project folder:
+### Publications
 
-```bash
-npm install
-npm run dev
-```
+- `src/data/publications.bib` is the source of truth for citation details. All publication cards derive from BibTeX at build time.
+- `src/data/publication-meta.json` stores supplementary display metadata: `featured`, `summary`, `area`, `tags`. Key these fields by the BibTeX citation key. They can be changed without modifying the citation details.
+- The **area chips** on Publications are based on the area values used in `src/data/categories.mjs`, and **keyword chips** are automatically derived from `tags` (or BibTeX `keywords` when extra metadata tags are absent).
+- After adding a paper, run `npm test && npm run build` (or rely on PR Actions checks) before publishing. Google Scholar automatic scraping/synchronization is not implemented.
 
-Visit the local URL printed in the terminal, usually `http://localhost:4321`.
+### Study notes
 
-```bash
-npm test
-npm run build
-```
-
-Because this file package was generated without access to the npm registry, an end-to-end Astro build could not be run here. The included BibTeX parser tests **were** run successfully with Node. Run `npm install`, `npm test`, and `npm run build` locally or in GitHub Actions before production publishing. Commit `package-lock.json` after installing for reproducibility; you may then switch the deployment action to `npm ci`.
-
-## Deploy using GitHub Desktop
-
-1. Make a backup branch of your current website repository (recommended: `backup-html-v1`).
-2. Open GitHub Desktop, clone `hyeongmuk/hyeongmuk.github.io` (or use your actual owner name), and create a branch such as `astro-preview`.
-3. Copy the **contents** of this folder (not the outer folder, and not the zip itself) into that clone's root. The new Astro project replaces the old root HTML design. Preserve anything important before deleting old files.
-4. In GitHub Desktop inspect the changes; commit with a message such as `Migrate homepage to Astro`; push branch.
-5. Merge the branch into `main` when ready (GitHub pull request is ideal).
-6. At GitHub repository **Settings → Pages**, change **Source** from `Deploy from a branch` to **GitHub Actions**. This is mandatory for Astro source projects; do not use `main /(root)` deployment.
-7. On push to `main`, `.github/workflows/deploy.yml` installs dependencies, runs BibTeX parser tests, builds Astro, and publishes `dist/` to GitHub Pages.
-8. Check the **Actions** tab for build errors. Do not assume publication succeeded until the action is green and the live URL works.
-
-**Never upload only Astro source to branch-root Pages deployment**: it needs a build step first.
-
-## Papers — BibTeX driven (not Google Scholar scraping)
-
-Edit `src/data/publications.bib` to add papers. The `src/lib/bibtex.mjs` parser reads these entries automatically at site build; they appear on the home and Publications pages in descending year order. Paper metadata such as `featured` and a short `summary` belongs in `src/data/publication-meta.json`, indexed by BibTeX key.
+- Add a Markdown file under `src/content/notes/` containing `title`, `description`, `date`, `topic`, `category`, `tags`, `status`, and optionally `complete`, `pages`, `pdf` and `downloads`.
+- PDF originals go under `public/downloads/`. The site creates notes and detail pages from the Markdown metadata.
+- Valid categories: `qft`, `mathematics`, `condensed`. Do not place private drafts or unpublished private files anywhere in the public GitHub repo.
+- `status: published` displays a note. `status: draft` does **not** create a page or listing. A draft's linked PDF should **not** be uploaded into `public/downloads/` because public assets remain accessible directly.
+- Notes have direct **Read PDF** links (new tab) and a **Download** link.
 
 Example:
 
-```bibtex
-@article{mynewpaper2027,
-  author = {Hyeongmuk Lim and Collaborator Name},
-  title = {Paper title},
-  year = {2027},
-  eprint = {2701.00000},
-  journal = {Physical Review B},
-  doi = {10.1103/....},
-  keywords = {Quantum geometry, Topology}
-}
-```
-
-Update the `.bib` file and push through GitHub Desktop → GitHub Actions rebuilds the website **automatically**. This is **not** scheduled syncing from Google Scholar: Google Scholar blocked automated access, and this first release intentionally does not scrape it. Metadata from arXiv/DOI can be used when importing or updating BibTeX entries manually; make sure not to import papers by different people with the same name.
-
-The four seeded physics works have been cross-checked against the lab's public publication list and arXiv. They may not be the user's complete Google Scholar profile, because that page returned HTTP 429. See `PUBLICATION_SOURCES.md`.
-
-The built-in parser handles ordinary BibTeX fields, nested braces and quotes, not every advanced BibLaTeX construct (macros, crossref, concatenated field values). Use flattened BibTeX if importing complex exports.
-
-## Notes — web reader + downloads
-
-- Add a **Markdown** file to `src/content/notes/`: its prose and LaTeX math will render to an online reader automatically.
-- Add public PDFs/IPYNBs/other originals under `public/downloads/`.
-- Put download links in note frontmatter. Put `pdf: '/downloads/file.pdf'` in frontmatter to embed an inline PDF viewer and show a PDF download button.
-- Set `status: draft` for anything you do **not** want to publish. Keep sensitive/private work **out of the public GitHub repository entirely**, including history, before committing.
-
-Sample note frontmatter:
-
 ```yaml
 ---
-title: 'An introduction to quantum field theory'
-description: 'An example explanation'
+title: 'Lecture notes on TQFT'
+description: 'Notes on state-sum constructions.'
 date: 2026-10-25
-topic: 'Quantum field theory'
+topic: 'Topological Field Theory'
+category: 'qft'
+tags: ['TQFT', 'Topology', 'Category Theory']
+complete: false
 status: published
-pdf: '/downloads/qft-note.pdf'
-downloads:
-  - label: 'PDF'
-    href: '/downloads/qft-note.pdf'
+pdf: '/downloads/tqft.pdf'
 ---
 ```
 
-If you add a PDF only, create a small Markdown file with the metadata above and a short introduction. The PDF itself need not be converted. If you have a TeX document, convert it to PDF locally or in your TeX workflow first. The included cluster-model `.ipynb` notebook is converted to a browser-readable Markdown page by `scripts/import_notebook.py`. Its recorded outputs were empty; the page therefore does not contain generated plot images. The included PDF is a **reading excerpt** of its explanatory markdown cells, not the entire executable notebook.
+## Design system / reusable UI
 
-To convert additional notebooks automatically, adapt `scripts/import_notebook.py` (currently specialized for the public cluster SPT example). Do not publish notebooks with tokens, emails, or private data in their outputs or metadata.
+- `src/components/Header.astro`: responsive fixed sidebar and mobile navigation
+- `src/components/SearchFilter.astro`: **one shared component** on Publications and Notes. Same typography, spacings, search input, area chips, keyword chips, accessible pressed states, and empty-state behavior
+- `public/scripts/search-filter.js`: one shared behavior: simultaneous text, area, and keyword filters; one selected area and one selected keyword at a time; Clear filters; counters and hidden empty groups
+- `src/components/PaperCard.astro` / `NoteCard.astro`: A-style editorial content cards
+- `src/styles/base.css`, `b.css`, `hybrid.css`, `production.css`: design foundations and production overrides. All imported centrally in `src/layouts/SiteLayout.astro`.
 
-## Directory structure
+## Local developer commands
 
-```text
-astro.config.mjs
-.github/workflows/deploy.yml
-src/
-  data/publications.bib             # paper source of truth
-  data/publication-meta.json        # optional display summaries
-  lib/bibtex.mjs                     # BibTeX parser
-  content/notes/                    # browser-readable notes
-  pages/                             # Astro pages
-  components/                        # site UI
-  styles/global.css                 # visual design
-public/downloads/                   # public PDFs, notebooks, Markdown
-preview/                            # open-in-browser static mockup
+Requires Node 22+ and a network connection to the npm registry on first install.
+
+```sh
+npm install
+npm test
+npm run dev
+npm run build
 ```
 
-## Things to review before publishing
+`npm test` includes publication parser and site structure tests. GitHub Actions additionally runs a production Astro build. GitHub Actions is responsible for producing `dist/` and deploying it.
 
-- The QFT Notion URL still points outside this website; check its public sharing permissions.
-- Review publication titles, authors, years, journals and any missing Scholar entries.
-- Decide whether to publish personal contact email and research notes (both already existed in the provided public repository).
-- Confirm the chosen GitHub owner and URL; edit `astro.config.mjs` if different.
-- For repositories named something other than `<owner>.github.io`, configure Astro `base: '/repository-name'` and prefix internal site links appropriately. This prototype specifically targets **the existing root user-site repository**.
+## Verification and limitations
+
+- This package passed local BibTeX tests, source/asset metadata tests and JavaScript syntax checks in the authoring environment.
+- Astro's full npm installation/build and screenshot browser checks could not run in that environment due to outbound-network/browser restrictions. **The PR build must succeed before merging.**
+- Four publication records come from the preexisting verified BibTeX file, not a full synced Google Scholar export. No new bibliography entries were invented.
+- The three PDF files correspond to the original study notes; verify academic accuracy, attribution and references before public dissemination.

@@ -3,6 +3,7 @@ title: 'Introduction to Non-commutative Geometry'
 description: 'Seminar notes on geometry through algebras, Hochschild (co)homology, spectra, and the geometry of categories.'
 date: 2025-05-09
 topic: 'Algebra & Geometry'
+tags: ["Geometry", "Algebra", "Non-commutative Geometry", "Hochschild Homology"]
 category: 'mathematics'
 complete: true
 pages: 19

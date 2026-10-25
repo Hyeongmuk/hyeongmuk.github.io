@@ -1,27 +1,14 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import PaperCard from '../components/PaperCard.astro';
+import {publications} from '../lib/publications.mjs';
+const sections=[
+ {id:'geometry',label:'01 / GEOMETRY',title:'Quantum Geometry',question:'What information about electronic states is invisible to band energies?',text:'Quantum geometry describes how Bloch wave functions vary in momentum space. I study its relation to topological structure, electronic response, and correlated phenomena, especially in multiband systems.',tag:'Quantum Geometry'},
+ {id:'topology',label:'02 / TOPOLOGY',title:'Band Topology',question:'What kinds of topology arise beyond conventional band invariants?',text:'My work concerns topological structures of quantum bands, including Hopf invariants and the role of wave-function structure in unconventional topological phase transitions.',tag:'Band Topology'},
+ {id:'manybody',label:'03 / QUANTUM MATTER',title:'Many-Body Physics',question:'How does band geometry influence interacting quantum matter?',text:'I investigate geometric perspectives on interaction-driven electronic phases, with an interest in narrowing the gap between band topology and many-body phenomena.',tag:'Many-Body Physics'}
+];
 ---
-<SiteLayout active="research" title="Research · Hyeongmuk Lim" description="Research interests in quantum geometry, band topology, and theoretical condensed matter physics.">
-  <section class="container page-intro">
-    <p class="eyebrow">RESEARCH</p>
-    <h1>Geometry meets <em>quantum matter.</em></h1>
-    <p class="intro-lead">My research explores the information encoded in quantum wave functions beyond energy spectra, and its consequences for topological and correlated phases.</p>
-  </section>
-  <section class="container research-details">
-    <article id="quantum-geometry" class="research-detail">
-      <div class="detail-num">01 / Quantum geometry</div>
-      <div><h2>Geometry of quantum states</h2><p>Quantum geometry describes how wave functions evolve across parameter or momentum space. I am interested in the quantum metric, Berry and non-Abelian curvature, and geometries that arise in multiband systems and Kramers pairs.</p><a href="/publications/#lim2026quaternion" class="text-arrow">Related publication →</a></div>
-      <div class="detail-symbol">𝒬<sub>μν</sub></div>
-    </article>
-    <article id="band-topology" class="research-detail">
-      <div class="detail-num">02 / Band topology</div>
-      <div><h2>Beyond conventional band topology</h2><p>Some topological structures depend on more information than occupied-band topology or the low-energy nodal spectrum alone. Hopf and real Hopf invariants, delicate topology, and unconventional transitions are representative examples.</p><a href="/publications/#lim2023hopf" class="text-arrow">Related publication →</a></div>
-      <div class="detail-symbol">π<sub>3</sub></div>
-    </article>
-    <article id="many-body" class="research-detail">
-      <div class="detail-num">03 / Quantum many-body</div>
-      <div><h2>Geometry and correlations</h2><p>A longer-term direction is to understand how nontrivial quantum geometry and symmetry can organize interacting many-body phenomena, particularly in narrow-band systems.</p><a href="/notes/" class="text-arrow">Notes & learning →</a></div>
-      <div class="detail-symbol">⟨ψ⟩</div>
-    </article>
-  </section>
+<SiteLayout active="research" page="research" title="Research · Hyeongmuk Lim">
+<header class="page-heading"><p class="eyebrow">RESEARCH DIRECTIONS</p><h1>Research<span class="title-dot">.</span></h1><p>Understanding quantum matter through the geometry, topology, and interactions of electronic states.</p></header>
+<section class="research-sections">{sections.map(section=><article class="research-chapter" id={section.id}><span class="chapter-label">{section.label}</span><div><h2>{section.title}</h2><p class="chapter-question">{section.question}</p><p>{section.text}</p><div class="related-papers"><h3>Related work</h3>{publications.filter(p=>p.area===section.tag).slice(0,3).map(p=><PaperCard paper={p} compact />)}{!publications.some(p=>p.area===section.tag)&&<p>Research in progress.</p>}</div></div></article>)}</section>
 </SiteLayout>

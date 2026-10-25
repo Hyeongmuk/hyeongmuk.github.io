@@ -3,6 +3,7 @@ title: 'Haldane gap and the LSM theorem'
 description: 'Study notes on quantum spin chains, the nonlinear sigma model and topological terms, and the Lieb–Schultz–Mattis theorem.'
 date: 2026-10-25
 topic: 'Quantum Spin Chains'
+tags: ["Spin Chains", "Haldane Gap", "LSM Theorem", "Topological Phases"]
 category: 'condensed'
 complete: false
 pages: 16
