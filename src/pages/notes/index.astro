@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getCollection } from 'astro:content';
+import '../../styles/notes-compact.css';
 
 const notes = (await getCollection('notes', ({ data }) => data.status === 'published'))
   .sort((a,b) => b.data.date.getTime()-a.data.date.getTime());
@@ -20,7 +21,7 @@ const categories = [
       {categories.map(category => <a href={`#${category.id}`}>{category.title} ↓</a>)}
     </nav>
   </section>
-  <section class="container notes-list-section">
+  <section class="container notes-list-section compact-notes-library">
     {categories.map(category => (
       <section id={category.id} class="notes-category-section" aria-label={category.title}>
         <div class="notes-category-heading">
@@ -30,20 +31,22 @@ const categories = [
             <p>{category.summary}</p>
           </div>
         </div>
-        <div class="notes-grid">
+        <div class="notes-compact-list">
           {notes.filter(note => note.data.category === category.id).map(note => (
-            <article class="note-card">
-              <span class="note-type">{note.data.topic}</span>
-              <div class="note-ornament" aria-hidden="true">∮</div>
-              <h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3>
-              <p>{note.data.description}</p>
-              <div class="note-metadata">
-                <span>{note.data.complete ? 'Complete note' : 'Open study resource'}</span>
-                {note.data.pages && <span>{note.data.pages} pages</span>}
+            <article class="study-note-row">
+              <div class="study-note-info">
+                <div class="study-note-meta">
+                  <span>{note.data.topic}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>{note.data.complete ? 'Complete note' : 'Study note'}</span>
+                  {note.data.pages && <><span aria-hidden="true">·</span><span>{note.data.pages} pages</span></>}
+                </div>
+                <h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3>
+                <p>{note.data.description}</p>
               </div>
-              <div class="note-bottom note-actions">
-                <a href={`/notes/${note.id}/`}>Overview →</a>
-                {note.data.pdf && <a href={note.data.pdf} target="_blank" rel="noopener noreferrer" aria-label={`Read PDF: ${note.data.title} (opens a new tab)`}>Read PDF ↗</a>}
+              <div class="study-note-links">
+                <a class="study-note-overview" href={`/notes/${note.id}/`}>Overview →</a>
+                {note.data.pdf && <a class="study-note-pdf" href={note.data.pdf} target="_blank" rel="noopener noreferrer" aria-label={`Read PDF: ${note.data.title} (opens a new tab)`}>Read PDF ↗</a>}
               </div>
             </article>
           ))}
