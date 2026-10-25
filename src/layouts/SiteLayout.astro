@@ -1,0 +1,34 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+const {
+  title = 'Hyeongmuk Lim | Theoretical Physicist',
+  description = 'Quantum geometry, topology and theoretical quantum matter.',
+  active = '',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f8f7f4" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <Header active={active} />
+    <main><slot /></main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© {new Date().getFullYear()} Hyeongmuk Lim</span>
+        <span>Theoretical physics, notes, and things worth thinking about.</span>
+        <span><a href="mailto:ihm5024@snu.ac.kr">Email</a> · <a href="https://scholar.google.com/citations?user=bp9_2lwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></span>
+      </div>
+    </footer>
+  </body>
+</html>

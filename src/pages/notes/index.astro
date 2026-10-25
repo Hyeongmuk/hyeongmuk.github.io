@@ -1,0 +1,31 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getCollection } from 'astro:content';
+const notes = (await getCollection('notes', ({ data }) => data.status === 'published'))
+  .sort((a,b) => b.data.date.getTime()-a.data.date.getTime());
+---
+<SiteLayout active="notes" title="Study Notes · Hyeongmuk Lim">
+  <section class="container page-intro">
+    <p class="eyebrow">STUDY NOTES</p><h1>A growing <em>reading room.</em></h1>
+    <p class="intro-lead">Personal study notes, computational notebooks, and mathematical physics resources. Open materials to read online or download the original files.</p>
+  </section>
+  <section class="container notes-list-section">
+    <div class="notes-grid">
+      {notes.map(note => <a class="note-card" href={`/notes/${note.id}/`}>
+        <span class="note-type">{note.data.topic}</span>
+        <div class="note-ornament">∮</div>
+        <h2>{note.data.title}</h2>
+        <p>{note.data.description}</p>
+        <div class="note-bottom"><span>Read in browser · Downloads</span><span>↗</span></div>
+      </a>)}
+      <a class="note-card external" href="https://aboard-cardboard-df8.notion.site/Quantum-Field-Theory-Derived-Algebraic-Geometry-1f00e579eb6881bbb318fd148b00a7cb?pvs=74" target="_blank" rel="noopener noreferrer">
+        <span class="note-type">Mathematical physics · External</span>
+        <div class="note-ornament">∂</div>
+        <h2>Quantum Field Theory & Derived Algebraic Geometry</h2>
+        <p>Existing study notebook hosted on Notion. Opens an external reading page.</p>
+        <div class="note-bottom"><span>Open Notion notes</span><span>↗</span></div>
+      </a>
+    </div>
+    <aside class="content-hint"><strong>Publishing a new note</strong><p>Put a Markdown file in <code>src/content/notes/</code>, or add a PDF under <code>public/downloads/</code>. The site builds an entry and download buttons automatically from frontmatter. Private drafts are excluded.</p></aside>
+  </section>
+</SiteLayout>

@@ -1,0 +1,22 @@
+---
+const { paper, numbered = false } = Astro.props;
+---
+<article class="paper-card">
+  <div class="paper-header">
+    <div>
+      {numbered && <span class="paper-year">{paper.year}</span>}
+      <h3>{paper.title}</h3>
+    </div>
+    {paper.featured && <span class="paper-star" title="Selected work">✳</span>}
+  </div>
+  <div class="paper-authors">
+    {paper.authors.map((author, i) => <Fragment>{i > 0 && ', '}{author === 'Hyeongmuk Lim' ? <strong>{author}</strong> : author}</Fragment>)}
+  </div>
+  <p class="paper-journal">{paper.journal ? `${paper.journal}${paper.volume ? ` ${paper.volume}` : ''}${paper.pages ? `, ${paper.pages}` : ''} (${paper.year})` : `Preprint · ${paper.year}`}</p>
+  {paper.summary && <p class="paper-summary">{paper.summary}</p>}
+  <div class="paper-actions">
+    {paper.arxivUrl && <a target="_blank" rel="noopener noreferrer" href={paper.arxivUrl}>arXiv ↗</a>}
+    {paper.doiUrl && <a target="_blank" rel="noopener noreferrer" href={paper.doiUrl}>Journal ↗</a>}
+    {paper.pdfUrl && <a target="_blank" rel="noopener noreferrer" href={paper.pdfUrl}>PDF ↗</a>}
+  </div>
+</article>

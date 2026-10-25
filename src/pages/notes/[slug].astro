@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({ data }) => data.status === 'published');
+  return notes.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<SiteLayout active="notes" title={`${entry.data.title} · Study Notes`} description={entry.data.description}>
+  <section class="container reading-header">
+    <a class="crumb" href="/notes/">← Back to notes</a>
+    <p class="eyebrow">{entry.data.topic}</p>
+    <h1>{entry.data.title}</h1>
+    <p class="intro-lead">{entry.data.description}</p>
+    <div class="reading-actions">
+      {entry.data.pdf && <><a class="button-primary" href={entry.data.pdf} download>Download PDF ↓</a><a class="button-link" href="#pdf-reader">Read PDF below →</a></>}
+      {entry.data.downloads.map((file) => <a class="button-outline" href={file.href} download>{file.label} ↓</a>)}
+    </div>
+  </section>
+  <section class="container reader-wrap">
+    <article class="prose"><Content /></article>
+    {entry.data.pdf && <div id="pdf-reader" class="pdf-panel"><h2>PDF viewer</h2><p>Use the browser PDF toolbar to zoom and navigate.</p><iframe title={`PDF: ${entry.data.title}`} src={`${entry.data.pdf}#toolbar=1`} loading="lazy"></iframe><a href={entry.data.pdf} target="_blank" rel="noopener noreferrer">Open PDF in a new tab ↗</a></div>}
+  </section>
+</SiteLayout>
