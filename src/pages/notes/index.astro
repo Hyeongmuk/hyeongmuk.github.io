@@ -1,57 +1,26 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { getCollection } from 'astro:content';
-import '../../styles/notes-compact.css';
-
-const notes = (await getCollection('notes', ({ data }) => data.status === 'published'))
-  .sort((a,b) => b.data.date.getTime()-a.data.date.getTime());
-
-const categories = [
-  { id: 'qft', title: 'Quantum Field Theory', summary: 'Quantization, field theory, and the mathematical structures behind them.', number: '01' },
-  { id: 'mathematics', title: 'Mathematics', summary: 'Algebra, geometry, topology, and categorical perspectives.', number: '02' },
-  { id: 'condensed', title: 'Condensed Matter Physics', summary: 'Topological phases, quantum matter, and computational models.', number: '03' },
-];
+import NoteCard from '../../components/NoteCard.astro';
+import SearchFilter from '../../components/SearchFilter.astro';
+import {getCollection} from 'astro:content';
+import {noteCategories} from '../../data/categories.mjs';
+const notes=(await getCollection('notes',({data})=>data.status==='published')).sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());
+const allTags=notes.flatMap(note=>note.data.tags);
+const keywords=[...new Set(allTags)].sort((a,b)=>allTags.filter(x=>x===b).length-allTags.filter(x=>x===a).length || a.localeCompare(b));
 ---
-<SiteLayout active="notes" title="Study Notes · Hyeongmuk Lim">
-  <section class="container page-intro notes-page-intro">
-    <p class="eyebrow">PERSONAL LEARNING ARCHIVE</p>
-    <h1>Notes from <em>ongoing study.</em></h1>
-    <p class="intro-lead">A growing collection of study notes in quantum field theory, mathematics, and condensed matter physics. Selected manuscripts are available to read online as PDFs and to download.</p>
-    <nav aria-label="Study note categories" class="notes-category-nav">
-      {categories.map(category => <a href={`#${category.id}`}>{category.title} ↓</a>)}
-    </nav>
-  </section>
-  <section class="container notes-list-section compact-notes-library">
-    {categories.map(category => (
-      <section id={category.id} class="notes-category-section" aria-label={category.title}>
-        <div class="notes-category-heading">
-          <span class="notes-category-num">{category.number} / STUDY AREA</span>
-          <div>
-            <h2>{category.title}</h2>
-            <p>{category.summary}</p>
-          </div>
-        </div>
-        <div class="notes-compact-list">
-          {notes.filter(note => note.data.category === category.id).map(note => (
-            <article class="study-note-row">
-              <div class="study-note-info">
-                <div class="study-note-meta">
-                  <span>{note.data.topic}</span>
-                  <span aria-hidden="true">·</span>
-                  <span>{note.data.complete ? 'Complete note' : 'Study note'}</span>
-                  {note.data.pages && <><span aria-hidden="true">·</span><span>{note.data.pages} pages</span></>}
-                </div>
-                <h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3>
-                <p>{note.data.description}</p>
-              </div>
-              <div class="study-note-links">
-                <a class="study-note-overview" href={`/notes/${note.id}/`}>Overview →</a>
-                {note.data.pdf && <a class="study-note-pdf" href={note.data.pdf} target="_blank" rel="noopener noreferrer" aria-label={`Read PDF: ${note.data.title} (opens a new tab)`}>Read PDF ↗</a>}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-    ))}
+<SiteLayout active="notes" page="notes" title="Study Notes · Hyeongmuk Lim">
+  <header class="page-heading"><p class="eyebrow">PERSONAL LEARNING ARCHIVE</p><h1>Study notes<span class="title-dot">.</span></h1><p>Quantum field theory, mathematics, and condensed matter physics. Read manuscripts in a new PDF tab or download them for later.</p></header>
+  <SearchFilter id="notes" placeholder="Search titles, subjects, or keywords…" count={notes.length} categories={noteCategories} keywords={keywords}/>
+  <section class="notes-results" id="notes-results" data-search-root="notes">
+    <div class="results-toolbar"><p role="status" aria-live="polite" data-result-count>{notes.length} notes</p><span>Read PDF opens in a new tab ↗</span></div>
+    {noteCategories.map((category,index)=>{
+      const list=notes.filter(note=>note.data.category===category.id);
+      return <section class="note-group" id={category.id} data-filter-group>
+        <div class="category-heading"><span class="category-number">{String(index+1).padStart(2,'0')}</span><h2>{category.title}</h2><span class="category-caption">{category.summary}</span></div>
+        {list.map(note=><div data-filter-item data-area={category.id} data-keywords={note.data.tags.join('|')} data-search={[note.data.title,note.data.description,note.data.topic,category.title,...note.data.tags].join(' ')}><NoteCard note={note}/></div>)}
+      </section>;
+    })}
+    <div class="empty-state" data-empty-state hidden><h2>No matching notes</h2><p>Try another search or keyword.</p><button class="button-secondary" type="button" data-filter-reset>Clear filters</button></div>
+    <p class="archive-footnote">These are personal study notes, not peer-reviewed publications. Corrections and suggestions are welcome: <a href="mailto:ihm5024@snu.ac.kr">get in touch ↗</a>.</p>
   </section>
 </SiteLayout>

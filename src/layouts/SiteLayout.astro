@@ -1,34 +1,38 @@
 ---
 import Header from '../components/Header.astro';
-import '../styles/global.css';
+import '../styles/base.css';
+import '../styles/b.css';
+import '../styles/hybrid.css';
+import '../styles/production.css';
 import 'katex/dist/katex.min.css';
-const {
-  title = 'Hyeongmuk Lim | Theoretical Physicist',
-  description = 'Quantum geometry, topology and theoretical quantum matter.',
-  active = '',
-} = Astro.props;
+const { title = 'Hyeongmuk Lim · Theoretical Physics', description = 'Theoretical condensed matter physics, quantum geometry, and band topology.', active = 'home', page = active } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#f8f7f4" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <title>{title}</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  </head>
-  <body>
-    <Header active={active} />
-    <main><slot /></main>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f3eb" />
+  <meta name="description" content={description}/>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).toString()} />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <title>{title}</title>
+  <script is:inline src="/scripts/site.js" defer></script>
+  <script is:inline src="/scripts/search-filter.js" defer></script>
+</head>
+<body class={`design-b design-h page-${page}`} id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header active={active}/>
+  <div class="site-body">
+    <main id="main" tabindex="-1"><slot /></main>
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <span>© {new Date().getFullYear()} Hyeongmuk Lim</span>
-        <span>Theoretical physics, notes, and things worth thinking about.</span>
-        <span><a href="mailto:ihm5024@snu.ac.kr">Email</a> · <a href="https://scholar.google.com/citations?user=bp9_2lwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></span>
-      </div>
+      <div><strong>Hyeongmuk Lim</strong><span>Theoretical physics · Seoul National University</span></div>
+      <div class="footer-links"><a href="mailto:ihm5024@snu.ac.kr">Email ↗</a><a href="https://scholar.google.com/citations?user=bp9_2lwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗ <span class="sr-only">(opens in a new tab)</span></a><a href="#top">Back to top ↑</a></div>
     </footer>
-  </body>
+  </div>
+</body>
 </html>
