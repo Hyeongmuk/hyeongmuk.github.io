@@ -15,8 +15,77 @@ const sections=[
     {sections.map(section=><article class="research-chapter" id={section.id}>
       <span class="chapter-label">{section.label}</span>
       <div><h2>{section.title}</h2><p class="chapter-question">{section.question}</p><p>{section.text}</p><p class="research-direction-note">{section.note}</p>
+        {section.id==='geometry' && (
+          <figure class="geometry-research-figure">
+            <a class="geometry-figure-visual" href="/research/quaternion-kahler-geometry.svg" target="_blank" rel="noopener noreferrer" aria-label="Open the quaternion-Kähler geometry research illustration in a new tab">
+              <img
+                src="/research/quaternion-kahler-geometry.svg"
+                alt="Scientific illustration comparing quantum metric and Berry curvature in a two-dimensional Brillouin zone with a quaternion-Kähler setting in four dimensions featuring three coupled Berry curvatures."
+                width="4329" height="2285" loading="lazy" decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span>From Kähler geometry of a two-dimensional Brillouin zone to the quaternion-Kähler setting with three coupled Berry curvatures.</span>
+              <a href="/research/quaternion-kahler-geometry.svg" target="_blank" rel="noopener noreferrer">View larger ↗</a>
+            </figcaption>
+          </figure>
+        )}
         {section.ids.length>0 && <div class="related-papers"><h3>Related publications</h3>{section.ids.map(id=>paperById(id)).filter(Boolean).map(paper=><PaperCard paper={paper} compact />)}</div>}
       </div>
     </article>)}
   </section>
 </SiteLayout>
+
+<style>
+  /* Research-only figure; no shared stylesheet changes. */
+  .geometry-research-figure {
+    width: min(100%, 820px);
+    margin: 27px 0 33px;
+  }
+  .geometry-figure-visual {
+    display: block;
+    padding: clamp(10px, 2.5vw, 22px);
+    border: 1px solid var(--line, #d9d9cc);
+    border-radius: 4px;
+    background: var(--surface, #fffcf6);
+    transition: border-color .16s ease;
+  }
+  .geometry-figure-visual:hover { border-color: var(--accent, #285b49); }
+  .geometry-figure-visual:focus-visible,
+  .geometry-research-figure figcaption a:focus-visible {
+    outline: 2px solid var(--accent, #285b49);
+    outline-offset: 3px;
+  }
+  .geometry-figure-visual img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .geometry-research-figure figcaption {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 22px;
+    padding-top: 12px;
+    color: var(--muted, #5c665f);
+    font: 12px/1.6 var(--sans, sans-serif);
+  }
+  .geometry-research-figure figcaption span { max-width: 610px; }
+  .geometry-research-figure figcaption a {
+    color: var(--accent, #285b49);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+  @media (max-width: 600px) {
+    .geometry-research-figure { margin: 23px 0 26px; }
+    .geometry-figure-visual { padding: 8px; }
+    .geometry-research-figure figcaption { font-size: 11.5px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .geometry-figure-visual { transition: none; }
+  }
+</style>
