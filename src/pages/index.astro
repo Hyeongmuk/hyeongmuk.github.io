@@ -3,35 +3,43 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import PaperCard from '../components/PaperCard.astro';
 import {featuredPublications} from '../lib/publications.mjs';
 import {getCollection} from 'astro:content';
-const notes=(await getCollection('notes',({data})=>data.status==='published')).sort((a,b)=>a.data.category.localeCompare(b.data.category));
+import {noteCategories} from '../data/categories.mjs';
+const allNotes=await getCollection('notes',({data})=>data.status==='published');
+const featuredNotes=noteCategories.map(category => {
+  const note=allNotes.filter(n=>n.data.category===category.id)
+    .sort((a,b)=>b.data.date.getTime()-a.data.date.getTime())[0];
+  return note ? {note, category} : null;
+}).filter(Boolean);
 ---
-<SiteLayout active="home" page="home">
-  <section class="home-hero">
+<SiteLayout active="home" page="home" title="Hyeongmuk Lim (Mook) · Theoretical Condensed Matter Physics" description="Research on band topology and multiband quantum geometry, with an interest in how noninteracting band structures shape correlated quantum matter.">
+  <section class="home-hero home-hero-portrait">
     <div class="hero-main">
       <p class="eyebrow"><span class="dot"></span>THEORETICAL CONDENSED MATTER PHYSICS</p>
       <h1>Hyeongmuk Lim <span class="name-alias">(Mook)</span></h1>
-      <p class="hero-copy">I explore how the geometry and topology of quantum states shape physical phenomena in solids, from band structures to correlated quantum matter.</p>
-      <div class="hero-actions"><a class="button" href="/research/">Explore research ↗</a><a class="underlined-link" href="/publications/">Selected publications →</a></div>
-      <p class="home-affiliation">Department of Physics and Astronomy · Seoul National University</p>
+      <p class="hero-copy">I study the topology and quantum geometry of electronic bands. A question guiding my work is how the wave-function structure of noninteracting electrons can shape correlated quantum matter.</p>
+      <div class="hero-actions"><a class="button" href="/research/">Explore research ↗</a><a class="underlined-link" href="/publications/">Selected publications →</a><a class="underlined-link" href="/downloads/Hyeongmuk_Lim_CV.pdf" target="_blank" rel="noopener noreferrer">Academic CV ↗</a></div>
+      <p class="home-affiliation">Ph.D. Candidate · Seoul National University · Expected August 2027</p>
     </div>
+    <figure class="home-portrait"><img src="/profile-hyeongmuk-lim.webp" width="800" height="1120" alt="Portrait of Hyeongmuk Lim" fetchpriority="high"/><figcaption>Hyeongmuk Lim</figcaption></figure>
   </section>
   <section class="home-research">
-    <div class="section-heading"><div><p class="eyebrow">RESEARCH</p><h2>Questions I work on</h2></div><a class="text-link" href="/research/">All research →</a></div>
+    <div class="section-heading"><div><p class="eyebrow">RESEARCH</p><h2>Research &amp; directions</h2></div><a class="text-link" href="/research/">All research →</a></div>
     <div class="research-strip">
-      <a href="/research/#geometry"><span class="eyebrow">01 / GEOMETRY</span><strong>Quantum Geometry</strong><span>How Bloch wave-function geometry constrains electronic response and correlations.</span></a>
-      <a href="/research/#topology"><span class="eyebrow">02 / TOPOLOGY</span><strong>Band Topology</strong><span>Topological structures that go beyond the usual classification of band insulators.</span></a>
-      <a href="/research/#manybody"><span class="eyebrow">03 / QUANTUM MATTER</span><strong>Many-Body Physics</strong><span>Interaction effects and geometry-driven electronic phenomena.</span></a>
+      <a href="/research/#geometry"><span class="eyebrow">01 / GEOMETRY</span><strong>Quantum Geometry</strong><span>From ideal Chern bands to quaternionic geometry of Kramers pairs.</span></a>
+      <a href="/research/#topology"><span class="eyebrow">02 / TOPOLOGY</span><strong>Band Topology</strong><span>Hopf invariants, delicate topology, and the role of unoccupied bands.</span></a>
+      <a href="/research/#manybody"><span class="eyebrow">03 / RESEARCH INTERESTS</span><strong>Correlated Quantum Matter</strong><span>Interactions in bands, topological order, SPT phases, and generalized symmetries.</span></a>
     </div>
   </section>
   <section class="home-publications">
-    <div class="section-heading"><div><p class="eyebrow">SELECTED WORK</p><h2>Publications</h2></div><a class="text-link" href="/publications/">All publications →</a></div>
-    <div class="papers-list">{featuredPublications.slice(0,3).map(paper=><PaperCard paper={paper} compact />)}</div>
+    <div class="section-heading"><div><p class="eyebrow">SELECTED RESEARCH</p><h2>Selected publications</h2></div><a class="text-link" href="/publications/">All publications →</a></div>
+    <p class="section-intro">Two representative directions in my work: extending ideal quantum geometry to time-reversal-symmetric systems, and uncovering delicate band topology.</p>
+    <div class="papers-list">{featuredPublications.map(paper=><PaperCard paper={paper} />)}</div>
   </section>
   <section class="home-notes">
     <div class="section-heading"><div><p class="eyebrow">OPEN NOTES</p><h2>Learning in public</h2></div><a class="text-link" href="/notes/">All study notes →</a></div>
-    <p class="section-intro">Personal study notes in quantum field theory, mathematics, and condensed matter physics. Read manuscripts online or download their PDFs.</p>
+    <p class="section-intro">My study notes span quantum field theory, mathematics, and condensed matter physics. Complete manuscripts can be read online or downloaded as PDFs.</p>
     <div class="small-notes">
-      {notes.slice(0,3).map(note=><div class="small-note"><div><p class="eyebrow">{note.data.topic}</p><h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3></div><a class="small-link" href={`/notes/${note.id}/`}>Details ↗</a></div>)}
+      {featuredNotes.map(({note,category})=><div class="small-note"><div><p class="eyebrow">{category.title}</p><h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3></div><a class="small-link" href={note.data.pdf || `/notes/${note.id}/`} target={note.data.pdf?'_blank':undefined} rel={note.data.pdf?'noopener noreferrer':undefined}>{note.data.pdf?'Read PDF ↗':'Details →'}</a></div>)}
     </div>
   </section>
 </SiteLayout>
