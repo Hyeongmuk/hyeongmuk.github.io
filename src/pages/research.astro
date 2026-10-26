@@ -25,11 +25,11 @@ const sections=[
               />
             </a>
             <figcaption>
-              <p class="figure-comparison">Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs.</p>
-              <div class="figure-caption-secondary">
-                <p class="figure-source">Associated paper: <a href="https://arxiv.org/abs/2608.03178" target="_blank" rel="noopener noreferrer"><cite>Quaternion-Kähler geometry of time reversal symmetric crystals</cite> (2026) ↗</a></p>
+              <div class="figure-caption-primary">
+                <p class="figure-comparison">Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs.</p>
                 <a class="geometry-figure-expand" href="/research/quaternion-kahler-geometry.svg" target="_blank" rel="noopener noreferrer">View larger ↗</a>
               </div>
+              <p class="figure-source">Associated paper: <a href="https://arxiv.org/abs/2608.03178" target="_blank" rel="noopener noreferrer"><cite>Quaternion-Kähler geometry of time reversal symmetric crystals</cite> (2026) ↗</a></p>
             </figcaption>
           </figure>
         )}
@@ -42,7 +42,7 @@ const sections=[
 <style>
   /* Research-only figure; no shared stylesheet changes. */
   .geometry-research-figure {
-    width: min(100%, 980px);
+    width: min(100%, 820px);
     margin: 27px 0 33px;
   }
   .geometry-figure-visual {
@@ -72,23 +72,27 @@ const sections=[
     color: var(--muted, #5c665f);
     font: 12px/1.6 var(--sans, sans-serif);
   }
-  /* The complete comparison sentence gets the full figure width. */
-  .geometry-research-figure .figure-comparison {
-    margin: 0 0 6px;
-    max-width: none;
-  }
-  .geometry-research-figure .figure-caption-secondary {
+  /* Let the caption text use all space not occupied by View larger. */
+  .geometry-research-figure .figure-caption-primary {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 5px 22px;
+    gap: 12px;
   }
-  .geometry-research-figure .figure-source { margin:0; font-size:11.5px; }
+  .geometry-research-figure .figure-comparison {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+  }
+  .geometry-research-figure .geometry-figure-expand {
+    flex: 0 0 auto;
+  }
+  .geometry-research-figure .figure-source {
+    margin: 6px 0 0;
+    font-size: 11.5px;
+  }
   .geometry-research-figure .figure-source cite { font-style:italic; }
-  @media (min-width: 1200px) {
-    .geometry-research-figure .figure-comparison { white-space: nowrap; }
-  }
   /* Keep the subsection heading in sentence case. */
   .research-sections-refined .related-papers > h3 {
     text-transform:none; letter-spacing:0; font-family:var(--serif,Georgia,serif);
@@ -114,11 +118,13 @@ const sections=[
     text-underline-offset: 3px;
     white-space: nowrap;
   }
+  /* Source links may wrap on phones without affecting the View larger link. */
+  .geometry-research-figure .figure-source a { white-space: normal; overflow-wrap: anywhere; }
   @media (max-width: 600px) {
     .geometry-research-figure { margin: 23px 0 26px; }
     .geometry-figure-visual { padding: 8px; }
     .geometry-research-figure figcaption { font-size: 11.5px; }
-    .geometry-research-figure .figure-caption-secondary { gap: 5px 14px; }
+    .geometry-research-figure .figure-caption-primary { flex-wrap:wrap; gap:5px 14px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .geometry-figure-visual { transition: none; }
