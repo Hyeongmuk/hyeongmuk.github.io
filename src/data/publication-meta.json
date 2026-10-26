@@ -1,7 +1,7 @@
 {
   "lim2026quaternion": {
     "featured": true,
-    "summary": "Quaternionic quantum geometry of Kramers pairs and non-Abelian analogues of ideal bands.",
+    "summary": "Identifies quaternion-Kähler quantum geometry for Kramers pairs, extending ideal-band geometric relations to time-reversal-symmetric multiband states. This provides a possible starting point for exploring correlated phases without breaking time reversal.",
     "area": "Quantum Geometry",
     "tags": [
       "Quantum Geometry",
@@ -10,8 +10,8 @@
     ]
   },
   "kim2024unconventional": {
-    "featured": true,
-    "summary": "Why band-touching trajectories alone need not characterize a topological phase transition.",
+    "featured": false,
+    "summary": "Examines topological transitions whose distinguishing features cannot be captured by band-touching trajectories alone.",
     "area": "Band Topology",
     "tags": [
       "Topology",
@@ -31,7 +31,7 @@
   },
   "lim2023hopf": {
     "featured": true,
-    "summary": "Delicate three-dimensional topology of real-valued four-band Hamiltonians.",
+    "summary": "Establishes the real Hopf insulator in four-band PT-symmetric systems, whose delicate topology depends on both occupied and unoccupied bands.",
     "area": "Band Topology",
     "tags": [
       "Topology",

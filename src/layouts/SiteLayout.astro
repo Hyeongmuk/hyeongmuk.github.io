@@ -4,8 +4,9 @@ import '../styles/base.css';
 import '../styles/b.css';
 import '../styles/hybrid.css';
 import '../styles/production.css';
+import '../styles/refinement.css';
 import 'katex/dist/katex.min.css';
-const { title = 'Hyeongmuk Lim · Theoretical Physics', description = 'Theoretical condensed matter physics, quantum geometry, and band topology.', active = 'home', page = active } = Astro.props;
+const { title = 'Hyeongmuk Lim (Mook) · Theoretical Physics', description = 'Theoretical condensed matter physics, quantum geometry, and band topology.', active = 'home', page = active } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -23,6 +24,25 @@ const { title = 'Hyeongmuk Lim · Theoretical Physics', description = 'Theoretic
   <title>{title}</title>
   <script is:inline src="/scripts/site.js" defer></script>
   <script is:inline src="/scripts/search-filter.js" defer></script>
+  <meta property="og:site_name" content="Hyeongmuk Lim (Mook)" />
+  <meta property="og:image" content={new URL('/profile-hyeongmuk-lim.webp', Astro.site).toString()} />
+  <meta property="og:image:alt" content="Portrait of Hyeongmuk Lim" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="robots" content="index, follow" />
+  <link rel="me" href="https://orcid.org/0009-0001-0036-5355" />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'Person',
+    name: 'Hyeongmuk Lim', alternateName: 'Mook',
+    url: 'https://mookphysics.org',
+    image: 'https://mookphysics.org/profile-hyeongmuk-lim.webp',
+    jobTitle: 'Ph.D. Candidate in Physics',
+    affiliation: {'@type':'CollegeOrUniversity', name:'Seoul National University'},
+    sameAs: [
+      'https://orcid.org/0009-0001-0036-5355',
+      'https://scholar.google.com/citations?user=bp9_2lwAAAAJ&hl=en'
+    ],
+    knowsAbout: ['Band topology','Quantum geometry','Quaternion-Kähler geometry','Topological quantum matter']
+  })}></script>
 </head>
 <body class={`design-b design-h page-${page}`} id="top">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -31,7 +51,7 @@ const { title = 'Hyeongmuk Lim · Theoretical Physics', description = 'Theoretic
     <main id="main" tabindex="-1"><slot /></main>
     <footer class="site-footer">
       <div><strong>Hyeongmuk Lim</strong><span>Theoretical physics · Seoul National University</span></div>
-      <div class="footer-links"><a href="mailto:ihm5024@snu.ac.kr">Email ↗</a><a href="https://scholar.google.com/citations?user=bp9_2lwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗ <span class="sr-only">(opens in a new tab)</span></a><a href="#top">Back to top ↑</a></div>
+      <div class="footer-links"><a href="mailto:ihm5024@snu.ac.kr">Email ↗</a><a href="https://scholar.google.com/citations?user=bp9_2lwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗ <span class="sr-only">(opens in a new tab)</span></a><a href="https://orcid.org/0009-0001-0036-5355" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="#top">Back to top ↑</a></div>
     </footer>
   </div>
 </body>
