@@ -1,0 +1,30 @@
+---
+// Same design and behavior for publications and notes. Only the data differs.
+const { id, placeholder, categories=[], keywords=[], count=0 }=Astro.props;
+const primaryKeywords=keywords.slice(0,6);
+const additionalKeywords=keywords.slice(6);
+---
+<section class="library-tools unified-search" data-search-controls={id} aria-label={`Search and filter ${id}`}>
+  <div class="search-wrap">
+    <label for={`${id}-search`}>Search</label>
+    <div class="search-input">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6"/><path d="m16 16 4.2 4.2"/></svg>
+      <input id={`${id}-search`} data-text-filter type="search" placeholder={placeholder} autocomplete="off" aria-controls={`${id}-results`} />
+    </div>
+  </div>
+  <div class="filter-wrap">
+    <span class="control-label" id={`${id}-areas-label`}>Browse by area</span>
+    <div class="filter-buttons" role="group" aria-labelledby={`${id}-areas-label`}>
+      <button type="button" data-area-filter="all" aria-pressed="true">All <span>{count}</span></button>
+      {categories.map(x=><button type="button" data-area-filter={x.id} aria-pressed="false">{x.title}</button>)}
+    </div>
+  </div>
+  <div class="keyword-wrap">
+    <div class="keywords-heading"><span class="control-label" id={`${id}-keywords-label`}>Keywords</span><span class="keyword-help">Select one keyword to refine results</span></div>
+    <div class="filter-buttons keyword-buttons" role="group" aria-labelledby={`${id}-keywords-label`}>
+      <button type="button" data-keyword-filter="all" aria-pressed="true">All topics</button>
+      {primaryKeywords.map(tag=><button type="button" data-keyword-filter={tag} aria-pressed="false">{tag}</button>)}
+      {additionalKeywords.length>0 && <details class="more-keywords"><summary>More keywords ({additionalKeywords.length})</summary><div class="filter-buttons extra-keywords">{additionalKeywords.map(tag=><button type="button" data-keyword-filter={tag} aria-pressed="false">{tag}</button>)}</div></details>}
+    </div>
+  </div>
+</section>

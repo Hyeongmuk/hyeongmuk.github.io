@@ -1,0 +1,26 @@
+---
+const {active='home'}=Astro.props;
+const links=[
+ {id:'home',title:'Home',url:'/'}, {id:'research',title:'Research',url:'/research/'},
+ {id:'publications',title:'Publications',url:'/publications/'},
+ {id:'notes',title:'Study notes',url:'/notes/'}, {id:'about',title:'About & contact',url:'/about/'},
+];
+---
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="/" aria-label="Mook, Hyeongmuk Lim, home">mook<span class="brand-dot">.</span></a>
+  <span class="header-identity">Hyeongmuk Lim<span>Theoretical physics</span></span>
+  <nav class="desktop-nav" aria-label="Main navigation">
+    {links.map(x=><a href={x.url} aria-current={active===x.id?'page':undefined}>{x.title}</a>)}
+  </nav>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">Menu <span aria-hidden="true">☰</span></button>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+    {links.map(x=><a href={x.url} aria-current={active===x.id?'page':undefined}>{x.title}</a>)}
+  </nav>
+  <div class="sidebar-contact">
+    <p>Seoul National University</p>
+    <a href="mailto:ihm5024@snu.ac.kr">Email ↗</a>
+    <a href="https://scholar.google.com/citations?user=bp9_2lwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗ <span class="sr-only">(opens in a new tab)</span></a>
+    <a href="https://orcid.org/0009-0001-0036-5355" target="_blank" rel="noopener noreferrer">ORCID ↗ <span class="sr-only">(opens in a new tab)</span></a>
+    <a href="/downloads/Hyeongmuk_Lim_CV.pdf" target="_blank" rel="noopener noreferrer">Academic CV ↗ <span class="sr-only">(opens in a new tab)</span></a>
+  </div>
+</div></header>

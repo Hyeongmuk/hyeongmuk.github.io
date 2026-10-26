@@ -1,0 +1,18 @@
+---
+const {paper,compact=false}=Astro.props;
+const venue=paper.journal || (paper.eprint?'arXiv preprint':'Research paper');
+---
+<article class:list={['paper-row',{'paper-row-small':compact}]} id={paper.id}>
+  <div class="paper-year">{paper.year}</div>
+  <div class="paper-main">
+    <h3><a class="paper-title" href={paper.doiUrl || paper.arxivUrl || paper.url || '#'} target="_blank" rel="noopener noreferrer">{paper.title}<span aria-hidden="true"> ↗</span></a></h3>
+    <p class="paper-authors">{paper.authors.map((author,i)=><span>{i>0?', ':''}{author==='Hyeongmuk Lim'?<strong>{author}</strong>:author}</span>)}</p>
+    <p class="paper-venue">{venue}{paper.volume?' · '+paper.volume:''}{paper.pages?', '+paper.pages:''}</p>
+    {paper.summary && !compact && <p class="paper-summary">{paper.summary}</p>}
+  </div>
+  <div class="paper-links">
+    {paper.doiUrl && <a class="small-link" href={paper.doiUrl} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
+    {paper.arxivUrl && <a class="small-link" href={paper.arxivUrl} target="_blank" rel="noopener noreferrer">arXiv ↗</a>}
+    {paper.pdfUrl && <a class="small-link" href={paper.pdfUrl} target="_blank" rel="noopener noreferrer">PDF ↗</a>}
+  </div>
+</article>
