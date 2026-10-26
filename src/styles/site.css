@@ -494,12 +494,55 @@ html{scroll-padding-top:45px}
  .design-h .contact-panel-refined .about-portrait{max-height:340px;object-position:50% 25%}
 }
 @media(max-width:760px){
- .design-h .home-hero-portrait{grid-template-columns:1fr;gap:13px;align-items:start}
- .design-h .home-hero-portrait .hero-main{grid-row:1}
- .design-h .home-portrait{display:block;justify-self:start;max-width:160px;margin-top:2px}
- .design-h .home-portrait img{aspect-ratio:4/5;object-position:50% 16%}
+ /* Editorial portrait and name form one visual introduction on phones. */
+ .design-h .home-hero-portrait{
+   grid-template-columns:minmax(0,1fr) clamp(102px,31vw,170px);
+   column-gap:clamp(12px,4vw,22px);
+   row-gap:0;
+   align-items:center;
+   padding-top:27px;
+   padding-bottom:31px;
+ }
+ .design-h .home-hero-portrait .hero-main{display:contents}
+ .design-h .home-hero-portrait .hero-main>.eyebrow{
+   grid-column:1/-1;grid-row:1;margin:0 0 18px;
+   font-size:10px;letter-spacing:.085em;line-height:1.45;
+ }
+ .design-h .home-hero-portrait h1{
+   grid-column:1;grid-row:2;min-width:0;align-self:center;
+   font-size:clamp(26px,7.9vw,35px);line-height:1.12;letter-spacing:-.035em;
+ }
+ .design-h .home-hero-portrait .name-alias{
+   display:block;margin:9px 0 0;font-size:13px;line-height:1.25;
+   white-space:normal;letter-spacing:0;
+ }
+ .design-h .home-hero-portrait .home-portrait{
+   grid-column:2;grid-row:2;display:block;justify-self:end;
+   width:100%;max-width:170px;margin:0;
+ }
+ .design-h .home-hero-portrait .home-portrait img{
+   aspect-ratio:4/5;object-position:50% 16%;
+ }
  .design-h .home-portrait figcaption{display:none}
- .design-h .home-hero-portrait h1{font-size:clamp(31px,7.7vw,38px)}
+ .design-h .home-hero-portrait .hero-copy{
+   grid-column:1/-1;grid-row:3;max-width:620px;
+   font-size:14px;line-height:1.72;margin:22px 0 0;
+ }
+ .design-h .home-hero-portrait .hero-actions{
+   grid-column:1/-1;grid-row:4;
+   display:grid;grid-template-columns:max-content minmax(0,1fr);
+   align-items:center;column-gap:20px;row-gap:2px;margin-top:19px;
+ }
+ .design-h .home-hero-portrait .hero-actions .button{
+   grid-column:1/-1;justify-self:start;
+ }
+ .design-h .home-hero-portrait .hero-actions .underlined-link{
+   font-size:12px;white-space:nowrap;justify-self:start;
+ }
+ .design-h .home-hero-portrait .home-affiliation{
+   grid-column:1/-1;grid-row:5;margin-top:21px;
+   font-size:11.5px;line-height:1.65;
+ }
  .design-h .academic-facts div{grid-template-columns:1fr;gap:4px}
  .design-h .research-sections-refined .chapter-question{font-size:18px}
 }
