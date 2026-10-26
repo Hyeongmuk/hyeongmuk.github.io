@@ -17,7 +17,8 @@ test('both archives share the same search and keyword-filter component',()=>{
 test('site uses B sidebar and A editorial cards with a single stylesheet stack',()=>{
   const layout=read('src/layouts/SiteLayout.astro');
   assert.match(layout,/design-b design-h/);
-  assert.match(layout,/production.css/);
+  assert.match(layout,/site.css/);
+  assert.match(read('src/styles/site.css'),/PRODUCTION.CSS/);
   assert.doesNotMatch(layout,/noindex/);
   assert.match(read('src/components/Header.astro'),/desktop-nav/);
   assert.match(read('src/components/NoteCard.astro'),/note-row/);

@@ -12,7 +12,8 @@ test('research distinguishes demonstrated results from future interests',()=>{
   const s=read('src/pages/research.astro');
   assert.match(s,/ESTABLISHED RESEARCH/);
   assert.match(s,/BROADER RESEARCH INTERESTS/);
-  assert.match(s,/not yet a demonstration/);
+  assert.match(s,/provides a starting point/);
+  assert.doesNotMatch(s,/not yet a demonstration|rather than a claim/);
   assert.match(s,/generalized symmetries/);
 });
 test('academic profiles and photo are available',()=>{

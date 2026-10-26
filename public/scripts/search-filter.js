@@ -9,6 +9,7 @@
    const areas=[...controls.querySelectorAll('[data-area-filter]')];
    const keywords=[...controls.querySelectorAll('[data-keyword-filter]')];
    const items=[...root.querySelectorAll('[data-filter-item]')];
+   const itemData=items.map(item=>({item,hay:normalize(item.dataset.search),tags:(item.dataset.keywords||'').split('|')}));
    const groups=[...root.querySelectorAll('[data-filter-group]')];
    const counter=root.querySelector('[data-result-count]');
    const empty=root.querySelector('[data-empty-state]');
@@ -17,10 +18,8 @@
    function update(){
      const terms=normalize(search.value).split(' ').filter(Boolean);
      let visible=0;
-     for(const item of items){
-       const hay=normalize(item.dataset.search);
-       const itemTags=(item.dataset.keywords||'').split('|');
-       const ok=(area==='all'||item.dataset.area===area)&&(keyword==='all'||itemTags.includes(keyword))&&terms.every(t=>hay.includes(t));
+     for(const {item,hay,tags} of itemData){
+       const ok=(area==='all'||item.dataset.area===area)&&(keyword==='all'||tags.includes(keyword))&&terms.every(t=>hay.includes(t));
        item.hidden=!ok;if(ok)visible++;
      }
      for(const group of groups)group.hidden=![...group.querySelectorAll('[data-filter-item]')].some(i=>!i.hidden);
