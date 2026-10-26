@@ -25,8 +25,11 @@ const sections=[
               />
             </a>
             <figcaption>
-              <span>From Kähler geometry of a two-dimensional Brillouin zone to the quaternion-Kähler setting with three coupled Berry curvatures.</span>
-              <a href="/research/quaternion-kahler-geometry.svg" target="_blank" rel="noopener noreferrer">View larger ↗</a>
+              <div class="figure-caption-copy">
+                <p>Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs.</p>
+                <p class="figure-source">Associated paper: <a href="https://arxiv.org/abs/2608.03178" target="_blank" rel="noopener noreferrer"><cite>Quaternion-Kähler geometry of time reversal symmetric crystals</cite> (2026) ↗</a></p>
+              </div>
+              <a class="geometry-figure-expand" href="/research/quaternion-kahler-geometry.svg" target="_blank" rel="noopener noreferrer">View larger ↗</a>
             </figcaption>
           </figure>
         )}
@@ -73,7 +76,16 @@ const sections=[
     color: var(--muted, #5c665f);
     font: 12px/1.6 var(--sans, sans-serif);
   }
-  .geometry-research-figure figcaption span { max-width: 610px; }
+  .geometry-research-figure figcaption .figure-caption-copy { flex:1 1 440px; max-width:610px; min-width:0; }
+  .geometry-research-figure figcaption .figure-caption-copy p { margin:0; }
+  .geometry-research-figure figcaption .figure-caption-copy .figure-source { margin-top:6px; font-size:11.5px; }
+  .geometry-research-figure figcaption .figure-caption-copy cite { font-style:italic; }
+  /* The global styles uppercase this heading; keep the Research view in sentence case. */
+  .research-sections-refined .related-papers > h3 {
+    text-transform:none; letter-spacing:0; font-family:var(--serif,Georgia,serif);
+    font-weight:500; font-size:19px; color:var(--ink,#263a33);
+    margin-bottom:10px;
+  }
   .geometry-research-figure figcaption a {
     color: var(--accent, #285b49);
     text-decoration: underline;
