@@ -12,6 +12,7 @@ const notes = defineCollection({
       type: z.enum(['companion','supplement_to','related']),
       description: z.string().optional(),
     })).default([]),
+    featured: z.boolean().default(false),
     complete: z.boolean().default(false), pages: z.number().int().positive().optional(),
     status: z.enum(['published','draft']).default('draft'),
     pdf: z.string().optional(),

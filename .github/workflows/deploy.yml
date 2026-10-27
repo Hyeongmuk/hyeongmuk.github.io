@@ -22,14 +22,16 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Test metadata and BibTeX parser
         run: npm test
+      - name: Verify site source files
+        run: node scripts/verify-site-source.mjs
       - name: Build Astro
         run: npm run build
+      - name: Verify generated site pages
+        run: node scripts/verify-built-site.mjs
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist      - name: Verify generated site pages
-        run: node scripts/verify-built-site.mjs
-
+          path: ./dist
   deploy:
     environment:
       name: github-pages
