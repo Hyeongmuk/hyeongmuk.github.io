@@ -84,6 +84,7 @@ export function parseBibtex(input) {
 export function publicationFromBib(entry, meta = {}) {
   return {
     ...entry, ...meta,
+    areas: Array.isArray(meta.areas) ? meta.areas : (meta.area ? [meta.area] : []),
     year: Number(entry.year) || 0,
     authors: (entry.author || '').split(/\s+and\s+/i).map(s => s.trim()),
     topics: (entry.keywords || '').split(',').map(s => s.trim()).filter(Boolean),

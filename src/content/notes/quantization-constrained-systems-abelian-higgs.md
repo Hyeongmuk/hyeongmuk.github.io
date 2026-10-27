@@ -4,7 +4,7 @@ description: 'An evolving outline of the Dirac–Bergmann formalism, constrained
 date: 2026-10-26
 topic: 'Gauge Theory & Constrained Systems'
 category: 'qft'
-tags: ['Constrained Quantization', 'Gauge Theory', 'Dirac Brackets', 'Abelian Higgs Model']
+tags: ["Constrained Quantization", "Gauge Theory", "Dirac Brackets", "Abelian Higgs Model"]
 complete: false
 status: published
 pdf: '/downloads/quantization-constrained-systems-abelian-higgs.pdf'

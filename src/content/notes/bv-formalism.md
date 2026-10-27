@@ -3,8 +3,9 @@ title: 'Introduction to BV Formalism'
 description: 'Seminar notes on the Batalin–Vilkovisky formalism, from differential and graded geometry to the classical and quantum master equations.'
 date: 2025-04-23
 topic: 'Quantization & Gauge Theory'
-tags: ["Gauge Theory", "BV Formalism", "Geometry", "Quantization"]
+tags: ["BV Formalism", "Gauge Theory", "Graded Geometry", "Algebraic Geometry", "Quantization"]
 category: 'qft'
+featured: true
 complete: true
 pages: 23
 status: published
