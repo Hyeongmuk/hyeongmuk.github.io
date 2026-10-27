@@ -19,7 +19,7 @@
      const terms=normalize(search.value).split(' ').filter(Boolean);
      let visible=0;
      for(const {item,hay,tags} of itemData){
-       const ok=(area==='all'||item.dataset.area===area)&&(keyword==='all'||tags.includes(keyword))&&terms.every(t=>hay.includes(t));
+       const ok=(area==='all'||(item.dataset.area||'').split('|').includes(area))&&(keyword==='all'||tags.includes(keyword))&&terms.every(t=>hay.includes(t));
        item.hidden=!ok;if(ok)visible++;
      }
      for(const group of groups)group.hidden=![...group.querySelectorAll('[data-filter-item]')].some(i=>!i.hidden);
