@@ -129,6 +129,11 @@ Error: Public-site verification found 1 problem(s).
 - 공개 노트 7개: `bv-formalism`, `cotangent-complex`, `haldane-gap-lsm`, `noncommutative-geometry`, `planar-diagram-algebra-3d-tqft`, `quantization-constrained-systems-abelian-higgs`, `toric-code-demystified`.
 - `src/components/SearchFilter.astro` + `public/scripts/search-filter.js`: Publications/Notes 공유 필터 (텍스트·분야·키워드, 결과 수, 초기화).
 
+### Students 에세이 그림
+
+- `public/students/fig*.webp` 6개는 `figures-source/`의 matplotlib 스크립트로 생성한다. 그림을 고칠 때는 webp를 직접 편집하지 말고 스크립트를 고친 뒤 다시 빌드한다 (절차: `figures-source/README.md`의 "Website export").
+- 2026-10-29: 예전 webp는 원본 PNG 위에 글자를 덧그린 편집본이었고 FIG. 05 제목 위에 잔상이 있었다. 소스에서 글자 1.5배(`WEB_TEXT_SCALE`)로 다시 생성해 교체했다.
+
 ### About / 신원 정보 (현재 공개 소스 기준)
 
 - 이름: **Hyeongmuk Lim (Mook)**. Ph.D. Candidate, 서울대학교 물리천문학부 석박사통합과정, 지도교수 **Prof. Bohm-Jung Yang**.
