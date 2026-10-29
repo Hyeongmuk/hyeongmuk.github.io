@@ -10,3 +10,13 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Locally installed dependencies
+node_modules/
+
+# Generated build and Astro cache
+dist/
+.astro/
+
+# macOS metadata
+.DS_Store
