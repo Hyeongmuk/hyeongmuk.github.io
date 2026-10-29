@@ -1,0 +1,8 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import '../../styles/students.css';
+import landingContent from '../../data/students-landing.html?raw';
+---
+<SiteLayout active="students" page="students" title="Physics Stories · Hyeongmuk Lim" description="Essays on the conceptual structure and history of ideas in theoretical physics.">
+  <div class="ps-students" set:html={landingContent} />
+</SiteLayout>

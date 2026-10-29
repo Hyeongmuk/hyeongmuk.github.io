@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async () => {
   const base = 'https://mookphysics.org';
-  const pages = ['/', '/research/', '/publications/', '/notes/', '/about/'];
+  const pages = ['/', '/research/', '/publications/', '/notes/', '/students/', '/students/band-theory/', '/about/'];
   const notes = await getCollection('notes', ({ data }) => data.status === 'published');
   for (const note of notes) pages.push(`/notes/${note.id}/`);
   const urls = pages.map(path => `  <url><loc>${base}${path}</loc></url>`).join('\n');

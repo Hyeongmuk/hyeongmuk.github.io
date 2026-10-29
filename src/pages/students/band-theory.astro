@@ -1,0 +1,9 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import '../../styles/students.css';
+import essayContent from '../../data/students-essay.html?raw';
+---
+<SiteLayout active="students" page="students" title="How Does an Electron See Its Universe? · Hyeongmuk Lim" description="A historical account of Bloch electrons, band topology, quantum geometry and correlated matter.">
+  <div class="ps-students" set:html={essayContent} />
+  <script is:inline src="/scripts/students.js" defer></script>
+</SiteLayout>
