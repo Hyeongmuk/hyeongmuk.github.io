@@ -575,4 +575,18 @@ html{scroll-padding-top:45px}
 @media(prefers-reduced-motion:reduce){
  .design-h *{scroll-behavior:auto!important;transition-duration:0.01ms!important}
 }
+/* Unified top-level archive headings: Research / Publications / Study Notes / For Students. */
+.design-h .page-heading,
+.design-h.page-notes .page-heading { padding-top:45px; padding-bottom:31px; }
+.design-h .page-heading .eyebrow { margin-bottom:14px; }
+.design-h .page-heading h1,
+.design-h.page-notes .page-heading h1 { font-size:clamp(40px,4.8vw,55px); line-height:1.15; letter-spacing:-.04em; margin:0; }
+.design-h .page-heading > p:last-of-type { font-size:15px; line-height:1.75; margin:18px 0 0; max-width:700px; }
+@media(max-width:760px) {
+  .design-h .page-heading,
+  .design-h.page-notes .page-heading { padding-top:34px; padding-bottom:25px; }
+  .design-h .page-heading h1,
+  .design-h.page-notes .page-heading h1 { font-size:40px; }
+  .design-h .page-heading > p:last-of-type { font-size:14px; }
+}
 
