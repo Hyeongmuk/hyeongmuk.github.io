@@ -45,11 +45,12 @@ test('shared styles improve body copy legibility and preserve single CSS stack',
   assert.match(read('src/layouts/SiteLayout.astro'), /import '\.\.\/styles\/site\.css'/);
 });
 
-test('geometry figure title is real editable vector text, not split words', () => {
+test('Research preserves the original illustration and caption', () => {
   const svg = read('public/research/quaternion-kahler-geometry.svg');
-  assert.match(svg, /Quaternion–Kähler geometry/);
-  assert.doesNotMatch(svg, />Quaternion<\/text>.*?>-<\/text>.*?>Kähler <\/text>/);
+  assert.match(svg, />Kähler geometry<\/text>/);
+  assert.match(svg, />Quaternion<\/text>/);
   const research = read('src/pages/research.astro');
-  assert.match(research, /figure-explainer/);
+  assert.match(research, /figure-comparison/);
   assert.match(research, /View larger ↗/);
+  assert.doesNotMatch(research, /figure-explainer/);
 });
