@@ -184,14 +184,16 @@
 .ps-students .milestone-formula math{font-size:14px}}
 .ps-students .milestone-kicker{font-size:10px;letter-spacing:.07em;white-space:normal}
 .ps-students .equation,.ps-students .milestone-formula{font-family:var(--serif);display:flex;justify-content:center;align-items:center;max-width:100%;overflow-x:auto;overflow-y:hidden;overflow-wrap:normal;word-break:normal;scrollbar-width:thin}
-.ps-students .tex-equation{display:block;max-width:none!important;min-width:0;flex:0 0 auto;filter:brightness(0) saturate(100%) invert(18%) sepia(18%) saturate(663%) hue-rotate(103deg) brightness(91%) contrast(91%)}
+.ps-students .tex-equation{display:block;width:var(--tex-w);height:auto;max-width:none!important;min-width:0;flex:0 0 auto;filter:brightness(0) saturate(100%) invert(18%) sepia(18%) saturate(663%) hue-rotate(103deg) brightness(91%) contrast(91%)}
 .ps-students .essay-figure-frame{border:0;background:transparent;padding:0}
 .ps-students .essay-figure img{max-height:none}
 .ps-students #figure-3 img,.ps-students #figure-4 img{max-width:min(100%,660px);margin-inline:auto}
 @media (max-width:690px){.ps-students .landing h1{font-size:40px}
-.ps-students .equation,.ps-students .milestone-formula{justify-content:flex-start;padding-left:11px;padding-right:11px}
-/* Phones: render TeX formulas at their intrinsic size and shrink only if still wider than the box. */
-.ps-students .tex-equation{width:auto!important;max-width:100%!important;height:auto}}
+.ps-students .equation,.ps-students .milestone-formula{justify-content:flex-start;padding-left:8px;padding-right:8px}
+.ps-students .milestone-formula{padding-left:6px;padding-right:6px}
+/* Phones: formulas at 85% of desktop size, shrinking to fit the box but never below 75%
+   (TeX text stays larger than the 14px body); anything wider scrolls inside its box. */
+.ps-students .tex-equation{width:calc(var(--tex-w) * .85);max-width:100%!important;min-width:calc(var(--tex-w) * .75)}}
 /* Native Astro integration: do not override SiteLayout navigation or shared pages. */
 .ps-students {--paper:#f8f5ee;--surface:#fffcf6;--ink:#263a33;--muted:#5c665f;--faint:#797f75;--line:#d9d9cc;--accent:#285b49;--tint:#edf0e6;--gold:#8a6539;--serif:Georgia,"Times New Roman",serif;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);}
 .ps-students .content{width:100%;margin:0 auto}
