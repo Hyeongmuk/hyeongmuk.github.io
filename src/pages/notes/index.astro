@@ -12,7 +12,7 @@ const keywords=[...new Set(allTags)].sort((a,b)=>allTags.filter(x=>x===b).length
   <header class="page-heading"><p class="eyebrow">PERSONAL LEARNING ARCHIVE</p><h1>Study notes<span class="title-dot">.</span></h1><p>Quantum field theory, mathematics, and condensed matter physics. Read manuscripts in a new PDF tab or download them for later.</p></header>
   <SearchFilter id="notes" placeholder="Search titles, subjects, or keywords…" count={notes.length} categories={noteCategories} keywords={keywords}/>
   <section class="notes-results" id="notes-results" data-search-root="notes">
-    <div class="results-toolbar"><p role="status" aria-live="polite" data-result-count>{notes.length} notes</p><span>Read PDF opens in a new tab ↗</span></div>
+    <div class="results-toolbar"><p role="status" aria-live="polite" data-result-count>{notes.length} notes</p><button type="button" class="filters-reset" data-filter-reset-all hidden>Clear filters</button></div>
     {noteCategories.map((category,index)=>{
       const list=notes.filter(note=>note.data.category===category.id);
       return <section class="note-group" id={category.id} data-filter-group>
@@ -21,6 +21,6 @@ const keywords=[...new Set(allTags)].sort((a,b)=>allTags.filter(x=>x===b).length
       </section>;
     })}
     <div class="empty-state" data-empty-state hidden><h2>No matching notes</h2><p>Try another search or keyword.</p><button class="button-secondary" type="button" data-filter-reset>Clear filters</button></div>
-    <p class="archive-footnote">These are personal study notes, not peer-reviewed publications. Corrections and suggestions are welcome: <a href="mailto:ihm5024@snu.ac.kr">get in touch ↗</a>.</p>
+    <p class="archive-footnote">These are personal study notes, not peer-reviewed publications. Corrections and suggestions are welcome: <a href="mailto:ihm5024@snu.ac.kr">get in touch</a>.</p>
   </section>
 </SiteLayout>

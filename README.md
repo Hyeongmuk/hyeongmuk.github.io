@@ -9,7 +9,7 @@ The current design uses a left sidebar (desktop), a compact mobile menu, editori
 Requires Node.js 22 or a compatible Astro 5 version.
 
 ```bash
-npm install
+npm ci
 npm test
 npm run build
 npm run dev
@@ -25,11 +25,12 @@ To deploy to GitHub Pages, merge tested changes into `main`. GitHub Actions buil
 - Profile photo: `public/profile-hyeongmuk-lim.webp`, optimized from the author's provided portrait.
 - Academic CV: `public/downloads/Hyeongmuk_Lim_CV.pdf`. Keep it in sync with the author's current canonical CV file.
 - Website research prose: `src/pages/index.astro`, `src/pages/research.astro`, `src/pages/about.astro`.
-- Layout: `src/layouts/SiteLayout.astro`, shared base stylesheet stack. The newest targeted updates live in `src/styles/refinement.css` to preserve the agreed H design.
+- Layout: `src/layouts/SiteLayout.astro` and the single production stylesheet `src/styles/site.css`. The bottom **VISITOR POLISH** section documents final typography and responsive overrides; consolidate related rules when refactoring, rather than adding more layers.
+- Research figure: `public/research/quaternion-kahler-geometry.svg` (original scientific content preserved, title typography repaired).
 - Search indexing: `src/pages/sitemap.xml.ts`, `public/robots.txt`, and metadata/JSON-LD in the layout.
 
 ## Verification
 
-Use `npm test` and `npm run build` for every pull request. Confirm in a browser: left navigation, 2 featured publications, all 5 notes, PDF download, photo mobile/desktop layout, About CV links, search and keyword filtering, and sitemap.
+Use `npm test`, `npm run build`, and `node scripts/verify-visitor-site.mjs` for every pull request. CI runs these automatically. `.gitignore` excludes dependencies and generated files from future commits, but already-tracked copies require a **separate explicit** `git rm --cached` cleanup. Confirm in a browser: left navigation, 2 featured publications, all published notes, PDF download, photo mobile/desktop layout, About CV links, search and keyword filtering, and sitemap.
 
 See `RELEASE_NOTES_2026-10-26_ko.md` and `CONTENT_REVIEW_EN.md` for current revision details and editorial wording.

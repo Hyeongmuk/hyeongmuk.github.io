@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Test metadata and BibTeX parser
         run: npm test
       - name: Verify site source files
@@ -28,6 +28,8 @@ jobs:
         run: npm run build
       - name: Verify generated site pages
         run: node scripts/verify-built-site.mjs
+      - name: Check public-facing links and copy
+        run: node scripts/verify-visitor-site.mjs
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

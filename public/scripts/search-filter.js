@@ -14,6 +14,10 @@
    const counter=root.querySelector('[data-result-count]');
    const empty=root.querySelector('[data-empty-state]');
    const reset=root.querySelector('[data-filter-reset]');
+   const resetAll=root.querySelector('[data-filter-reset-all]');
+   const more=controls.querySelector('.more-keywords');
+   const moreSummary=more?.querySelector('summary');
+   const moreCount=more?.querySelectorAll('[data-keyword-filter]').length||0;
    let area='all', keyword='all';
    function update(){
      const terms=normalize(search.value).split(' ').filter(Boolean);
@@ -27,11 +31,19 @@
      for(const b of keywords)b.setAttribute('aria-pressed',String(b.dataset.keywordFilter===keyword));
      if(counter)counter.textContent=`${visible} ${id==='notes'?(visible===1?'note':'notes'):(visible===1?'publication':'publications')}`;
      if(empty)empty.hidden=visible!==0;
+     if(resetAll)resetAll.hidden=area==='all' && keyword==='all' && !terms.length;
+     if(moreSummary){
+       const selected=[...more.querySelectorAll('[data-keyword-filter]')].some(b=>b.dataset.keywordFilter===keyword);
+       moreSummary.textContent=selected?`Keyword: ${keyword}`:`More keywords (${moreCount})`;
+       more.dataset.hasSelection=String(selected);
+     }
    }
    areas.forEach(b=>b.addEventListener('click',()=>{area=b.dataset.areaFilter;update();}));
    keywords.forEach(b=>b.addEventListener('click',()=>{keyword=b.dataset.keywordFilter;update();}));
    search.addEventListener('input',update);
-   if(reset)reset.addEventListener('click',()=>{area='all';keyword='all';search.value='';update();search.focus();});
+   const clear=()=>{area='all';keyword='all';search.value='';update();search.focus();};
+   if(reset)reset.addEventListener('click',clear);
+   if(resetAll)resetAll.addEventListener('click',clear);
    update();
  });
 })();

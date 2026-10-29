@@ -1,0 +1,12 @@
+# Dependencies and generated Astro output
+node_modules/
+dist/
+.astro/
+# Operating system / editor noise
+.DS_Store
+*.swp
+*.log
+# Environment secrets
+.env
+.env.*
+!.env.example
