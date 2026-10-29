@@ -589,4 +589,104 @@ html{scroll-padding-top:45px}
   .design-h.page-notes .page-heading h1 { font-size:40px; }
   .design-h .page-heading > p:last-of-type { font-size:14px; }
 }
-
+/* ============================================================
+   VISITOR POLISH · 2026-10-29
+   A single, readable final layer. Existing B/H layout remains intact.
+   All public-facing text must remain legible at normal zoom.
+   ============================================================ */
+.design-h {
+  font-size: 16px;
+  line-height: 1.7;
+}
+.design-h .desktop-nav a { font-size: 14px; }
+.design-h .header-identity { font-size: 14px; }
+.design-h .header-identity span { font-size: 12px; }
+.design-h .eyebrow { font-size: 12px; letter-spacing: .085em; }
+.design-h .hero-main > .eyebrow { font-size: 12px; }
+.design-h .home-hero-portrait .hero-copy { font-size: 17px; line-height: 1.77; }
+.design-h .home-hero-portrait .home-affiliation { font-size: 13px; line-height: 1.6; }
+.design-h .home-portrait figcaption { font-size: 12px; }
+.design-h .section-intro { font-size: 16px; line-height: 1.75; }
+.design-h .research-strip > a > span:last-child { font-size: 14px; line-height: 1.65; }
+.design-h .research-strip .eyebrow,
+.design-h .small-note .eyebrow { font-size: 12px; }
+.design-h .small-note h3 { font-size: 20px; }
+.design-h .small-link,
+.design-h .text-link,
+.design-h .underlined-link { font-size: 13px; }
+.design-h .paper-year { font-size: 13px; }
+.design-h .paper-authors { font-size: 14px; }
+.design-h .paper-venue { font-size: 13px; }
+.design-h .paper-summary { font-size: 14px; line-height: 1.65; }
+/* Paper headings are plain text; a hover color must not suggest a link. */
+.design-h .paper-title:hover { color: var(--ink); }
+.design-h .note-meta { font-size: 12px; }
+.design-h .note-description { font-size: 15px; line-height: 1.7; }
+.design-h .note-details,
+.design-h .note-details summary { font-size: 13px; }
+.design-h .note-actions .pdf-button,
+.design-h .download-link { font-size: 13px; min-height: 44px; }
+.design-h .page-heading > p:last-of-type { font-size: 16px; }
+.design-h .research-sections-refined .research-chapter > div > p:not(.chapter-question) {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.design-h .research-sections-refined .research-chapter > div > p.research-direction-note {
+  font-size: 14px;
+  line-height: 1.7;
+}
+.design-h .archive-footnote,
+.design-h .site-footer { font-size: 13px; }
+.design-h .footer-links a { font-size: 13px; }
+.design-h .results-toolbar,
+.design-h .results-toolbar [data-result-count] { font-size: 13px; }
+.design-h .search-wrap label,
+.design-h .control-label { font-size: 13px; }
+.design-h .search-input input[type="search"] { font-size: 15px; }
+.design-h .filter-buttons button,
+.design-h .unified-search .filter-buttons button { font-size: 13px; }
+.design-h .unified-search .keyword-buttons button { font-size: 12px; }
+.design-h .unified-search .keyword-help { font-size: 12px; }
+.design-h .more-keywords summary { font-size: 12px; }
+.design-h .more-keywords[data-has-selection="true"] > summary {
+  color: var(--accent);
+  border-style: solid;
+  border-color: var(--accent);
+  background: #e2ece0;
+}
+.design-h .results-toolbar .filters-reset {
+  min-height: 38px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+.design-h .results-toolbar .filters-reset:hover { border-color: var(--accent); }
+@media (max-width: 760px) {
+  .design-h .site-body { padding-inline: clamp(17px, 5vw, 22px); }
+  .design-h .home-hero-portrait .hero-main > .eyebrow { font-size: 11px; }
+  .design-h .home-hero-portrait h1 { font-size: clamp(28px, 7.9vw, 35px); }
+  .design-h .home-hero-portrait .name-alias { font-size: 14px; }
+  .design-h .home-hero-portrait .hero-copy { font-size: 16px; line-height: 1.75; }
+  .design-h .home-hero-portrait .home-affiliation { font-size: 13px; }
+  .design-h .home-hero-portrait .hero-actions .underlined-link { font-size: 13px; }
+  .design-h .page-heading > p:last-of-type { font-size: 15px; }
+  .design-h .research-sections-refined .research-chapter > div > p:not(.chapter-question) { font-size: 15px; }
+  .design-h .research-sections-refined .research-chapter > div > p.research-direction-note { font-size: 14px; }
+  .design-h .note-description { font-size: 15px; }
+  .design-h .filter-buttons button,
+  .design-h .unified-search .filter-buttons button { font-size: 12px; }
+  .design-h .section-heading { flex-wrap: wrap; }
+  .design-h .section-heading > .text-link { font-size: 13px; }
+  .design-h .paper-authors { font-size: 13px; }
+  .design-h .paper-venue { font-size: 13px; }
+}
+@media (max-width: 390px) {
+  .design-h .home-hero-portrait { grid-template-columns: minmax(0, 1fr) clamp(92px, 30vw, 125px); }
+  .design-h .home-hero-portrait h1 { font-size: 28px; }
+  .design-h .home-hero-portrait .hero-actions { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+  .design-h .home-hero-portrait .hero-actions .underlined-link { white-space: normal; }
+}
