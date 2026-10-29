@@ -28,7 +28,6 @@ const sections=[
                 <p class="figure-comparison">Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs.</p>
                 <a class="geometry-figure-expand" href="/research/quaternion-kahler-geometry.svg" target="_blank" rel="noopener noreferrer">View larger ↗</a>
               </div>
-              <p class="figure-explainer">The Kähler case combines a quantum metric with an Abelian Berry curvature; for a Kramers pair, quaternionic geometry relates the metric to three components of the SU(2) Berry curvature.</p>
               <p class="figure-source">Associated paper: <a href="https://arxiv.org/abs/2608.03178" target="_blank" rel="noopener noreferrer"><cite>Quaternion-Kähler geometry of time reversal symmetric crystals</cite> (2026) ↗</a></p>
             </figcaption>
           </figure>
@@ -70,7 +69,7 @@ const sections=[
     display: block;
     padding-top: 12px;
     color: var(--muted, #5c665f);
-    font: 14px/1.65 var(--sans, sans-serif);
+    font: 12px/1.6 var(--sans, sans-serif);
   }
   /* Let the caption text use all space not occupied by View larger. */
   .geometry-research-figure .figure-caption-primary {
@@ -84,23 +83,13 @@ const sections=[
     min-width: 0;
     max-width: none;
     margin: 0;
-    font-size: 13px;
-    letter-spacing: -.015em;
-    white-space: nowrap;
   }
   .geometry-research-figure .geometry-figure-expand {
     flex: 0 0 auto;
-    font-size: 13px;
   }
   .geometry-research-figure .figure-source {
     margin: 6px 0 0;
-    font-size: 13px;
-  }
-  .geometry-research-figure .figure-explainer {
-    font-size: 14px;
-    line-height: 1.65;
-    max-width: 820px;
-    margin: 10px 0 0;
+    font-size: 11.5px;
   }
   .geometry-research-figure .figure-source cite { font-style:italic; }
   /* Keep the subsection heading in sentence case. */
@@ -133,12 +122,8 @@ const sections=[
   @media (max-width: 600px) {
     .geometry-research-figure { margin: 23px 0 26px; }
     .geometry-figure-visual { padding: 8px; }
-    .geometry-research-figure figcaption { font-size: 13px; }
-    .geometry-research-figure .figure-comparison { white-space: normal; }
+    .geometry-research-figure figcaption { font-size: 11.5px; }
     .geometry-research-figure .figure-caption-primary { flex-wrap:wrap; gap:5px 14px; }
-  }
-  @media (max-width: 900px) {
-    .geometry-research-figure .figure-comparison { white-space: normal; }
   }
   @media (prefers-reduced-motion: reduce) {
     .geometry-figure-visual { transition: none; }
