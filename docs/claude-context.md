@@ -112,7 +112,7 @@ Error: Public-site verification found 1 problem(s).
 ### Publications
 
 - `src/data/publications.bib`: BibTeX 원본 (현재 4편)
-- `src/data/publication-meta.json`: `featured`, `summary`, `tags`, `areas`(복수), `researchOrder` 등 수동 큐레이션
+- `src/data/publication-meta.json`: `featured`, `summary`, `tags`, `areas`(복수) 등 수동 큐레이션. 논문 순서는 모든 탭에서 출판 연월 최신순(`publications.bib`의 `year`, `month`)
 - `src/lib/bibtex.mjs`: BibTeX 파서
 - `src/lib/publications.mjs`: 단일 `publications` 집합, Home의 `featuredPublications`, Research의 `researchPublications(area)`
 - `src/components/PaperCard.astro`: 공통 논문 카드. URL/출처를 중복 구현하지 않는다 (PDF 링크 중복 문제를 고친 이력 있음).
