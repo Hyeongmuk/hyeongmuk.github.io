@@ -535,7 +535,7 @@ html{scroll-padding-top:45px}
    align-items:center;column-gap:20px;row-gap:2px;margin-top:19px;
  }
  .design-h .home-hero-portrait .hero-actions .button{
-   grid-column:1/-1;justify-self:start;
+   justify-self:start;
  }
  .design-h .home-hero-portrait .hero-actions .underlined-link{
    font-size:12px;white-space:nowrap;justify-self:start;
@@ -688,6 +688,6 @@ html{scroll-padding-top:45px}
 @media (max-width: 390px) {
   .design-h .home-hero-portrait { grid-template-columns: minmax(0, 1fr) clamp(92px, 30vw, 125px); }
   .design-h .home-hero-portrait h1 { font-size: 28px; }
-  .design-h .home-hero-portrait .hero-actions { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+  .design-h .home-hero-portrait .hero-actions { column-gap: 16px; row-gap: 8px; }
   .design-h .home-hero-portrait .hero-actions .underlined-link { white-space: normal; }
 }
