@@ -33,6 +33,6 @@ node scripts/verify-visitor-site.mjs
 git diff --check
 ```
 
-Latest verified Actions run: `40850677396` — 29/29 tests, build and GitHub Pages deployment passed. **Do not conflate CI success with a completed manual visual audit.**
+Latest verified Actions run: `41192279041` (2026-10-31, PR #31) — 30/30 tests, build and GitHub Pages deployment passed. **Do not conflate CI success with a completed manual visual audit.**
 
 When reporting, use Korean. State exact files changed, expected impact, tests actually run, browser QA actually done, remaining risks, and how to review/undo. Do not modify anything if the user has only asked for a status report.

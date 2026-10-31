@@ -1,7 +1,7 @@
 # 웹사이트 작업 맥락 — 수정 이력, 데이터 구조, QA
 
 > 원본: 사용자가 제공한 `01_WEBSITE_HANDOFF_KO.md`, `03_QA_AND_WORKFLOW.md`를 요약·정리한 문서.
-> 기준 시점: 2026-10-29 18:34 KST, `main` 커밋 `8784e2a36e68e14ba2253eeae5780a23b4abe2a0`.
+> 기준 시점: 2026-10-29 18:34 KST, `main` 커밋 `8784e2a`. 2026-10-31에 PR #22–#31 결과를 반영해 갱신 (`main` `aa51857`).
 > **실제 파일과 최신 커밋이 이 문서보다 우선한다.** 작업 규칙 자체는 루트의 `CLAUDE.md`를 따른다.
 > 방문자에게 공개되는 파일이 아니다 (Astro는 `src/pages/`와 `public/`만 빌드한다).
 
@@ -32,7 +32,14 @@ GitHub PR/커밋과 이전 협업 대화를 종합한 재구성이며, 모든 �
 | 10/29 18:18 | `9b9a3f2` Students 링크 수정 → 배포 성공 | |
 | 10/29 18:22 | `9586337` `node_modules`, `dist`, `.astro` Git 추적 해제 | `.gitignore`만으로는 이미 추적된 파일이 해제되지 않음 |
 | 10/29 18:31 | `2a73851` Research SVG·캡션을 `18f71e4` 기준으로 복원. 테스트 1개 실패 (§3 오류 B) | 복원이 아니라 오래된 테스트가 문제 |
-| 10/29 18:34 | `8784e2a` `tests/visitor-polish.test.mjs` 수정 → 29/29 통과, 빌드·배포 성공 (run `40850677396`) | 마지막으로 검증된 상태 |
+| 10/29 18:34 | `8784e2a` `tests/visitor-polish.test.mjs` 수정 → 29/29 통과, 빌드·배포 성공 (run `40850677396`) | |
+| 10/29 | PR #22 `CLAUDE.md`와 이 문서 추가. PR #23 Students 에세이 모바일: 마일스톤 박스 겹침 수정, TeX 수식 크기 규칙 | 수식 폭은 `--tex-w` (§5 Students) |
+| 10/29 | PR #24 에세이 그림 6개를 `figures-source/`에서 글자 1.5배로 재생성 | webp 직접 편집 금지 |
+| 10/31 | PR #25 노트 *The 27 Lines on a Smooth Cubic Surface* 추가, PR #28 저자 수정본(6쪽)으로 교체 | 노트 PDF는 저자 원고를 컴파일 (§5 Notes) |
+| 10/31 | PR #26 논문 카드에 출판 연월, PR #27 Research 관련 논문도 최신순(`researchOrder` 삭제) | §5 Publications |
+| 10/31 | PR #29 홈 첫 화면: "Selected publications" 링크 삭제, 버튼과 CV를 한 줄에 | |
+| 10/31 | PR #30 Notes·Publications 분야 탭(`?area=`), 노트는 흰 카드 + 간결한 내용, 탭 선택 시 분야 제목 숨김. 노트 제목 "Quantization of Constrained Systems"로 단축, 짝 노트 Toric Code PDF 재컴파일 | §5 Notes, §6 |
+| 10/31 | PR #31 한국어 이름 임형묵: 홈·About 제목, 페이지 `<title>`, JSON-LD `alternateName` | 검색 노출용 (§5 About). 마지막으로 검증된 상태 (run `41192279041`, 30/30) |
 
 ### 이전 AI 작업에서 반복된 사고
 
@@ -77,10 +84,10 @@ Error: Public-site verification found 1 problem(s).
 
 | URL | 파일 | 유지할 내용 |
 |---|---|---|
-| `/` | `src/pages/index.astro` | 연구 질문, 프로필 사진, 소속/학위 예정, 연구 분야 3개, 대표 논문 2편, 대표 Study Notes |
+| `/` | `src/pages/index.astro` | 연구 질문, 프로필 사진, 소속/학위 예정, 첫 화면 버튼 줄은 `Explore research →`와 `Academic CV ↗` 두 개만, 연구 분야 3개, 대표 논문 2편, 대표 Study Notes |
 | `/research/` | `src/pages/research.astro` | `#geometry` / `#topology` / `#manybody`, QK 원본 그림 + 원래 캡션 |
-| `/publications/` | `src/pages/publications.astro` | 논문 4편, 검색·분야·키워드 필터, 연도별 분류. 개발자 안내 금지 |
-| `/notes/` | `src/pages/notes/index.astro` | 공개 노트 7개, 검색/필터, PDF 새 탭 읽기·다운로드 |
+| `/publications/` | `src/pages/publications.astro` | 논문 4편, 분야 탭·검색·키워드 패널, 연도별 분류. 개발자 안내 금지 |
+| `/notes/` | `src/pages/notes/index.astro` | 공개 노트 8개, 분야 탭·검색·키워드 패널, 흰 카드에 제목·정보 한 줄·PDF 링크만 (설명은 상세 페이지에만) |
 | `/notes/[slug]/` | `src/pages/notes/[slug].astro` | 노트 상세, Markdown 본문, PDF, 관련 노트 |
 | `/students/` | `src/pages/students/index.astro`, `src/data/students-landing.html` | Physics Stories 목록/소개. Notes CTA 추가 금지 |
 | `/students/band-theory/` | `src/pages/students/band-theory.astro`, `src/data/students-essay.html` | "How Does an Electron See Its Universe?" 에세이, 도해 6개, 참고문헌 |
@@ -112,7 +119,8 @@ Error: Public-site verification found 1 problem(s).
 ### Publications
 
 - `src/data/publications.bib`: BibTeX 원본 (현재 4편)
-- `src/data/publication-meta.json`: `featured`, `summary`, `tags`, `areas`(복수) 등 수동 큐레이션. 논문 순서는 모든 탭에서 출판 연월 최신순(`publications.bib`의 `year`, `month`)
+- `src/data/publication-meta.json`: `featured`, `summary`, `tags`, `areas`(복수) 등 수동 큐레이션. 논문 순서는 모든 탭에서 출판 연월 최신순(`publications.bib`의 `year`, `month`). 수동 순서(`researchOrder`)는 없앴다.
+- **출판 연월 규칙:** 저널에 실린 논문은 저널 출판 연월(Crossref의 온라인 출판일), 프리프린트는 arXiv 최초 제출 연월(arXiv 번호 앞 네 자리). 프리프린트가 저널에 실리면 `month`를 저널 출판 월로 바꾼다. 카드에는 월이 연도 위에 표시된다.
 - `src/lib/bibtex.mjs`: BibTeX 파서
 - `src/lib/publications.mjs`: 단일 `publications` 집합, Home의 `featuredPublications`, Research의 `researchPublications(area)`
 - `src/components/PaperCard.astro`: 공통 논문 카드. URL/출처를 중복 구현하지 않는다 (PDF 링크 중복 문제를 고친 이력 있음).
@@ -124,19 +132,23 @@ Error: Public-site verification found 1 problem(s).
 - `src/content/notes/*.md`: Astro 콘텐츠 컬렉션, `src/content.config.ts`의 Zod schema.
 - 필드: `title`, `description`, `date`, `topic`, `category`, `tags`, `relations`, `featured`, `complete`, `pages`, `status`, `pdf`, `downloads`.
 - `status: published`만 공개. `complete: true`는 작성 완결을 뜻하며 peer review가 아니다.
-- PDF는 `public/downloads/`. `src/components/NoteCard.astro`의 Read PDF/Download 동작과 상세 페이지 연결을 유지한다.
+- PDF는 `public/downloads/`. `src/components/NoteCard.astro`는 목록용 간결한 카드(제목, Complete·주제·쪽수·연도, Read PDF ↗·Download ↓). 설명과 목차는 노트 상세 페이지에만 둔다 (사용자 결정).
+- **노트 PDF 만들기:** 사용자가 보내 준 LaTeX 원고(`.tex`, `.bib`)를 `latexmk -pdf`(biber)로 컴파일한다. 함께 온 PDF가 있어도 원고를 컴파일한 것을 쓴다. 원고 내용은 요청 없이 고치지 않는다. 필요 패키지: `texlive-latex-extra texlive-fonts-extra texlive-pictures texlive-science texlive-bibtex-extra texlive-plain-generic biber latexmk`. bib의 URL에는 `\textasciitilde`가 아니라 `~`를 써야 링크가 깨지지 않는다. Toric Code 노트는 `main_public.tex`를 컴파일한다.
+- 노트 제목을 바꿀 때는 짝 노트의 소개 문단과 PDF 안 언급도 함께 고치고, 주소(slug)와 PDF 파일 이름은 유지한다.
 - 범주: qft, mathematics, condensed (`src/data/categories.mjs`).
-- 공개 노트 7개: `bv-formalism`, `cotangent-complex`, `haldane-gap-lsm`, `noncommutative-geometry`, `planar-diagram-algebra-3d-tqft`, `quantization-constrained-systems-abelian-higgs`, `toric-code-demystified`.
-- `src/components/SearchFilter.astro` + `public/scripts/search-filter.js`: Publications/Notes 공유 필터 (텍스트·분야·키워드, 결과 수, 초기화).
+- 공개 노트 8개: `27-lines-cubic-surface`, `bv-formalism`, `cotangent-complex`, `haldane-gap-lsm`, `noncommutative-geometry`, `planar-diagram-algebra-3d-tqft`, `quantization-constrained-systems-abelian-higgs`(제목 "Quantization of Constrained Systems"), `toric-code-demystified`.
+- `src/components/SearchFilter.astro` + `public/scripts/search-filter.js`: Publications/Notes 공유. 개수가 붙은 분야 탭, 선택한 분야는 주소 `?area=<id>`에 유지, 검색창, 접히는 Keywords 패널, 결과 수, 초기화. Notes에서는 탭을 고르면 목록 안의 분야 제목(`data-area-heading`)을 숨긴다. 두 탭의 디자인은 항상 같게 유지한다.
 
 ### Students 에세이 그림
 
 - `public/students/fig*.webp` 6개는 `figures-source/`의 matplotlib 스크립트로 생성한다. 그림을 고칠 때는 webp를 직접 편집하지 말고 스크립트를 고친 뒤 다시 빌드한다 (절차: `figures-source/README.md`의 "Website export").
-- 2026-10-29: 예전 webp는 원본 PNG 위에 글자를 덧그린 편집본이었고 FIG. 05 제목 위에 잔상이 있었다. 소스에서 글자 1.5배(`WEB_TEXT_SCALE`)로 다시 생성해 교체했다.
+- 2026-10-29: 예전 webp는 원본 PNG 위에 글자를 덧그린 편집본이었고 FIG. 05 제목 위에 잔상이 있었다. 소스에서 글자 1.5배(`WEB_TEXT_SCALE`)로 다시 생성해 교체했다. 휴대폰에서는 그림 속 글자가 여전히 7~10px로 작다 (휴대폰용 세로 배치 그림은 미정).
+- 에세이 수식(TeX SVG 이미지)은 `style="--tex-w:<px>"`로 데스크톱 폭을 갖는다. 690px 이하에서는 그 85%로 표시하고, 박스에 맞춰 줄되 75% 아래로는 줄지 않는다(수식 글자가 본문 14px보다 크게 유지; 사용자 요구). 더 넓으면 박스 안에서만 가로 스크롤.
 
 ### About / 신원 정보 (현재 공개 소스 기준)
 
-- 이름: **Hyeongmuk Lim (Mook)**. Ph.D. Candidate, 서울대학교 물리천문학부 석박사통합과정, 지도교수 **Prof. Bohm-Jung Yang**.
+- 이름: **Hyeongmuk Lim (Mook)**, 한국어 이름 **임형묵**. 홈·About 제목에 `(Mook · 임형묵)`, 홈 `<title>`, JSON-LD `alternateName`에 들어 있다 (구글에서 한국어 이름 검색용; 한글은 `lang="ko"`, 기울임체 안에서도 똑바로). 사용자가 Google Search Console에 사이트를 등록했다.
+- Ph.D. Candidate, 서울대학교 물리천문학부 석박사통합과정, 지도교수 **Prof. Bohm-Jung Yang**.
 - 학위 완료 예상: **August 2027** (시간이 지나면 사용자 확인 후 수정).
 - 프로필 `public/profile-hyeongmuk-lim.webp`, CV `public/downloads/Hyeongmuk_Lim_CV.pdf`, ORCID `https://orcid.org/0009-0001-0036-5355`.
 - 이메일·Google Scholar 링크·경력 정보는 사용자 확인 없이 바꾸지 않는다.
@@ -147,11 +159,13 @@ Error: Public-site verification found 1 problem(s).
 - 따뜻한 오프화이트 배경, 차분한 녹색 강조, 간결한 학술 분위기. 장식용 그림, 과한 강조문/배지는 피한다.
 - 사용자는 전반적 글자 크기가 작다고 지적한 적이 있다. 다만 국소 수정을 이유로 다른 페이지의 글꼴·밀도를 일괄 바꾸지 않는다.
 - `mailto:`는 새 탭 링크가 아니므로 `↗`를 붙이지 않는다.
+- Study notes는 흰 카드(오프화이트 배경 위 흰 바탕·테두리)를 유지한다. 사용자가 Publications식 줄 목록보다 선호한다고 밝혔다.
+- 분야 탭은 밑줄 탭 모양이며 휴대폰에서는 잘리지 않게 줄바꿈한다.
 - 키보드 포커스, 모바일 터치 영역, `prefers-reduced-motion`, alt 텍스트, 좁은 폭에서의 줄바꿈을 확인한다.
 
 ## 7. 기술부채 (별도 승인 전에는 손대지 않음)
 
-- `src/styles/site.css`: `BASE`, `B`, `HYBRID`, `PRODUCTION`, `REFINEMENT`, `VISITOR POLISH` 등 역사적 오버라이드가 누적됨. 정리는 사이트 전역 변경이므로 범위 승인과 전후 비교가 필수.
+- `src/styles/site.css`: `BASE`, `B`, `HYBRID`, `PRODUCTION`, `REFINEMENT`, `VISITOR POLISH` 등 역사적 오버라이드가 누적됨. 정리는 사이트 전역 변경이므로 범위 승인과 전후 비교가 필수. 실제로 층끼리 충돌한 사례: 600px 규칙이 690px 규칙을 덮어 에세이 마일스톤 연도가 수식 위에 겹침(PR #23), 홈 버튼 줄의 grid 규칙(PR #29). 새 규칙은 파일 끝에 날짜가 붙은 블록으로 추가해 왔다.
 - `src/data/students-essay.html`: 큰 raw HTML. 자동 포매터나 정규식 치환이 도해·인용·수식을 망가뜨릴 수 있으므로 부분 수정 후 검증.
 - `.gitignore`에 `node_modules/`, `dist/`, `.astro/`, `.DS_Store`가 중복 선언됨 (기능상 문제 없음).
 - `.DS_Store` 4개(`/`, `public/`, `src/content/`, `src/pages/`)가 여전히 Git에 추적됨.
@@ -165,6 +179,8 @@ Error: Public-site verification found 1 problem(s).
 3. **디자인 세부:** 글자 크기·정보 밀도, 모바일 메뉴, 캡션을 여러 뷰포트에서 점검.
 4. **기술부채:** §7. 독립된 소규모 패치로 제안.
 5. **콘텐츠 정합성:** 논문/학위/CV 정보가 최신인지 사용자 확인.
+6. **실제 기기:** 화면 확인은 지금까지 모두 Chromium(Playwright)으로 했다. 실제 아이폰 Safari 확인은 아직 없다.
+7. **향후 후보 (2026-10-31 논의):** Talks/News 섹션, 노트 사이 `relations` 연결(27 lines ↔ Cotangent complex 등), 링크 공유 미리보기 이미지(현재 webp 프로필 사진), Lighthouse 성능·접근성 점검, 노트가 15~20개를 넘으면 분야별 페이지.
 
 ## 9. 브라우저 QA 체크리스트
 
@@ -176,7 +192,7 @@ Error: Public-site verification found 1 problem(s).
 - [ ] QK 캡션: 한 줄 비교 문장 + `View larger ↗`, 다음 행 `Associated paper`만. `figure-explainer` 없음.
 - [ ] Research "Related publications": 제목 대소문자 자연스러움, 중복 링크 없음.
 - [ ] Publications: 제목/저자/연도 검색, area, keyword, 복합 필터, reset, 결과 수, no-results. 개발자 문구 없음.
-- [ ] Notes: 7개 route, 필터·reset, PDF 새 탭/다운로드, 상세·관련 노트 링크.
+- [ ] Notes: 8개 route, 분야 탭(`?area=` 직접 진입 포함)·키워드·reset, PDF 새 탭/다운로드, 상세·관련 노트 링크.
 - [ ] Students: 제목 위계, 에세이 도해 6개·참고문헌·공유 SVG 링크. `Browse study notes ↗` 없음.
 - [ ] About: 프로필, CV 열기/다운로드, 이메일/ORCID/Scholar 링크.
 - [ ] 모바일: 햄버거 메뉴 열기/닫기/Escape, 포커스 표시, 가로 스크롤 없음.
@@ -194,7 +210,8 @@ Error: Public-site verification found 1 problem(s).
 
 ## 11. 참고 링크
 
-- 최종 성공 CI/배포: https://github.com/Hyeongmuk/hyeongmuk.github.io/actions/runs/40850677396
+- 최종 성공 CI/배포: https://github.com/Hyeongmuk/hyeongmuk.github.io/actions/runs/41192279041 (2026-10-31, PR #31)
+- 이전 기준 배포: https://github.com/Hyeongmuk/hyeongmuk.github.io/actions/runs/40850677396
 - 그림·캡션 복원 기준: https://github.com/Hyeongmuk/hyeongmuk.github.io/commit/18f71e41d8de66483cba4b8add7b4ff445b0eba0
 - 검증 기준 HEAD: https://github.com/Hyeongmuk/hyeongmuk.github.io/commit/8784e2a36e68e14ba2253eeae5780a23b4abe2a0
 - PR #20 Students: https://github.com/Hyeongmuk/hyeongmuk.github.io/pull/20
