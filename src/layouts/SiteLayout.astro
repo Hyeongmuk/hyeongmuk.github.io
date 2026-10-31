@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import { versioned } from '../lib/asset-version.mjs';
 import '../styles/site.css';
 import 'katex/dist/katex.min.css';
 const { title = 'Hyeongmuk Lim (Mook) · Theoretical Physics', description = 'Theoretical condensed matter physics, quantum geometry, and band topology.', active = 'home', page = active } = Astro.props;
@@ -18,8 +19,8 @@ const { title = 'Hyeongmuk Lim (Mook) · Theoretical Physics', description = 'Th
   <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <title>{title}</title>
-  <script is:inline src="/scripts/site.js" defer></script>
-  <script is:inline src="/scripts/search-filter.js" defer></script>
+  <script is:inline src={versioned('/scripts/site.js')} defer></script>
+  <script is:inline src={versioned('/scripts/search-filter.js')} defer></script>
   <meta property="og:site_name" content="Hyeongmuk Lim (Mook)" />
   <meta property="og:image" content={new URL('/profile-hyeongmuk-lim.webp', Astro.site).toString()} />
   <meta property="og:image:alt" content="Portrait of Hyeongmuk Lim" />
