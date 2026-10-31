@@ -1,0 +1,15 @@
+---
+// One talk, laid out like a PaperCard row (month above year in the date column).
+const {talk}=Astro.props;
+const d=new Date(`${talk.date}T00:00:00Z`);
+const month=d.toLocaleString('en',{month:'short',timeZone:'UTC'});
+---
+<article class="paper-row talk-row">
+  <div class="paper-year"><time datetime={talk.date}><span class="paper-month">{month}</span>{d.getUTCFullYear()}</time></div>
+  <div class="paper-main">
+    <h3 class="paper-title">{talk.title}</h3>
+    <p class="paper-venue">{talk.event}{talk.kind && ` · ${talk.kind}`}</p>
+    <p class="paper-authors">{talk.place}</p>
+  </div>
+  {talk.url && <div class="paper-links"><a class="small-link" href={talk.url} target="_blank" rel="noopener noreferrer">{talk.linkLabel || 'Link'} ↗</a></div>}
+</article>

@@ -708,14 +708,14 @@ html{scroll-padding-top:45px}
 .design-h .archive-tab[aria-pressed="true"] .tab-count{color:var(--accent)}
 .design-h .archive-search-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px 12px;padding:16px 0 6px}
 .design-h .archive-search-row .search-input{flex:1 1 280px;max-width:460px}
-.design-h .keyword-panel{flex:0 0 auto}
-.design-h .keyword-panel[open]{flex-basis:100%}
-.design-h .keyword-panel summary{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 15px;border:1px solid var(--line);border-radius:4px;background:var(--surface);font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;list-style:none}
-.design-h .keyword-panel summary::-webkit-details-marker{display:none}
-.design-h .keyword-panel summary::after{content:"+";font-weight:400;color:var(--muted)}
-.design-h .keyword-panel[open] summary::after{content:"−"}
-.design-h .keyword-panel[data-has-selection="true"] summary{border-color:var(--accent);color:var(--accent)}
-.design-h .keyword-panel .keyword-buttons{margin-top:10px}
+.design-h .keyword-toggle,.design-h .filters-clear{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 15px;border:1px solid var(--line);border-radius:4px;background:var(--surface);font:600 13px/1 var(--sans);color:var(--ink);cursor:pointer}
+.design-h .keyword-toggle::after{content:"+";font-weight:400;color:var(--muted)}
+.design-h .keyword-toggle[aria-expanded="true"]::after{content:"−"}
+.design-h .keyword-toggle[data-has-selection="true"]{border-color:var(--accent);color:var(--accent)}
+.design-h .filters-clear{border-color:transparent;background:transparent;color:var(--muted);padding:0 10px;font-weight:500}
+.design-h .filters-clear span{font-size:18px;line-height:1;margin-top:-1px}
+.design-h .filters-clear:hover{color:var(--accent)}
+.design-h .keyword-panel .keyword-buttons{margin:4px 0 6px}
 /* Compact note rows */
 /* Keeps the original white card, with compact contents. */
 .design-h .notes-results .note-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 28px;margin:0 0 9px;padding:15px 20px}
@@ -738,3 +738,8 @@ html{scroll-padding-top:45px}
 
 /* Hangul has no italic: keep the Korean name upright inside italic headings. */
 [lang="ko"]{font-style:normal}
+
+/* Talks: listed below the publications, reusing the paper row layout. */
+.design-h .talks-section{margin-top:52px}
+.design-h .talks-section>h2{font-size:29px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.design-h .talks-section .talk-row:first-of-type{border-top:0}
