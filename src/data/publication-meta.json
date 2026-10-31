@@ -10,8 +10,7 @@
     "areas": [
       "Quantum Geometry",
       "Band Topology"
-    ],
-    "researchOrder": 1
+    ]
   },
   "kim2024unconventional": {
     "featured": false,
@@ -23,8 +22,7 @@
     ],
     "areas": [
       "Band Topology"
-    ],
-    "researchOrder": 2
+    ]
   },
   "jung2024quadratic": {
     "featured": false,
@@ -36,8 +34,7 @@
     ],
     "areas": [
       "Quantum Geometry"
-    ],
-    "researchOrder": 2
+    ]
   },
   "lim2023hopf": {
     "featured": true,
@@ -49,7 +46,6 @@
     ],
     "areas": [
       "Band Topology"
-    ],
-    "researchOrder": 1
+    ]
   }
 }
