@@ -3,7 +3,7 @@ const {paper,compact=false}=Astro.props;
 const venue=paper.journal || (paper.eprint?'arXiv preprint':'Research paper');
 ---
 <article class:list={['paper-row',{'paper-row-small':compact}]} id={paper.id}>
-  <div class="paper-year">{paper.year}</div>
+  <div class="paper-year"><time datetime={paper.month ? `${paper.year}-${String(paper.month).padStart(2,'0')}` : String(paper.year)}>{paper.monthLabel && <span class="paper-month">{paper.monthLabel}</span>}{paper.year}</time></div>
   <div class="paper-main">
     <h3 class="paper-title">{paper.title}</h3>
     <p class="paper-authors">{paper.authors.map((author,i)=><span>{i>0?', ':''}{author==='Hyeongmuk Lim'?<strong>{author}</strong>:author}</span>)}</p>
