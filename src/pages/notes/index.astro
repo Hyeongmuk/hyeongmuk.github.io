@@ -10,7 +10,7 @@ const keywords=[...new Set(allTags)].sort((a,b)=>allTags.filter(x=>x===b).length
 ---
 <SiteLayout active="notes" page="notes" title="Study Notes · Hyeongmuk Lim">
   <header class="page-heading"><p class="eyebrow">PERSONAL LEARNING ARCHIVE</p><h1>Study notes<span class="title-dot">.</span></h1><p>Quantum field theory, mathematics, and condensed matter physics. Read manuscripts in a new PDF tab or download them for later.</p></header>
-  <SearchFilter id="notes" placeholder="Search titles, subjects, or keywords…" count={notes.length} categories={noteCategories} keywords={keywords}/>
+  <SearchFilter id="notes" placeholder="Search titles, subjects, or keywords…" count={notes.length} categories={noteCategories.map(c=>({...c,count:notes.filter(n=>n.data.category===c.id).length}))} keywords={keywords}/>
   <section class="notes-results" id="notes-results" data-search-root="notes">
     <div class="results-toolbar"><p role="status" aria-live="polite" data-result-count>{notes.length} notes</p><button type="button" class="filters-reset" data-filter-reset-all hidden>Clear filters</button></div>
     {noteCategories.map((category,index)=>{

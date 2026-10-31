@@ -1,6 +1,6 @@
 /* One reusable search/filter behavior for Publications and Study Notes; no frameworks or network calls. */
 (() => {
- const normalize=(s)=>String(s||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase().replace(/[–—-]/g,' ').replace(/\s+/g,' ').trim();
+ const normalize=(s)=>String(s||'').normalize('NFKD').replace(/[̀-ͯ]/g,'').toLocaleLowerCase().replace(/[–—-]/g,' ').replace(/\s+/g,' ').trim();
  document.querySelectorAll('[data-search-controls]').forEach(controls=>{
    const id=controls.dataset.searchControls;
    const root=document.querySelector(`[data-search-root="${id}"]`);
@@ -15,10 +15,16 @@
    const empty=root.querySelector('[data-empty-state]');
    const reset=root.querySelector('[data-filter-reset]');
    const resetAll=root.querySelector('[data-filter-reset-all]');
-   const more=controls.querySelector('.more-keywords');
-   const moreSummary=more?.querySelector('summary');
-   const moreCount=more?.querySelectorAll('[data-keyword-filter]').length||0;
-   let area='all', keyword='all';
+   const keywordSummary=controls.querySelector('[data-keyword-summary]');
+   const areaIds=new Set(areas.map(b=>b.dataset.areaFilter));
+   // The selected area lives in the URL (?area=<id>) so a filtered list can be linked and survives Back.
+   const fromUrl=new URLSearchParams(location.search).get('area');
+   let area=areaIds.has(fromUrl)?fromUrl:'all', keyword='all';
+   function syncUrl(){
+     const url=new URL(location.href);
+     if(area==='all')url.searchParams.delete('area');else url.searchParams.set('area',area);
+     history.replaceState(history.state,'',url);
+   }
    function update(){
      const terms=normalize(search.value).split(' ').filter(Boolean);
      let visible=0;
@@ -32,16 +38,15 @@
      if(counter)counter.textContent=`${visible} ${id==='notes'?(visible===1?'note':'notes'):(visible===1?'publication':'publications')}`;
      if(empty)empty.hidden=visible!==0;
      if(resetAll)resetAll.hidden=area==='all' && keyword==='all' && !terms.length;
-     if(moreSummary){
-       const selected=[...more.querySelectorAll('[data-keyword-filter]')].some(b=>b.dataset.keywordFilter===keyword);
-       moreSummary.textContent=selected?`Keyword: ${keyword}`:`More keywords (${moreCount})`;
-       more.dataset.hasSelection=String(selected);
+     if(keywordSummary){
+       keywordSummary.textContent=keyword==='all'?'Keywords':`Keyword: ${keyword}`;
+       keywordSummary.parentElement.dataset.hasSelection=String(keyword!=='all');
      }
    }
-   areas.forEach(b=>b.addEventListener('click',()=>{area=b.dataset.areaFilter;update();}));
+   areas.forEach(b=>b.addEventListener('click',()=>{area=b.dataset.areaFilter;syncUrl();update();}));
    keywords.forEach(b=>b.addEventListener('click',()=>{keyword=b.dataset.keywordFilter;update();}));
    search.addEventListener('input',update);
-   const clear=()=>{area='all';keyword='all';search.value='';update();search.focus();};
+   const clear=()=>{area='all';keyword='all';search.value='';syncUrl();update();search.focus();};
    if(reset)reset.addEventListener('click',clear);
    if(resetAll)resetAll.addEventListener('click',clear);
    update();
