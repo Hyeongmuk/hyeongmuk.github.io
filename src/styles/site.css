@@ -80,6 +80,7 @@ em{font-weight:400}
 .paper-row{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:17px;padding:22px 0;border-top:1px solid var(--line)}
 .paper-row:last-child{border-bottom:1px solid var(--line)}
 .paper-year{color:var(--gold);font-size:12px;font-variant-numeric:tabular-nums;font-weight:600;padding-top:3px}
+.paper-month{display:block}
 .paper-row h3{font-size:20px;line-height:1.35;letter-spacing:-.015em}
 .paper-title:hover{color:var(--accent)}
 .paper-title>span[aria-hidden]{font-family:var(--sans);font-size:13px;display:inline-block;margin-left:4px;color:var(--muted)}

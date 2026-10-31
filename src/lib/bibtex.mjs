@@ -81,11 +81,24 @@ export function parseBibtex(input) {
   }
   return entries;
 }
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+  'September', 'October', 'November', 'December'];
+/* month = sep | {September} | {9}  ->  1..12 (0 when missing or unrecognised). */
+export function monthNumber(value) {
+  const v = String(value || '').trim().toLowerCase();
+  if (/^\d{1,2}$/.test(v)) return Number(v) >= 1 && Number(v) <= 12 ? Number(v) : 0;
+  const i = MONTHS.findIndex(m => v.length >= 3 && m.toLowerCase().startsWith(v));
+  return i + 1;
+}
 export function publicationFromBib(entry, meta = {}) {
+  const month = monthNumber(entry.month);
   return {
     ...entry, ...meta,
     areas: Array.isArray(meta.areas) ? meta.areas : (meta.area ? [meta.area] : []),
     year: Number(entry.year) || 0,
+    month,
+    monthName: month ? MONTHS[month - 1] : '',
+    monthLabel: month ? MONTHS[month - 1].slice(0, 3) : '',
     authors: (entry.author || '').split(/\s+and\s+/i).map(s => s.trim()),
     topics: (entry.keywords || '').split(',').map(s => s.trim()).filter(Boolean),
     doiUrl: entry.doi ? `https://doi.org/${entry.doi}` : null,

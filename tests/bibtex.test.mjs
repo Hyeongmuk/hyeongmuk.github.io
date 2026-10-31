@@ -18,3 +18,9 @@ test('keeps nested braces and quoted strings intact', () => {
   assert.equal(p[0].title, 'A Hopf insulator');
   assert.equal(publicationFromBib(p[0]).authors.length, 2);
 });
+test('reads publication months in BibTeX month forms', () => {
+  const p = parseBibtex('@article{a,title={A},year=2023,month=sep}@article{b,title={B},year=2024,month={January}}@article{c,title={C},year=2024,month={10}}@article{d,title={D},year=2025}')
+    .map(e => publicationFromBib(e));
+  assert.deepEqual(p.map(x => x.month), [9, 1, 10, 0]);
+  assert.deepEqual(p.map(x => x.monthLabel), ['Sep', 'Jan', 'Oct', '']);
+});
