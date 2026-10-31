@@ -14,12 +14,13 @@ const { id, placeholder, categories=[], keywords=[], count=0 }=Astro.props;
       <label class="sr-only" for={`${id}-search`}>Search</label>
       <input id={`${id}-search`} data-text-filter type="search" placeholder={placeholder} autocomplete="off" aria-controls={`${id}-results`} />
     </div>
-    {keywords.length>0 && <details class="keyword-panel">
-      <summary data-keyword-summary>Keywords</summary>
-      <div class="filter-buttons keyword-buttons" role="group" aria-label="Keywords">
-        <button type="button" data-keyword-filter="all" aria-pressed="true">All topics</button>
-        {keywords.map(tag=><button type="button" data-keyword-filter={tag} aria-pressed="false">{tag}</button>)}
-      </div>
-    </details>}
+    {keywords.length>0 && <button type="button" class="keyword-toggle" aria-expanded="false" aria-controls={`${id}-keywords`} data-keyword-toggle><span data-keyword-summary>Keywords</span></button>}
+    <button type="button" class="filters-clear" data-filter-reset-all hidden aria-label="Clear filters"><span aria-hidden="true">×</span> Clear</button>
   </div>
+  {keywords.length>0 && <div class="keyword-panel" id={`${id}-keywords`} data-keyword-panel hidden>
+    <div class="filter-buttons keyword-buttons" role="group" aria-label="Keywords">
+      <button type="button" data-keyword-filter="all" aria-pressed="true">All topics</button>
+      {keywords.map(tag=><button type="button" data-keyword-filter={tag} aria-pressed="false">{tag}</button>)}
+    </div>
+  </div>}
 </section>

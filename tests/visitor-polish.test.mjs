@@ -17,8 +17,10 @@ test('public pages never reveal site maintenance instructions', () => {
 });
 
 test('archive search provides an accessible visible reset for active filters', () => {
+  // The reset sits with the search controls in the shared SearchFilter used by both archives.
+  assert.match(read('src/components/SearchFilter.astro'), /data-filter-reset-all hidden/);
   for (const path of ['src/pages/publications.astro', 'src/pages/notes/index.astro']) {
-    assert.match(read(path), /data-filter-reset-all hidden/);
+    assert.match(read(path), /<SearchFilter /);
   }
   const controller = read('public/scripts/search-filter.js');
   assert.match(controller, /resetAll\.hidden/);

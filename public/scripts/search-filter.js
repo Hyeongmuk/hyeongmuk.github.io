@@ -14,8 +14,10 @@
    const counter=root.querySelector('[data-result-count]');
    const empty=root.querySelector('[data-empty-state]');
    const reset=root.querySelector('[data-filter-reset]');
-   const resetAll=root.querySelector('[data-filter-reset-all]');
+   const resetAll=controls.querySelector('[data-filter-reset-all]');
    const keywordSummary=controls.querySelector('[data-keyword-summary]');
+   const keywordToggle=controls.querySelector('[data-keyword-toggle]');
+   const keywordPanel=controls.querySelector('[data-keyword-panel]');
    // Area headings inside the list repeat the selected tab, so they show only under All.
    const areaHeadings=[...root.querySelectorAll('[data-area-heading]')];
    const areaIds=new Set(areas.map(b=>b.dataset.areaFilter));
@@ -43,12 +45,16 @@
      if(resetAll)resetAll.hidden=area==='all' && keyword==='all' && !terms.length;
      if(keywordSummary){
        keywordSummary.textContent=keyword==='all'?'Keywords':`Keyword: ${keyword}`;
-       keywordSummary.parentElement.dataset.hasSelection=String(keyword!=='all');
+       keywordToggle.dataset.hasSelection=String(keyword!=='all');
      }
    }
    areas.forEach(b=>b.addEventListener('click',()=>{area=b.dataset.areaFilter;syncUrl();update();}));
    keywords.forEach(b=>b.addEventListener('click',()=>{keyword=b.dataset.keywordFilter;update();}));
    search.addEventListener('input',update);
+   if(keywordToggle)keywordToggle.addEventListener('click',()=>{
+     const open=keywordToggle.getAttribute('aria-expanded')!=='true';
+     keywordToggle.setAttribute('aria-expanded',String(open));keywordPanel.hidden=!open;
+   });
    const clear=()=>{area='all';keyword='all';search.value='';syncUrl();update();search.focus();};
    if(reset)reset.addEventListener('click',clear);
    if(resetAll)resetAll.addEventListener('click',clear);
