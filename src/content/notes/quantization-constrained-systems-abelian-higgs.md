@@ -1,5 +1,5 @@
 ---
-title: 'Quantization of Constrained Systems: The Abelian Higgs Model as a Case Study'
+title: 'Quantization of Constrained Systems'
 description: 'An evolving outline of the Dirac–Bergmann formalism, constrained quantization, gauge fixing, and their relation to lattice gauge theory, with existing calculations preserved in appendices.'
 date: 2026-10-26
 topic: 'Gauge Theory & Constrained Systems'
