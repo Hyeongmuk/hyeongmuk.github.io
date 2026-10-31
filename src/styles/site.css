@@ -717,9 +717,8 @@ html{scroll-padding-top:45px}
 .design-h .keyword-panel[data-has-selection="true"] summary{border-color:var(--accent);color:var(--accent)}
 .design-h .keyword-panel .keyword-buttons{margin-top:10px}
 /* Compact note rows */
-.design-h .notes-results .category-heading{border-bottom:1px solid var(--line)}
-.design-h .notes-results .note-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 28px;margin:0;padding:15px 2px;background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none}
-.design-h .notes-results .note-row:hover{background:none}
+/* Keeps the original white card, with compact contents. */
+.design-h .notes-results .note-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 28px;margin:0 0 9px;padding:15px 20px}
 .design-h .notes-results .note-row h3{font-size:19px;line-height:1.35;margin:0 0 4px}
 .design-h .notes-results .note-meta{font-size:12px;gap:0;margin:0}
 .design-h .notes-results .note-meta>span:not(.complete-label):not(:last-child)::after{content:"·";margin:0 7px;color:var(--faint)}
@@ -732,7 +731,7 @@ html{scroll-padding-top:45px}
  .design-h .archive-tabs{flex-wrap:wrap;overflow:visible;gap:0 22px}
  .design-h .archive-tab{font-size:13px}
  .design-h .archive-search-row .search-input{flex-basis:100%;max-width:none}
- .design-h .notes-results .note-row{grid-template-columns:minmax(0,1fr);gap:2px;padding:14px 0}
+ .design-h .notes-results .note-row{grid-template-columns:minmax(0,1fr);gap:2px;padding:14px 16px 4px}
  .design-h .notes-results .note-row h3{font-size:18px}
 }
 @media print{.archive-controls,.note-actions{display:none!important}}
