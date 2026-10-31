@@ -16,6 +16,8 @@
    const reset=root.querySelector('[data-filter-reset]');
    const resetAll=root.querySelector('[data-filter-reset-all]');
    const keywordSummary=controls.querySelector('[data-keyword-summary]');
+   // Area headings inside the list repeat the selected tab, so they show only under All.
+   const areaHeadings=[...root.querySelectorAll('[data-area-heading]')];
    const areaIds=new Set(areas.map(b=>b.dataset.areaFilter));
    // The selected area lives in the URL (?area=<id>) so a filtered list can be linked and survives Back.
    const fromUrl=new URLSearchParams(location.search).get('area');
@@ -33,6 +35,7 @@
        item.hidden=!ok;if(ok)visible++;
      }
      for(const group of groups)group.hidden=![...group.querySelectorAll('[data-filter-item]')].some(i=>!i.hidden);
+     for(const h of areaHeadings)h.hidden=area!=='all';
      for(const b of areas)b.setAttribute('aria-pressed',String(b.dataset.areaFilter===area));
      for(const b of keywords)b.setAttribute('aria-pressed',String(b.dataset.keywordFilter===keyword));
      if(counter)counter.textContent=`${visible} ${id==='notes'?(visible===1?'note':'notes'):(visible===1?'publication':'publications')}`;

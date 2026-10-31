@@ -16,7 +16,7 @@ const keywords=[...new Set(allTags)].sort((a,b)=>allTags.filter(x=>x===b).length
     {noteCategories.map((category,index)=>{
       const list=notes.filter(note=>note.data.category===category.id);
       return <section class="note-group" id={category.id} data-filter-group>
-        <div class="category-heading"><span class="category-number">{String(index+1).padStart(2,'0')}</span><h2>{category.title}</h2><span class="category-caption">{category.summary}</span></div>
+        <div class="category-heading" data-area-heading><span class="category-number">{String(index+1).padStart(2,'0')}</span><h2>{category.title}</h2><span class="category-caption">{category.summary}</span></div>
         {list.map(note=><div data-filter-item data-area={category.id} data-keywords={note.data.tags.join('|')} data-search={[note.data.title,note.data.description,note.data.topic,category.title,...note.data.tags].join(' ')}><NoteCard note={note}/></div>)}
       </section>;
     })}
