@@ -7,7 +7,7 @@ import {publicationCategories} from '../data/categories.mjs';
 const years=[...new Set(publications.map(p=>p.year))];
 const allTags=publications.flatMap(p=>p.tags?.length?p.tags:p.topics).filter(x=>x!=='Preprint');
 const keywords=[...new Set(allTags)].sort((a,b)=>allTags.filter(x=>x===b).length-allTags.filter(x=>x===a).length || a.localeCompare(b));
-const areas=publicationCategories.filter(c=>publications.some(p=>p.areas.includes(c.title)));
+const areas=publicationCategories.map(c=>({...c,count:publications.filter(p=>p.areas.includes(c.title)).length})).filter(c=>c.count>0);
 ---
 <SiteLayout active="publications" page="publications" title="Publications · Hyeongmuk Lim">
   <header class="page-heading"><p class="eyebrow">RESEARCH OUTPUT</p><h1>Publications<span class="title-dot">.</span></h1><p>Research papers and preprints. Search by title, author, year, or topic, or select a keyword to narrow the collection.</p></header>

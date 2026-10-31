@@ -16,6 +16,6 @@ relations:
 
 This study note follows a route from constrained Abelian gauge dynamics to a lattice gauge model and the toric code. It discusses the temporal-gauge Hamiltonian, lattice link variables, the $\mathbb{Z}_2$ reduction, and diagnostics of topological order.
 
-**Companion:** *Quantization of Constrained Systems: The Abelian Higgs Model as a Case Study* examines the continuum constraint and gauge-fixing machinery in greater detail. The PDF introduction links to that note's page on this site.
+**Companion:** *Quantization of Constrained Systems* examines the continuum constraint and gauge-fixing machinery in greater detail. The PDF introduction links to that note's page on this site.
 
 This manuscript is shared as a study note; the author has not labelled it as fully complete.

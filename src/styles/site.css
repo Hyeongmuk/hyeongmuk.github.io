@@ -691,3 +691,47 @@ html{scroll-padding-top:45px}
   .design-h .home-hero-portrait .hero-actions { column-gap: 16px; row-gap: 8px; }
   .design-h .home-hero-portrait .hero-actions .underlined-link { white-space: normal; }
 }
+
+/* ============================================================
+   ARCHIVE TABS & COMPACT NOTE LIST (2026-10-31)
+   SearchFilter: area tabs with counts (shared by Publications and
+   Study notes), search field and a collapsible keyword panel.
+   Study notes: one compact row per note.
+   ============================================================ */
+.design-h .archive-controls{margin:0 0 4px}
+.design-h .archive-tabs{display:flex;gap:0 28px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.design-h .archive-tabs::-webkit-scrollbar{display:none}
+.design-h .archive-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;min-height:46px;padding:0;margin-bottom:-1px;background:none;border:0;border-bottom:2px solid transparent;font:500 14px/1.2 var(--sans);color:var(--muted);white-space:nowrap;cursor:pointer}
+.design-h .archive-tab:hover{color:var(--ink)}
+.design-h .archive-tab[aria-pressed="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.design-h .tab-count{font-size:11px;font-weight:600;color:var(--faint);font-variant-numeric:tabular-nums}
+.design-h .archive-tab[aria-pressed="true"] .tab-count{color:var(--accent)}
+.design-h .archive-search-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px 12px;padding:16px 0 6px}
+.design-h .archive-search-row .search-input{flex:1 1 280px;max-width:460px}
+.design-h .keyword-panel{flex:0 0 auto}
+.design-h .keyword-panel[open]{flex-basis:100%}
+.design-h .keyword-panel summary{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 15px;border:1px solid var(--line);border-radius:4px;background:var(--surface);font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;list-style:none}
+.design-h .keyword-panel summary::-webkit-details-marker{display:none}
+.design-h .keyword-panel summary::after{content:"+";font-weight:400;color:var(--muted)}
+.design-h .keyword-panel[open] summary::after{content:"−"}
+.design-h .keyword-panel[data-has-selection="true"] summary{border-color:var(--accent);color:var(--accent)}
+.design-h .keyword-panel .keyword-buttons{margin-top:10px}
+/* Compact note rows */
+/* Keeps the original white card, with compact contents. */
+.design-h .notes-results .note-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 28px;margin:0 0 9px;padding:15px 20px}
+.design-h .notes-results .note-row h3{font-size:19px;line-height:1.35;margin:0 0 4px}
+.design-h .notes-results .note-meta{font-size:12px;gap:0;margin:0}
+.design-h .notes-results .note-meta>span:not(.complete-label):not(:last-child)::after{content:"·";margin:0 7px;color:var(--faint)}
+.design-h .notes-results .note-meta>.complete-label{margin-right:10px}
+.design-h .notes-results .note-actions{flex-direction:row;align-items:center;gap:20px;padding:0}
+.design-h .note-pdf-link{display:inline-flex;align-items:center;gap:6px;min-height:40px;font-size:13px;font-weight:600;color:var(--accent);white-space:nowrap}
+.design-h .note-pdf-link:hover{text-decoration:underline;text-underline-offset:3px}
+.design-h .notes-results .download-link{min-height:40px;font-size:12px;justify-content:flex-start}
+@media(max-width:760px){
+ .design-h .archive-tabs{flex-wrap:wrap;overflow:visible;gap:0 22px}
+ .design-h .archive-tab{font-size:13px}
+ .design-h .archive-search-row .search-input{flex-basis:100%;max-width:none}
+ .design-h .notes-results .note-row{grid-template-columns:minmax(0,1fr);gap:2px;padding:14px 16px 4px}
+ .design-h .notes-results .note-row h3{font-size:18px}
+}
+@media print{.archive-controls,.note-actions{display:none!important}}
