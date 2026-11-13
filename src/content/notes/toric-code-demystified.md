@@ -5,11 +5,12 @@ date: 2026-08-29
 topic: 'Lattice Gauge Theory & Topological Order'
 category: 'condensed'
 tags: ["Toric Code", "Lattice Gauge Theory", "Topological Order", "Abelian Higgs Model"]
-complete: false
+complete: true
+pages: 17
 status: published
 pdf: '/downloads/toric-code-demystified.pdf'
 ---
 
 This study note follows a route from constrained Abelian gauge dynamics to a lattice gauge model and the toric code. It discusses the temporal-gauge Hamiltonian, lattice link variables, the $\mathbb{Z}_2$ reduction, and diagnostics of topological order.
 
-This manuscript is shared as a study note; the author has not labelled it as fully complete.
+Read the full **17-page PDF** in a new tab or download it. This is a personal study note and is not a peer-reviewed publication.
