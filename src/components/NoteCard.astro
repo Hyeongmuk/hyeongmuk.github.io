@@ -1,16 +1,13 @@
 ---
-// Full contents live on the note's own page; this card shows a one-line description.
-import {noteThreadLabel} from '../data/categories.mjs';
+// One compact row per note; the description and contents live on the note's own page.
 const {note}=Astro.props;
 const d=note.data;
 const year=d.date.getFullYear();
-const threadLabel=noteThreadLabel(d.thread);
 ---
 <article class="note-row">
   <div class="note-main">
     <h3><a href={`/notes/${note.id}/`}>{d.title}</a></h3>
-    <div class="note-meta">{d.complete && <span class="complete-label">Complete</span>}{threadLabel && <span class="thread-label">{threadLabel}</span>}<span>{d.topic}</span>{d.pages && <span>{d.pages} pages</span>}<span>{year}</span></div>
-    <p class="note-description">{d.description}</p>
+    <div class="note-meta">{d.complete && <span class="complete-label">Complete</span>}<span>{d.topic}</span>{d.pages && <span>{d.pages} pages</span>}<span>{year}</span></div>
   </div>
   <div class="note-actions">
     {d.pdf && <a class="note-pdf-link" href={d.pdf} target="_blank" rel="noopener noreferrer">Read PDF <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>}

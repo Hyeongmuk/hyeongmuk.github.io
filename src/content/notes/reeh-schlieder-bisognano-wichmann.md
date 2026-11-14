@@ -4,7 +4,6 @@ description: 'The Reeh–Schlieder and Bisognano–Wichmann theorems and the vac
 date: 2026-11-13
 topic: 'Axiomatic Quantum Field Theory'
 category: 'qft'
-thread: 'research'
 tags: ["Reeh-Schlieder Theorem", "Bisognano-Wichmann Theorem", "Wightman Axioms", "Modular Theory"]
 complete: true
 pages: 9

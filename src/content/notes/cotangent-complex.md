@@ -4,7 +4,6 @@ description: 'Study notes on K√§hler differentials, the cotangent complex, Andr√
 date: 2026-10-19
 topic: 'Derived Algebraic Geometry'
 category: 'mathematics'
-thread: 'background'
 tags: ["Cotangent Complex", "Algebraic Geometry", "Derived Algebraic Geometry", "Deformation Theory"]
 complete: true
 pages: 10

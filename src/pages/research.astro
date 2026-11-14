@@ -38,7 +38,7 @@ const relatedNotes=relatedNoteIds.map(id=>publishedNotes.find(n=>n.id===id)).fil
           </figure>
         )}
         {section.area && researchPublications(section.area).length>0 && <div class="related-papers"><h3>Related publications</h3>{researchPublications(section.area).map(paper=><PaperCard paper={paper} compact />)}</div>}
-        {section.id==='manybody' && relatedNotes.length>0 && <div class="related-papers related-study-notes"><h3>Related study notes</h3><div class="related-study-notes-list">{relatedNotes.map(note=><NoteCard note={note} />)}</div><p class="related-study-notes-disclaimer">These are personal study notes, not peer-reviewed publications.</p></div>}
+        {section.id==='manybody' && relatedNotes.length>0 && <div class="related-notes-block"><h3>Related study notes</h3><div class="notes-results">{relatedNotes.map(note=><NoteCard note={note} />)}</div><p class="related-study-notes-disclaimer">These are personal study notes, not peer-reviewed publications.</p></div>}
       </div>
     </article>)}
   </section>
@@ -99,25 +99,13 @@ const relatedNotes=relatedNoteIds.map(id=>publishedNotes.find(n=>n.id===id)).fil
   }
   .geometry-research-figure .figure-source cite { font-style:italic; }
   /* Keep the subsection heading in sentence case. */
-  .research-sections-refined .related-papers > h3 {
+  /* The notes block avoids the `related-papers` class: its descendant h3 rule in
+     site.css would also shrink NoteCard's nested titles. */
+  .research-sections-refined .related-papers > h3,
+  .related-notes-block > h3 {
     text-transform:none; letter-spacing:0; font-family:var(--serif,Georgia,serif);
     font-weight:500; font-size:19px; color:var(--ink,#263a33);
     margin-bottom:10px;
-  }
-  /* NoteCard renders .note-row articles; this list just needs vertical spacing between them. */
-  .related-study-notes-list :global(.note-row) {
-    margin: 0 0 10px;
-  }
-  .related-study-notes-list :global(.note-row:last-child) {
-    margin-bottom: 0;
-  }
-  /* The `.related-papers h3` descendant selector in site.css (uppercase eyebrow styling)
-     also matches NoteCard's nested <h3> title; undo it here, same fix as the PaperCard titles below. */
-  :global(.page-research .related-study-notes-list .note-row h3) {
-    text-transform: none;
-    letter-spacing: -.02em;
-    font-family: var(--serif, Georgia, serif);
-    color: var(--ink, #263a33);
   }
   .related-study-notes-disclaimer {
     margin: 14px 0 0;
