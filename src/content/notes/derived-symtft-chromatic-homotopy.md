@@ -4,7 +4,6 @@ description: 'Working notes building from derived algebraic geometry and the Pon
 date: 2026-09-14
 topic: 'Derived Algebraic Geometry'
 category: 'mathematics'
-thread: 'background'
 tags: ["Derived Algebraic Geometry", "Hochschild Homology", "Chromatic Homotopy Theory", "SymTFT"]
 complete: false
 pages: 25

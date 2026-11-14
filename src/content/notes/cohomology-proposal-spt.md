@@ -4,7 +4,6 @@ description: 'Organizing the group-cohomology proposals for gauge anomalies and 
 date: 2026-11-14
 topic: 'Symmetry-Protected Topological Phases'
 category: 'condensed'
-thread: 'research'
 tags: ["SPT Phases", "Anomaly Inflow", "Group Cohomology", "Dijkgraaf-Witten Theory"]
 complete: true
 pages: 30

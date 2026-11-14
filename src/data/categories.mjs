@@ -10,5 +10,3 @@ export const publicationCategories = [
 ];
 export const slugArea = (area) => area?.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'other';
 export const noteCategoryLabel = (id) => noteCategories.find(x=>x.id===id)?.title || id;
-export const noteThreadLabels = { research:'Close to current research', background:'Mathematical background' };
-export const noteThreadLabel = (thread) => noteThreadLabels[thread] || null;

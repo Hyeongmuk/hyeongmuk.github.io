@@ -4,7 +4,6 @@ description: 'Study notes on unitary fusion categories, graphical calculus, brai
 date: 2026-10-26
 topic: 'Topological Quantum Field Theory'
 category: 'qft'
-thread: 'research'
 tags: ["Topological QFT", "Fusion Categories", "Graphical Calculus", "State-Sum TQFT"]
 complete: true
 pages: 17

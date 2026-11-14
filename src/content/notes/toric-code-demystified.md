@@ -1,10 +1,9 @@
 ---
-title: 'Toric Code Demystified'
+title: 'From the Abelian Higgs Model to the Toric Code'
 description: 'From the Abelian Higgs Lagrangian through constrained gauge dynamics and lattice regularization to Z2 gauge theory and topological order.'
 date: 2026-08-29
 topic: 'Lattice Gauge Theory & Topological Order'
 category: 'condensed'
-thread: 'research'
 tags: ["Toric Code", "Lattice Gauge Theory", "Topological Order", "Abelian Higgs Model"]
 featured: true
 complete: true

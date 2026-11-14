@@ -4,7 +4,6 @@ description: 'A review of the shared axiomatic ingredients behind the Källén�
 date: 2026-11-08
 topic: 'Axiomatic Quantum Field Theory'
 category: 'qft'
-thread: 'research'
 tags: ["Kallen-Lehmann Representation", "Nambu-Goldstone Theorem", "Wightman Axioms", "Spectral Representation"]
 featured: true
 complete: true
