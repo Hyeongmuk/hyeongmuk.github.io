@@ -1,6 +1,6 @@
 ---
 title: 'Quantization of Abelian Higgs model'
-description: 'A companion to Toric Code Demystified: whether fixing one gauge condition or two matters for the continuum abelian Higgs model, why the lattice fixes only one, unitary gauge and the Higgs phase, and compactness, charge quantization, and holonomies.'
+description: 'A companion to From the Abelian Higgs Model to the Toric Code: whether fixing one gauge condition or two matters for the continuum abelian Higgs model, why the lattice fixes only one, unitary gauge and the Higgs phase, and compactness, charge quantization, and holonomies.'
 date: 2026-10-28
 topic: 'Gauge Theory & Constrained Systems'
 category: 'qft'
@@ -15,7 +15,7 @@ relations:
     description: 'The lattice gauge theory and toric-code construction that this note examines in the continuum.'
 ---
 
-This note is a companion to *Toric Code Demystified*. That note's lattice construction makes three choices without discussion: temporal gauge, Gauss's law imposed on states, and compact link variables. This note examines each choice in the continuum abelian Higgs model, around the guiding question: fixing one gauge condition or two — does it matter, and if not, why does the lattice insist on one?
+This note is a companion to *From the Abelian Higgs Model to the Toric Code*. That note's lattice construction makes three choices without discussion: temporal gauge, Gauss's law imposed on states, and compact link variables. This note examines each choice in the continuum abelian Higgs model, around the guiding question: fixing one gauge condition or two — does it matter, and if not, why does the lattice insist on one?
 
 ## Contents
 
