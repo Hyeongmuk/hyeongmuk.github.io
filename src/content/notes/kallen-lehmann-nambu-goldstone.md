@@ -5,6 +5,7 @@ date: 2026-11-08
 topic: 'Axiomatic Quantum Field Theory'
 category: 'qft'
 tags: ["Kallen-Lehmann Representation", "Nambu-Goldstone Theorem", "Wightman Axioms", "Spectral Representation"]
+featured: true
 complete: true
 pages: 13
 status: published

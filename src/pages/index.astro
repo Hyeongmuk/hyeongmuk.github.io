@@ -5,12 +5,13 @@ import {featuredPublications} from '../lib/publications.mjs';
 import {getCollection} from 'astro:content';
 import {noteCategories} from '../data/categories.mjs';
 const allNotes=await getCollection('notes',({data})=>data.status==='published');
-const featuredNotes=noteCategories.map(category => {
-  const candidates=allNotes.filter(n=>n.data.category===category.id)
-    .sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());
-  const note=candidates.find(n=>n.data.featured) ?? candidates[0];
-  return note ? {note, category} : null;
-}).filter(Boolean);
+const featuredOrder=['toric-code-demystified','haldane-gap-lsm','kallen-lehmann-nambu-goldstone'];
+const featuredNotes=allNotes.filter(n=>n.data.featured)
+  .sort((a,b)=>featuredOrder.indexOf(a.id)-featuredOrder.indexOf(b.id))
+  .map(note=>{
+    const category=noteCategories.find(c=>c.id===note.data.category);
+    return category ? {note, category} : null;
+  }).filter(Boolean);
 ---
 <SiteLayout active="home" page="home" title="Hyeongmuk Lim (임형묵) · Theoretical Condensed Matter Physics" description="Research on band topology and multiband quantum geometry, with an interest in how noninteracting band structures shape correlated quantum matter.">
   <section class="home-hero home-hero-portrait">
@@ -40,7 +41,7 @@ const featuredNotes=noteCategories.map(category => {
     <div class="section-heading"><div><p class="eyebrow">OPEN NOTES</p><h2>Learning in public</h2></div><a class="text-link" href="/notes/">All study notes →</a></div>
     <p class="section-intro">My study notes span quantum field theory, mathematics, and condensed matter physics. Complete manuscripts can be read online or downloaded as PDFs.</p>
     <div class="small-notes">
-      {featuredNotes.map(({note,category})=><div class="small-note"><div><p class="eyebrow">{category.title}</p><h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3></div><a class="small-link" href={note.data.pdf || `/notes/${note.id}/`} target={note.data.pdf?'_blank':undefined} rel={note.data.pdf?'noopener noreferrer':undefined}>{note.data.pdf?'Read PDF ↗':'Details →'}</a></div>)}
+      {featuredNotes.map(({note,category})=><div class="small-note"><div><p class="eyebrow">{category.title}</p><h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3><p class="small-note-blurb">{note.data.description}</p></div><a class="small-link" href={note.data.pdf || `/notes/${note.id}/`} target={note.data.pdf?'_blank':undefined} rel={note.data.pdf?'noopener noreferrer':undefined}>{note.data.pdf?'Read PDF ↗':'Details →'}</a></div>)}
     </div>
   </section>
 </SiteLayout>

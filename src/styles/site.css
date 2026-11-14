@@ -95,6 +95,7 @@ em{font-weight:400}
 .small-note{border-top:1px solid var(--line);padding:17px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
 .small-note .eyebrow{font-size:10px;letter-spacing:.075em;margin:0 0 9px}
 .small-note h3{font-size:18px;line-height:1.4;max-width:330px}
+.small-note-blurb{font-size:13px;line-height:1.6;color:var(--muted);margin:8px 0 0;max-width:330px}
 .small-note>a{flex-shrink:0}
 .page-heading{padding:55px 0 33px}
 .page-heading .eyebrow{margin-bottom:14px}

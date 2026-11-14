@@ -25,7 +25,7 @@ test('shared publication component has no duplicate PDF or linked title',()=>{
   assert.match(card,/<h3 class="paper-title">\{paper\.title\}<\/h3>/);
   assert.doesNotMatch(card,/paper\.pdfUrl/);
 });
-test('archive note tags are curated and featured selection is optional',()=>{
+test('archive note tags are curated and home features the three closest-to-research notes',()=>{
   const schema=read('src/content.config.ts');
   const home=read('src/pages/index.astro');
   const bv=read('src/content/notes/bv-formalism.md');
@@ -33,5 +33,10 @@ test('archive note tags are curated and featured selection is optional',()=>{
   assert.match(bv, /Algebraic Geometry/);
   assert.match(ncg,/Algebraic Geometry/);
   assert.match(schema,/featured: z\.boolean\(\)\.default\(false\)/);
-  assert.match(home,/candidates\.find\(n=>n\.data\.featured\)/);
+  assert.match(home,/allNotes\.filter\(n=>n\.data\.featured\)/);
+  for(const slug of ['toric-code-demystified','haldane-gap-lsm','kallen-lehmann-nambu-goldstone']){
+    assert.match(read(`src/content/notes/${slug}.md`),/featured: true/);
+  }
+  assert.doesNotMatch(bv,/featured: true/);
+  assert.doesNotMatch(ncg,/featured: true/);
 });
