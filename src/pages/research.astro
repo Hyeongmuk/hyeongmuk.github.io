@@ -37,6 +37,24 @@ const relatedNotes=relatedNoteIds.map(id=>publishedNotes.find(n=>n.id===id)).fil
             </figcaption>
           </figure>
         )}
+        {section.id==='topology' && (
+          <figure class="geometry-research-figure">
+            <a class="geometry-figure-visual" href="/research/hopf-insulator-phase-transition.svg" target="_blank" rel="noopener noreferrer" aria-label="Open the Hopf insulator phase-transition illustration in a new tab">
+              <img
+                src="/research/hopf-insulator-phase-transition.svg"
+                alt="Schematic of two topological phase transitions through a Weyl semimetal: (a) from a normal insulator with Chern number 0 to a three-dimensional Chern insulator with Chern number 1; (b) from a normal insulator (χ = 0) to a Hopf insulator (χ = −1)."
+                width="1022" height="486" loading="lazy" decoding="async"
+              />
+            </a>
+            <figcaption>
+              <div class="figure-caption-primary">
+                <p class="figure-comparison">Topological phase transitions through a Weyl semimetal: (a) normal insulator to 3D Chern insulator; (b) normal insulator to Hopf insulator.</p>
+                <a class="geometry-figure-expand" href="/research/hopf-insulator-phase-transition.svg" target="_blank" rel="noopener noreferrer">View larger ↗</a>
+              </div>
+              <p class="figure-source">Associated paper: <a href="https://arxiv.org/abs/2410.04021" target="_blank" rel="noopener noreferrer"><cite>Unconventional topological phase transition of the Hopf insulator</cite> (2024) ↗</a></p>
+            </figcaption>
+          </figure>
+        )}
         {section.area && researchPublications(section.area).length>0 && <div class="related-papers"><h3>Related publications</h3>{researchPublications(section.area).map(paper=><PaperCard paper={paper} compact />)}</div>}
         {section.id==='manybody' && relatedNotes.length>0 && <div class="related-notes-block"><h3>Related study notes</h3><div class="notes-results">{relatedNotes.map(note=><NoteCard note={note} />)}</div><p class="related-study-notes-disclaimer">These are personal study notes, not peer-reviewed publications.</p></div>}
       </div>
