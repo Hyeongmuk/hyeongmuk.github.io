@@ -4,6 +4,7 @@ description: 'From the Abelian Higgs Lagrangian through constrained gauge dynami
 date: 2026-08-29
 topic: 'Lattice Gauge Theory & Topological Order'
 category: 'condensed'
+thread: 'research'
 tags: ["Toric Code", "Lattice Gauge Theory", "Topological Order", "Abelian Higgs Model"]
 featured: true
 complete: true

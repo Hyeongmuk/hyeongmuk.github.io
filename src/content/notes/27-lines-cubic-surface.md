@@ -4,6 +4,7 @@ description: 'Study notes on why every smooth cubic surface in projective 3-spac
 date: 2026-10-31
 topic: 'Enumerative Geometry'
 category: 'mathematics'
+thread: 'background'
 tags: ["Algebraic Geometry", "Enumerative Geometry", "Cubic Surfaces", "Deformation Theory"]
 complete: true
 pages: 6

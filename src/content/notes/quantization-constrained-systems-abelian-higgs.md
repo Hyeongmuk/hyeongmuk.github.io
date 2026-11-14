@@ -4,6 +4,7 @@ description: 'A companion to Toric Code Demystified: whether fixing one gauge co
 date: 2026-10-28
 topic: 'Gauge Theory & Constrained Systems'
 category: 'qft'
+thread: 'research'
 tags: ["Constrained Quantization", "Gauge Theory", "Dirac Brackets", "Abelian Higgs Model"]
 complete: false
 status: published
