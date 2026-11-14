@@ -5,7 +5,6 @@ date: 2025-05-09
 topic: 'Algebra & Geometry'
 tags: ["Noncommutative Geometry", "Algebraic Geometry", "Hochschild Homology", "Category Theory"]
 category: 'mathematics'
-featured: true
 complete: true
 pages: 19
 status: published
