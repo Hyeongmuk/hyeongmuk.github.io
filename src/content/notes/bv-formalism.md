@@ -5,6 +5,7 @@ date: 2025-04-23
 topic: 'Quantization & Gauge Theory'
 tags: ["BV Formalism", "Gauge Theory", "Graded Geometry", "Algebraic Geometry", "Quantization"]
 category: 'qft'
+thread: 'background'
 complete: true
 pages: 23
 status: published

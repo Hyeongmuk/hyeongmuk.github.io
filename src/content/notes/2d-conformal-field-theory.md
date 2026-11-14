@@ -4,6 +4,7 @@ description: 'Working notes on two-dimensional conformal field theory, from the 
 date: 2024-10-13
 topic: 'Conformal Field Theory'
 category: 'qft'
+thread: 'research'
 tags: ["Conformal Field Theory", "Virasoro Algebra", "Minimal Models", "Modular Invariance"]
 complete: false
 status: published
