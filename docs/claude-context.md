@@ -95,8 +95,8 @@ Error: Public-site verification found 1 problem(s).
 
 | URL | 파일 | 유지할 내용 |
 |---|---|---|
-| `/` | `src/pages/index.astro` | 연구 질문, 프로필 사진, 소속/학위 예정, 첫 화면 버튼 줄은 `Explore research →`와 `Academic CV ↗` 두 개만, 연구 분야 3개, 대표 논문 2편, 대표 Study Notes 3개(`featured: true`, 순서는 `index.astro`의 `featuredOrder`: Toric Code → Haldane–LSM → Källén–Lehmann) |
-| `/research/` | `src/pages/research.astro` | `#geometry` / `#topology` / `#manybody`. QK 원본 그림 + 원래 캡션(geometry), Hopf 상전이 그림(topology). §03에만 "Related study notes" 4개(`relatedNoteIds`); 01·02는 논문만 |
+| `/` | `src/pages/index.astro` | 연구 질문, 프로필 사진, 소속/학위 예정, 첫 화면 버튼 줄은 `Explore research →`와 `Academic CV ↗` 두 개만, 연구 분야 3개, 대표 논문 2편, 대표 Study Notes 3개(노트 frontmatter의 `featured: 1|2|3`이 Home 위치: Toric Code → Haldane–LSM → Källén–Lehmann) |
+| `/research/` | `src/pages/research.astro`, `src/data/research.json` | `#geometry` / `#topology` / `#manybody`. 섹션 문구·그림·관련 노트는 `research.json`. QK 원본 그림 + 원래 캡션(geometry), Hopf 상전이 그림(topology). §03에만 "Related study notes" 4개(`relatedNotes`); 01·02는 논문만 |
 | `/publications/` | `src/pages/publications.astro` | 논문 4편, 분야 탭·검색·키워드 패널, 연도별 분류. 개발자 안내 금지 |
 | `/notes/` | `src/pages/notes/index.astro` | 공개 노트 13개, 분야 탭·검색·키워드 패널, 흰 카드에 제목·정보 한 줄·PDF 링크만 (설명은 상세 페이지에만), 하단 "How these notes are written." 문단 |
 | `/notes/[slug]/` | `src/pages/notes/[slug].astro` | 노트 상세, Markdown 본문, PDF, 관련 노트 |
@@ -121,7 +121,7 @@ Error: Public-site verification found 1 problem(s).
   - `Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs.`
   - `View larger ↗` (SVG를 새 탭으로; 가능하면 캡션과 같은 행, 좁은 화면에서는 자연스럽게 줄바꿈)
   - `Associated paper: Quaternion-Kähler geometry of time reversal symmetric crystals (2026) ↗`
-- 캡션 스타일은 `src/pages/research.astro`의 scoped CSS(`.research-figure figcaption` 12px/1.6, `.figure-source` 11.5px). 요청 없이 바꾸지 않는다. 그림은 `sections` 데이터의 `figure` 항목에서 한 템플릿으로 그린다 (QK 캡션 문자열은 그 데이터에 그대로 있다).
+- 캡션 스타일은 `src/pages/research.astro`의 scoped CSS(`.research-figure figcaption` 12px/1.6, `.figure-source` 11.5px). 요청 없이 바꾸지 않는다. 그림은 `src/data/research.json`의 섹션별 `figure` 항목에서 한 템플릿으로 그린다. QK 캡션 문자열은 그 JSON에 그대로 있고, 보호 테스트가 정확한 문자열을 확인한다.
 - 이 SVG는 벡터와 내장 raster image가 섞여 있다. 제목·label·transform 좌표를 자동 검색/치환하거나 파일을 재생성하지 않는다. 변경이 꼭 필요하면 사용자에게 정확한 원본/요청을 받고 → 여러 뷰포트에서 비교 → 작은 diff → 검증.
 - 과거 사용자가 새 그림을 별도로 제공했는데 반영되지 않았다는 지적이 있었다. 현재 저장소의 SVG가 그 최신 파일인지는 **확인된 바 없다**. 임의로 생성·대체하지 말고 필요하면 사용자 제공 원본과 비교한다.
 
@@ -141,7 +141,7 @@ Error: Public-site verification found 1 problem(s).
 ### Notes
 
 - `src/content/notes/*.md`: Astro 콘텐츠 컬렉션, `src/content.config.ts`의 Zod schema.
-- 필드: `title`, `description`, `date`, `topic`, `category`, `tags`, `relations`, `featured`, `complete`, `pages`, `status`, `pdf`, `downloads`.
+- 필드: `title`, `description`, `date`, `topic`, `category`, `tags`, `relations`, `featured`(Home 위치 숫자, 없으면 비노출), `complete`, `pages`, `status`, `pdf`, `downloads`. `verify-site-source.mjs`가 위치 중복과 `research.json`의 노트 slug를 검사한다.
 - `status: published`만 공개. `complete: true`는 작성 완결을 뜻하며 peer review가 아니다.
 - PDF는 `public/downloads/`. `src/components/NoteCard.astro`는 목록용 간결한 카드(제목, Complete·주제·쪽수·연도, Read PDF ↗·Download ↓). 설명, 목차, 연구 스레드 태그는 카드에 넣지 않는다 (사용자 결정, PR #46을 PR #47에서 되돌림). Research §03 패널도 같은 카드를 `notes-results` 래퍼 안에서 쓴다.
 - PDF·CV 링크는 `versioned()`로 내용 해시(`?v=…`)를 붙인다. GitHub Pages가 10분간 캐시하므로, 해시가 없으면 PDF 교체 후 옛 파일이 보인다.
@@ -185,7 +185,6 @@ Error: Public-site verification found 1 problem(s).
 ## 7. 기술부채 (별도 승인 전에는 손대지 않음)
 
 - `src/styles/site.css` (약 700줄): `BASE`, `B`, `HYBRID`, `PRODUCTION`, `REFINEMENT`, `VISITOR POLISH` 등 역사적 오버라이드가 누적됨. `<body>`에 `design-b design-h`가 항상 함께 붙어 기본·B·H 세 층이 동시에 적용되며, `.note-row h3` 같은 규칙은 최대 10번 다시 정의된다. 정리는 사이트 전역 변경이므로 범위 승인과 전후 스크린샷 비교가 필수. 실제로 층끼리 충돌한 사례: 600px 규칙이 690px 규칙을 덮어 에세이 마일스톤 연도가 수식 위에 겹침(PR #23), 홈 버튼 줄의 grid 규칙(PR #29), 자손 선택자 `.design-h .related-papers h3`가 안에 들어간 노트 카드 제목까지 12px로 줄임(PR #47). 새 규칙은 파일 끝에 날짜가 붙은 블록으로 추가해 왔다. 미사용 클래스 규칙은 PR #50에서 지웠다.
-- 큐레이션 목록이 페이지 코드에 박혀 있다: `index.astro`의 `featuredOrder`, `research.astro`의 `relatedNoteIds`와 연구 섹션 문구 배열.
 - 테스트 상당수가 소스 코드 문자열을 정규식으로 확인한다. 동작이 같아도 코드 모양만 바뀌면 실패한다(PR #44에서 실제로 발생).
 - `src/data/students-essay.html`: 큰 raw HTML. 자동 포매터나 정규식 치환이 도해·인용·수식을 망가뜨릴 수 있으므로 부분 수정 후 검증.
 - `.gitignore`에 `node_modules/`, `dist/`, `.astro/`, `.DS_Store`가 중복 선언됨 (기능상 문제 없음).

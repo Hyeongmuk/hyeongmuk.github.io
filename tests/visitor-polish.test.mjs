@@ -55,4 +55,5 @@ test('Research preserves the original illustration and caption', () => {
   assert.match(research, /figure-comparison/);
   assert.match(research, /View larger ↗/);
   assert.doesNotMatch(research, /figure-explainer/);
+  assert.match(read('src/data/research.json'), /"caption": "Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs\."/);
 });

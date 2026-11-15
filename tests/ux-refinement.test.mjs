@@ -17,7 +17,7 @@ test('links label internal and new-tab navigation distinctly',()=>{
  assert.match(home,/Academic CV ↗/);
 });
 test('research claims do not imply proven correlated phases',()=>{
- const s=read('src/pages/research.astro');
+ const s=read('src/data/research.json');
  assert.match(s,/starting point/);
  assert.match(s,/broader interests/);
  assert.doesNotMatch(s,/not yet a demonstration|rather than a claim/);

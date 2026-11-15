@@ -34,4 +34,16 @@ for(const note of notes.values()){
  const rels=[...note.body.matchAll(/^\s+- note:\s*([a-zA-Z0-9-]+)\s*$/gm)].map(m=>m[1]);
  for(const rel of rels)if(!notes.has(rel))throw Error(`Missing relation target in ${note.f}: ${rel}`);
 }
+const positions=new Map();
+for(const note of notes.values()){
+ const pos=note.body.match(/^featured:\s*(\d+)\s*$/m)?.[1];
+ if(!pos)continue;
+ if(note.status!=='published')throw Error(`Featured note is not published: ${note.f}`);
+ if(positions.has(pos))throw Error(`Home position ${pos} used by ${positions.get(pos)} and ${note.f}`);
+ positions.set(pos,note.f);
+}
+const research=JSON.parse(read('src/data/research.json'));
+for(const section of research.sections)for(const id of section.relatedNotes ?? []){
+ if(notes.get(id)?.status!=='published')throw Error(`research.json ${section.id}: related note is missing or unpublished: ${id}`);
+}
 console.log(`Verified critical pages, ${bib.length} papers, ${notes.size} notes, links and relationships.`);

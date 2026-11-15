@@ -9,7 +9,7 @@ test('homepage uses the two user-selected featured papers',()=>{
     'lim2023hopf','lim2026quaternion']);
 });
 test('research distinguishes demonstrated results from future interests',()=>{
-  const s=read('src/pages/research.astro');
+  const s=read('src/data/research.json');
   assert.match(s,/ESTABLISHED RESEARCH/);
   assert.match(s,/BROADER RESEARCH INTERESTS/);
   assert.match(s,/provides a starting point/);
