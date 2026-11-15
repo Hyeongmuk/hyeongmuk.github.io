@@ -1,6 +1,6 @@
 # Instructions for Claude — Mook Academic Website
 
-**Read first:** `docs/claude-context.md` — edit history, past mistakes and CI failures, page/data map, technical debt, browser QA checklist (condensed from the handoff documents `01_WEBSITE_HANDOFF_KO.md` and `03_QA_AND_WORKFLOW.md`). The living source of truth is the actual repository HEAD; that context was prepared against `main` commit `8784e2a36e68e14ba2253eeae5780a23b4abe2a0` (2026-10-29 18:34 KST).
+**Read first:** `docs/claude-context.md` — edit history, past mistakes and CI failures, page/data map, technical debt, browser QA checklist (condensed from the handoff documents `01_WEBSITE_HANDOFF_KO.md` and `03_QA_AND_WORKFLOW.md`). The living source of truth is the actual repository HEAD; that context was prepared against `main` commit `8784e2a` (2026-10-29) and last updated against `main` `34a2e2c` (2026-11-15, PR #50).
 
 ## Non-negotiable rules
 
@@ -33,6 +33,6 @@ node scripts/verify-visitor-site.mjs
 git diff --check
 ```
 
-Latest verified Actions run: `41192279041` (2026-10-31, PR #31) — 30/30 tests, build and GitHub Pages deployment passed. **Do not conflate CI success with a completed manual visual audit.**
+Latest verified Actions run: `43682220074` (2026-11-15, PR #50) — 30/30 tests, build and GitHub Pages deployment passed. **Do not conflate CI success with a completed manual visual audit.**
 
 When reporting, use Korean. State exact files changed, expected impact, tests actually run, browser QA actually done, remaining risks, and how to review/undo. Do not modify anything if the user has only asked for a status report.

@@ -1,7 +1,7 @@
 # 웹사이트 작업 맥락 — 수정 이력, 데이터 구조, QA
 
 > 원본: 사용자가 제공한 `01_WEBSITE_HANDOFF_KO.md`, `03_QA_AND_WORKFLOW.md`를 요약·정리한 문서.
-> 기준 시점: 2026-10-29 18:34 KST, `main` 커밋 `8784e2a`. 2026-10-31에 PR #22–#31 결과를 반영해 갱신 (`main` `aa51857`).
+> 기준 시점: 2026-10-29 18:34 KST, `main` 커밋 `8784e2a`. 2026-10-31에 PR #22–#31, 2026-11-15에 PR #32–#50 결과를 반영해 갱신 (`main` `34a2e2c`).
 > **실제 파일과 최신 커밋이 이 문서보다 우선한다.** 작업 규칙 자체는 루트의 `CLAUDE.md`를 따른다.
 > 방문자에게 공개되는 파일이 아니다 (Astro는 `src/pages/`와 `public/`만 빌드한다).
 
@@ -17,7 +17,7 @@
 
 "배포 성공"은 HTML이 빌드·업로드되었다는 뜻일 뿐, 데스크톱·모바일 시각 검수 완료를 뜻하지 않는다.
 
-## 2. 수정 이력 (2026-10, KST)
+## 2. 수정 이력 (2026-10 ~ 11, KST)
 
 GitHub PR/커밋과 이전 협업 대화를 종합한 재구성이며, 모든 중간 단계가 남아 있지는 않다.
 
@@ -39,7 +39,18 @@ GitHub PR/커밋과 이전 협업 대화를 종합한 재구성이며, 모든 �
 | 10/31 | PR #26 논문 카드에 출판 연월, PR #27 Research 관련 논문도 최신순(`researchOrder` 삭제) | §5 Publications |
 | 10/31 | PR #29 홈 첫 화면: "Selected publications" 링크 삭제, 버튼과 CV를 한 줄에 | |
 | 10/31 | PR #30 Notes·Publications 분야 탭(`?area=`), 노트는 흰 카드 + 간결한 내용, 탭 선택 시 분야 제목 숨김. 노트 제목 "Quantization of Constrained Systems"로 단축, 짝 노트 Toric Code PDF 재컴파일 | §5 Notes, §6 |
-| 10/31 | PR #31 한국어 이름 임형묵: 홈·About 제목, 페이지 `<title>`, JSON-LD `alternateName` | 검색 노출용 (§5 About). 마지막으로 검증된 상태 (run `41192279041`, 30/30) |
+| 10/31 | PR #31 한국어 이름 임형묵: 홈·About 제목, 페이지 `<title>`, JSON-LD `alternateName` | 검색 노출용 (§5 About) |
+| 10/31 | PR #32 Students 접근성(흐린 글자 대비, 마일스톤 제목 수준). PR #33 Publications 아래 Talks, Clear 버튼을 Keywords 옆으로. PR #34 스크립트 URL에 내용 해시(`src/lib/asset-version.mjs`) | 배포 직후 옛 스크립트가 캐시되던 문제 |
+| 11/08 | PR #35 노트 *Källén–Lehmann and Nambu–Goldstone theorems* 추가, PR #36 저자 최종 PDF로 교체 | 사용자가 확인한 PDF만 받아 교체해도 됨 |
+| 11/10 | PR #37 노트 "Quantization of Constrained Systems" 삭제, Toric Code의 짝 노트 문단 제거 | |
+| 11/13 | PR #38 *Reeh–Schlieder and Bisognano–Wichmann theorems*. PR #39 미완성 노트 2개: *Quantization of Abelian Higgs model*(옛 slug `quantization-constrained-systems-abelian-higgs` 재사용), *2D Conformal Field Theory*. PR #40 Toric Code 검토 표시(`\fx`, `\dr`) 해제 후 Complete | slug 재사용 이유: Toric Code PDF 안의 하이퍼링크 5개가 이 주소를 가리킴 |
+| 11/13–14 | PR #41 *Notes on Derived SymTFT and Chromatic Homotopy*(미완성, Mathematics). PR #42 *The Cohomology Proposal for Anomalies and SPT*(Complete, Condensed) | |
+| 11/14 | PR #43 Notes 하단 문구를 "How these notes are written." 문단으로 교체, Students의 Claude 그림 크레딧 삭제 | §5 Notes |
+| 11/14 | PR #44 Home 대표 노트를 연구와 가까운 3개로 고정. PR #45 Research §03에 "Related study notes" | 포닥 지원 대비 개선 (사용자 제공 개선 문서 `mookphysics-notes-revision.md`) |
+| 11/14 | PR #46 노트 카드에 설명·연구 스레드 태그 → PR #47에서 **되돌림**(카드가 커짐). PR #47은 Research 패널 제목 크기 버그 수정, Toric Code에 Wegner 인용, 제목을 "From the Abelian Higgs Model to the Toric Code"로 변경 | §6 사용자 결정 |
+| 11/14 | PR #48 Research Band Topology에 Hopf 절연체 상전이 그림(Fig. 1a,b) | QK 그림 블록은 건드리지 않음 |
+| 11/15 | PR #50 PDF·CV 링크 버전 해시, 미사용 CSS 삭제(선택자 66개), 모바일 노트 카드 "·" 정리, 작은 링크 터치 영역 24px 이상, 흐린 글자색 진하게. 마지막으로 검증된 상태 (run `43682220074`, 30/30) | 미사용 CSS 삭제 전후 16장 스크린샷 픽셀 동일 |
+| 11/15 | PR #49 (보류 중) Toric Code PDF 다듬기: 근거 없는 Remark·중복 표·곁가지 삭제 | 사용자가 병합 보류 지시 |
 
 ### 이전 AI 작업에서 반복된 사고
 
@@ -84,10 +95,10 @@ Error: Public-site verification found 1 problem(s).
 
 | URL | 파일 | 유지할 내용 |
 |---|---|---|
-| `/` | `src/pages/index.astro` | 연구 질문, 프로필 사진, 소속/학위 예정, 첫 화면 버튼 줄은 `Explore research →`와 `Academic CV ↗` 두 개만, 연구 분야 3개, 대표 논문 2편, 대표 Study Notes |
-| `/research/` | `src/pages/research.astro` | `#geometry` / `#topology` / `#manybody`, QK 원본 그림 + 원래 캡션 |
+| `/` | `src/pages/index.astro` | 연구 질문, 프로필 사진, 소속/학위 예정, 첫 화면 버튼 줄은 `Explore research →`와 `Academic CV ↗` 두 개만, 연구 분야 3개, 대표 논문 2편, 대표 Study Notes 3개(`featured: true`, 순서는 `index.astro`의 `featuredOrder`: Toric Code → Haldane–LSM → Källén–Lehmann) |
+| `/research/` | `src/pages/research.astro` | `#geometry` / `#topology` / `#manybody`. QK 원본 그림 + 원래 캡션(geometry), Hopf 상전이 그림(topology). §03에만 "Related study notes" 4개(`relatedNoteIds`); 01·02는 논문만 |
 | `/publications/` | `src/pages/publications.astro` | 논문 4편, 분야 탭·검색·키워드 패널, 연도별 분류. 개발자 안내 금지 |
-| `/notes/` | `src/pages/notes/index.astro` | 공개 노트 8개, 분야 탭·검색·키워드 패널, 흰 카드에 제목·정보 한 줄·PDF 링크만 (설명은 상세 페이지에만) |
+| `/notes/` | `src/pages/notes/index.astro` | 공개 노트 13개, 분야 탭·검색·키워드 패널, 흰 카드에 제목·정보 한 줄·PDF 링크만 (설명은 상세 페이지에만), 하단 "How these notes are written." 문단 |
 | `/notes/[slug]/` | `src/pages/notes/[slug].astro` | 노트 상세, Markdown 본문, PDF, 관련 노트 |
 | `/students/` | `src/pages/students/index.astro`, `src/data/students-landing.html` | Physics Stories 목록/소개. Notes CTA 추가 금지 |
 | `/students/band-theory/` | `src/pages/students/band-theory.astro`, `src/data/students-essay.html` | "How Does an Electron See Its Universe?" 에세이, 도해 6개, 참고문헌 |
@@ -132,11 +143,18 @@ Error: Public-site verification found 1 problem(s).
 - `src/content/notes/*.md`: Astro 콘텐츠 컬렉션, `src/content.config.ts`의 Zod schema.
 - 필드: `title`, `description`, `date`, `topic`, `category`, `tags`, `relations`, `featured`, `complete`, `pages`, `status`, `pdf`, `downloads`.
 - `status: published`만 공개. `complete: true`는 작성 완결을 뜻하며 peer review가 아니다.
-- PDF는 `public/downloads/`. `src/components/NoteCard.astro`는 목록용 간결한 카드(제목, Complete·주제·쪽수·연도, Read PDF ↗·Download ↓). 설명과 목차는 노트 상세 페이지에만 둔다 (사용자 결정).
-- **노트 PDF 만들기:** 사용자가 보내 준 LaTeX 원고(`.tex`, `.bib`)를 `latexmk -pdf`(biber)로 컴파일한다. 함께 온 PDF가 있어도 원고를 컴파일한 것을 쓴다. 원고 내용은 요청 없이 고치지 않는다. 필요 패키지: `texlive-latex-extra texlive-fonts-extra texlive-pictures texlive-science texlive-bibtex-extra texlive-plain-generic biber latexmk`. bib의 URL에는 `\textasciitilde`가 아니라 `~`를 써야 링크가 깨지지 않는다. Toric Code 노트는 `main_public.tex`를 컴파일한다.
-- 노트 제목을 바꿀 때는 짝 노트의 소개 문단과 PDF 안 언급도 함께 고치고, 주소(slug)와 PDF 파일 이름은 유지한다.
+- PDF는 `public/downloads/`. `src/components/NoteCard.astro`는 목록용 간결한 카드(제목, Complete·주제·쪽수·연도, Read PDF ↗·Download ↓). 설명, 목차, 연구 스레드 태그는 카드에 넣지 않는다 (사용자 결정, PR #46을 PR #47에서 되돌림). Research §03 패널도 같은 카드를 `notes-results` 래퍼 안에서 쓴다.
+- PDF·CV 링크는 `versioned()`로 내용 해시(`?v=…`)를 붙인다. GitHub Pages가 10분간 캐시하므로, 해시가 없으면 PDF 교체 후 옛 파일이 보인다.
+- `relations`는 한쪽 노트에만 적으면 된다. `[slug].astro`가 반대쪽 페이지에도 자동으로 "Related notes"를 표시한다.
+- **노트 PDF 만들기:** 사용자가 보내 준 LaTeX 원고(`.tex`, `.bib`)를 `latexmk -pdf`(biber)로 컴파일한다. 함께 온 PDF가 있어도 원고를 컴파일한 것을 쓴다(사용자가 이미 확인한 PDF만 보낸 경우는 그대로 교체 가능). 원고 내용은 요청 없이 고치지 않는다. 필요 패키지: `texlive-latex-extra texlive-fonts-extra texlive-pictures texlive-science texlive-bibtex-extra texlive-plain-generic biber latexmk`. bib의 URL에는 `\textasciitilde`가 아니라 `~`를 써야 링크가 깨지지 않는다. `main_public.tex`가 있으면(검토 표시 `\hm`, `\dr`, `\fx`를 숨김) 그것을 컴파일한다. 미완성 노트는 검토 표시 색이 남아도 된다.
+- **노트 내용 수정 원칙 (사용자 지시):** 문장을 덧붙이지 말고, 흐름에서 빼도 되는 내용을 지우거나 같은 길이 안에서 고친다. 내용(주장·증명)에 관한 수정은 고칠 문구를 먼저 보여 주고 승인 후 반영한다. 수정한 LaTeX 소스는 zip으로 사용자에게 돌려준다.
+- 노트 제목을 바꿀 때는 짝 노트의 소개 문단과 PDF 안 언급도 함께 고치고, 주소(slug)와 PDF 파일 이름은 유지한다. LaTeX에서는 `\title{}`과 별도로 hyperref `pdftitle`도 바꾼다.
 - 범주: qft, mathematics, condensed (`src/data/categories.mjs`).
-- 공개 노트 8개: `27-lines-cubic-surface`, `bv-formalism`, `cotangent-complex`, `haldane-gap-lsm`, `noncommutative-geometry`, `planar-diagram-algebra-3d-tqft`, `quantization-constrained-systems-abelian-higgs`(제목 "Quantization of Constrained Systems"), `toric-code-demystified`.
+- 공개 노트 13개:
+  - qft: `reeh-schlieder-bisognano-wichmann`, `kallen-lehmann-nambu-goldstone`, `quantization-constrained-systems-abelian-higgs`(제목 "Quantization of Abelian Higgs model", 미완성), `planar-diagram-algebra-3d-tqft`, `bv-formalism`, `2d-conformal-field-theory`(미완성)
+  - mathematics: `27-lines-cubic-surface`, `cotangent-complex`, `derived-symtft-chromatic-homotopy`(미완성), `noncommutative-geometry`
+  - condensed: `cohomology-proposal-spt`, `haldane-gap-lsm`, `toric-code-demystified`(제목 "From the Abelian Higgs Model to the Toric Code")
+- BV, Non-commutative Geometry 노트는 Myung Jin Jeong의 세미나 발표 기반이며, 본문에 출처가 적혀 있다.
 - `src/components/SearchFilter.astro` + `public/scripts/search-filter.js`: Publications/Notes 공유. 개수가 붙은 분야 탭, 선택한 분야는 주소 `?area=<id>`에 유지, 검색창, 접히는 Keywords 패널, 결과 수, 초기화. Notes에서는 탭을 고르면 목록 안의 분야 제목(`data-area-heading`)을 숨긴다. 두 탭의 디자인은 항상 같게 유지한다.
 
 ### Students 에세이 그림
@@ -161,11 +179,15 @@ Error: Public-site verification found 1 problem(s).
 - `mailto:`는 새 탭 링크가 아니므로 `↗`를 붙이지 않는다.
 - Study notes는 흰 카드(오프화이트 배경 위 흰 바탕·테두리)를 유지한다. 사용자가 Publications식 줄 목록보다 선호한다고 밝혔다.
 - 분야 탭은 밑줄 탭 모양이며 휴대폰에서는 잘리지 않게 줄바꿈한다.
-- 키보드 포커스, 모바일 터치 영역, `prefers-reduced-motion`, alt 텍스트, 좁은 폭에서의 줄바꿈을 확인한다.
+- 키보드 포커스, 모바일 터치 영역(작은 인라인 링크는 보이지 않는 `::after`로 24px 이상), `prefers-reduced-motion`, alt 텍스트, 좁은 폭에서의 줄바꿈을 확인한다.
+- 흐린 보조 글자(`--faint`)는 모든 배경에서 대비 4.5:1 이상을 유지한다 (현재 메인 `#626b60`, Students `#646a61`).
 
 ## 7. 기술부채 (별도 승인 전에는 손대지 않음)
 
-- `src/styles/site.css`: `BASE`, `B`, `HYBRID`, `PRODUCTION`, `REFINEMENT`, `VISITOR POLISH` 등 역사적 오버라이드가 누적됨. 정리는 사이트 전역 변경이므로 범위 승인과 전후 비교가 필수. 실제로 층끼리 충돌한 사례: 600px 규칙이 690px 규칙을 덮어 에세이 마일스톤 연도가 수식 위에 겹침(PR #23), 홈 버튼 줄의 grid 규칙(PR #29). 새 규칙은 파일 끝에 날짜가 붙은 블록으로 추가해 왔다.
+- `src/styles/site.css` (약 700줄): `BASE`, `B`, `HYBRID`, `PRODUCTION`, `REFINEMENT`, `VISITOR POLISH` 등 역사적 오버라이드가 누적됨. `<body>`에 `design-b design-h`가 항상 함께 붙어 기본·B·H 세 층이 동시에 적용되며, `.note-row h3` 같은 규칙은 최대 10번 다시 정의된다. 정리는 사이트 전역 변경이므로 범위 승인과 전후 스크린샷 비교가 필수. 실제로 층끼리 충돌한 사례: 600px 규칙이 690px 규칙을 덮어 에세이 마일스톤 연도가 수식 위에 겹침(PR #23), 홈 버튼 줄의 grid 규칙(PR #29), 자손 선택자 `.design-h .related-papers h3`가 안에 들어간 노트 카드 제목까지 12px로 줄임(PR #47). 새 규칙은 파일 끝에 날짜가 붙은 블록으로 추가해 왔다. 미사용 클래스 규칙은 PR #50에서 지웠다.
+- Research 그림 스타일 이름이 `geometry-*`인데 Band Topology 그림에도 쓰인다(`research.astro`의 scoped CSS). 보호 테스트는 `figure-comparison`, `View larger ↗`만 확인한다.
+- 큐레이션 목록이 페이지 코드에 박혀 있다: `index.astro`의 `featuredOrder`, `research.astro`의 `relatedNoteIds`와 연구 섹션 문구 배열.
+- 테스트 상당수가 소스 코드 문자열을 정규식으로 확인한다. 동작이 같아도 코드 모양만 바뀌면 실패한다(PR #44에서 실제로 발생).
 - `src/data/students-essay.html`: 큰 raw HTML. 자동 포매터나 정규식 치환이 도해·인용·수식을 망가뜨릴 수 있으므로 부분 수정 후 검증.
 - `.gitignore`에 `node_modules/`, `dist/`, `.astro/`, `.DS_Store`가 중복 선언됨 (기능상 문제 없음).
 - `.DS_Store` 4개(`/`, `public/`, `src/content/`, `src/pages/`)가 여전히 Git에 추적됨.
@@ -180,19 +202,20 @@ Error: Public-site verification found 1 problem(s).
 4. **기술부채:** §7. 독립된 소규모 패치로 제안.
 5. **콘텐츠 정합성:** 논문/학위/CV 정보가 최신인지 사용자 확인.
 6. **실제 기기:** 화면 확인은 지금까지 모두 Chromium(Playwright)으로 했다. 실제 아이폰 Safari 확인은 아직 없다.
-7. **향후 후보 (2026-10-31 논의):** Talks/News 섹션, 노트 사이 `relations` 연결(27 lines ↔ Cotangent complex 등), 링크 공유 미리보기 이미지(현재 webp 프로필 사진), Lighthouse 성능·접근성 점검, 노트가 15~20개를 넘으면 분야별 페이지.
+7. **향후 후보 (2026-10-31 논의):** 노트 사이 `relations` 연결(27 lines ↔ Cotangent complex 등), 링크 공유 미리보기 이미지(현재 webp 프로필 사진), Lighthouse 성능·접근성 점검, 노트가 15~20개를 넘으면 분야별 페이지. (Talks는 PR #33에서 추가됨)
+8. **포닥 지원 대비 개선 문서 (2026-11-14):** Task 1·5는 반영. Task 2(Complete 대신 Worked note/Survey 유형 라벨), Task 3(다른 노트에 [rigorous]/[standard]/[heuristic] 태그), Task 4(노트별 오류 수정: Planar diagram, BV, Cotangent complex, 27 Lines, NCG)는 노트별 LaTeX 소스를 받아 진행해야 한다.
 
 ## 9. 브라우저 QA 체크리스트
 
 `npm run dev` 후 권장 뷰포트: 1440×900, 1280×800, 768×1024, 390×844, 320×700.
 
-- [ ] Home: 사진이 얼굴을 어색하게 자르거나 텍스트와 겹치지 않음. Featured 논문 정확히 2편.
-- [ ] Research: 세 범주의 established / broader interests 구분 정확.
+- [ ] Home: 사진이 얼굴을 어색하게 자르거나 텍스트와 겹치지 않음. Featured 논문 정확히 2편, 대표 노트 3개.
+- [ ] Research: 세 범주의 established / broader interests 구분 정확. Band Topology 그림과 캡션, §03 "Related study notes" 카드가 Study notes 카드와 같은 모양.
 - [ ] Research QK 그림: 제목과 `k_t + k_y J` 등 수식이 겹치지 않음. 내부 label이 잘리거나 덮이지 않음.
 - [ ] QK 캡션: 한 줄 비교 문장 + `View larger ↗`, 다음 행 `Associated paper`만. `figure-explainer` 없음.
 - [ ] Research "Related publications": 제목 대소문자 자연스러움, 중복 링크 없음.
 - [ ] Publications: 제목/저자/연도 검색, area, keyword, 복합 필터, reset, 결과 수, no-results. 개발자 문구 없음.
-- [ ] Notes: 8개 route, 분야 탭(`?area=` 직접 진입 포함)·키워드·reset, PDF 새 탭/다운로드, 상세·관련 노트 링크.
+- [ ] Notes: 13개 route, 분야 탭(`?area=` 직접 진입 포함)·키워드·reset, PDF 새 탭/다운로드(링크에 `?v=` 해시), 상세·관련 노트 링크. 모바일에서 메타 줄 끝에 "·"가 매달리지 않음.
 - [ ] Students: 제목 위계, 에세이 도해 6개·참고문헌·공유 SVG 링크. `Browse study notes ↗` 없음.
 - [ ] About: 프로필, CV 열기/다운로드, 이메일/ORCID/Scholar 링크.
 - [ ] 모바일: 햄버거 메뉴 열기/닫기/Escape, 포커스 표시, 가로 스크롤 없음.
@@ -210,8 +233,8 @@ Error: Public-site verification found 1 problem(s).
 
 ## 11. 참고 링크
 
-- 최종 성공 CI/배포: https://github.com/Hyeongmuk/hyeongmuk.github.io/actions/runs/41192279041 (2026-10-31, PR #31)
-- 이전 기준 배포: https://github.com/Hyeongmuk/hyeongmuk.github.io/actions/runs/40850677396
+- 최종 성공 CI/배포: https://github.com/Hyeongmuk/hyeongmuk.github.io/actions/runs/43682220074 (2026-11-15, PR #50, `main` `34a2e2c`)
+- 이전 기준 배포: https://github.com/Hyeongmuk/hyeongmuk.github.io/actions/runs/41192279041 (2026-10-31, PR #31), https://github.com/Hyeongmuk/hyeongmuk.github.io/actions/runs/40850677396
 - 그림·캡션 복원 기준: https://github.com/Hyeongmuk/hyeongmuk.github.io/commit/18f71e41d8de66483cba4b8add7b4ff445b0eba0
 - 검증 기준 HEAD: https://github.com/Hyeongmuk/hyeongmuk.github.io/commit/8784e2a36e68e14ba2253eeae5780a23b4abe2a0
 - PR #20 Students: https://github.com/Hyeongmuk/hyeongmuk.github.io/pull/20
