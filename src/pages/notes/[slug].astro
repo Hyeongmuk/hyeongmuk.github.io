@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import {versioned} from '../../lib/asset-version.mjs';
 import {getCollection,render} from 'astro:content';
 import {noteCategoryLabel} from '../../data/categories.mjs';
 export async function getStaticPaths(){
@@ -33,8 +34,8 @@ for(const note of published){
   <div class="breadcrumb"><a href="/notes/">Study notes</a><span aria-hidden="true">/</span><span>{noteCategoryLabel(d.category)}</span></div>
   <header class="detail-heading"><p class="eyebrow">{d.topic}</p><h1>{d.title}<span class="title-dot">.</span></h1><p class="detail-meta">{noteCategoryLabel(d.category)} · {d.date.getFullYear()}{d.pages?` · ${d.pages} pages`:''}{d.complete?' · Complete note':''}</p><p class="detail-description">{d.description}</p></header>
   <div class="detail-actions">
-    {d.pdf && <a href={d.pdf} class="button" target="_blank" rel="noopener noreferrer">Read PDF ↗ <span class="sr-only">(opens in a new tab)</span></a>}
-    {d.pdf && <a href={d.pdf} class="button-secondary" download>Download PDF ↓</a>}
+    {d.pdf && <a href={versioned(d.pdf)} class="button" target="_blank" rel="noopener noreferrer">Read PDF ↗ <span class="sr-only">(opens in a new tab)</span></a>}
+    {d.pdf && <a href={versioned(d.pdf)} class="button-secondary" download>Download PDF ↓</a>}
     {d.downloads.map(file=><a class="button-secondary" href={file.href} download>{file.label} ↓</a>)}
   </div>
   <section class="detail-body note-detail-body">

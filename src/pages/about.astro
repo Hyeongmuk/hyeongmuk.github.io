@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import {versioned} from '../lib/asset-version.mjs';
 ---
 <SiteLayout active="about" page="about" title="About · Hyeongmuk Lim (Mook · 임형묵)" description="Hyeongmuk Lim (Mook), Ph.D. candidate in theoretical condensed matter physics at Seoul National University. Education, research interests, contact and academic CV.">
   <header class="page-heading"><p class="eyebrow">ABOUT & CONTACT</p><h1>Hyeongmuk Lim <em>(Mook · <span lang="ko">임형묵</span>)</em><span class="title-dot">.</span></h1><p>Ph.D. Candidate in Physics at Seoul National University.</p></header>
@@ -16,7 +17,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
       </dl>
       <h2>Broader interests</h2>
       <p>Correlations in electronic bands, topological order, symmetry-protected topological phases, generalized symmetries, and the interplay between many-body physics and quantum geometry.</p>
-      <div class="about-actions"><a class="button" href="/downloads/Hyeongmuk_Lim_CV.pdf" target="_blank" rel="noopener noreferrer">View academic CV ↗</a><a class="button-secondary" href="/downloads/Hyeongmuk_Lim_CV.pdf" download>Download CV ↓</a></div>
+      <div class="about-actions"><a class="button" href={versioned("/downloads/Hyeongmuk_Lim_CV.pdf")} target="_blank" rel="noopener noreferrer">View academic CV ↗</a><a class="button-secondary" href={versioned("/downloads/Hyeongmuk_Lim_CV.pdf")} download>Download CV ↓</a></div>
     </div>
     <aside class="contact-panel contact-panel-refined">
       <img class="about-portrait" src="/profile-hyeongmuk-lim.webp" alt="Portrait of Hyeongmuk Lim" width="800" height="1120" loading="lazy"/>

@@ -1,6 +1,6 @@
 ---
 title: 'Quantization of Abelian Higgs model'
-description: 'A companion to From the Abelian Higgs Model to the Toric Code: whether fixing one gauge condition or two matters for the continuum abelian Higgs model, why the lattice fixes only one, unitary gauge and the Higgs phase, and compactness, charge quantization, and holonomies.'
+description: 'Whether fixing one gauge condition or two matters for the continuum abelian Higgs model, why the lattice fixes only one, unitary gauge and the Higgs phase, and compactness, charge quantization, and holonomies.'
 date: 2026-10-28
 topic: 'Gauge Theory & Constrained Systems'
 category: 'qft'

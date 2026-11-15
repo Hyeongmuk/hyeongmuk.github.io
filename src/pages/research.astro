@@ -110,6 +110,11 @@ const relatedNotes=relatedNoteIds.map(id=>publishedNotes.find(n=>n.id===id)).fil
   }
   .geometry-research-figure .geometry-figure-expand {
     flex: 0 0 auto;
+    position: relative;
+  }
+  /* Enlarges the tap target without moving the caption. */
+  .geometry-research-figure .geometry-figure-expand::after {
+    content: ""; position: absolute; inset: -4px -2px;
   }
   .geometry-research-figure .figure-source {
     margin: 6px 0 0;
