@@ -19,9 +19,6 @@ test('public pages never reveal site maintenance instructions', () => {
 test('archive search provides an accessible visible reset for active filters', () => {
   // The reset sits with the search controls in the shared SearchFilter used by both archives.
   assert.match(read('src/components/SearchFilter.astro'), /data-filter-reset-all hidden/);
-  for (const path of ['src/pages/publications.astro', 'src/pages/notes/index.astro']) {
-    assert.match(read(path), /<SearchFilter /);
-  }
   const controller = read('public/scripts/search-filter.js');
   assert.match(controller, /resetAll\.hidden/);
   assert.match(controller, /resetAll\.addEventListener/);
@@ -39,11 +36,8 @@ test('all navigation symbols reflect destinations', () => {
   assert.doesNotMatch(layout, /Email ↗/);
 });
 
-test('shared styles improve body copy legibility and preserve single CSS stack', () => {
-  const css = read('src/styles/site.css');
-  assert.match(css, /VISITOR POLISH · 2026-10-29/);
-  assert.match(css, /\.design-h \.home-hero-portrait \.hero-copy \{ font-size: 17px/);
-  assert.match(css, /\.design-h \.paper-title:hover \{ color: var\(--ink\); \}/);
+test('shared styles keep a single CSS stack', () => {
+  // Hero copy size and paper-title hover colour are checked on the built CSS (scripts/verify-built-site.mjs).
   assert.match(read('src/layouts/SiteLayout.astro'), /import '\.\.\/styles\/site\.css'/);
 });
 

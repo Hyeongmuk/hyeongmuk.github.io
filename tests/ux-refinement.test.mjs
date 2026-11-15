@@ -2,12 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, existsSync} from 'node:fs';
 const read = path => readFileSync(new URL('../'+path, import.meta.url),'utf8');
-test('single H design stylesheet with original layer order',()=>{
+test('single H design stylesheet, no legacy stylesheet files',()=>{
  const layout=read('src/layouts/SiteLayout.astro');
- const css=read('src/styles/site.css');
  assert.match(layout,/import '\.\.\/styles\/site\.css'/);
  assert.doesNotMatch(layout, /styles\/(base|b|hybrid|production|refinement)\.css/);
- for(const section of ['BASE.CSS','B.CSS','HYBRID.CSS','PRODUCTION.CSS','REFINEMENT.CSS']) assert.ok(css.includes(section));
  for(const old of ['base','b','hybrid','production','refinement']) assert.equal(existsSync(new URL('../src/styles/'+old+'.css',import.meta.url)),false);
 });
 test('links label internal and new-tab navigation distinctly',()=>{

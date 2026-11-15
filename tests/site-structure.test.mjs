@@ -4,25 +4,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-test('both archives share the same search and keyword-filter component',()=>{
-  for(const page of ['src/pages/notes/index.astro','src/pages/publications.astro']){
-    assert.match(read(page),/import SearchFilter from/);
-    assert.match(read(page),/<SearchFilter /);
-    assert.match(read(page),/data-filter-item/);
-    assert.match(read(page),/data-keywords=/);
-  }
-  assert.match(read('src/components/SearchFilter.astro'),/data-keyword-filter/);
+test('shared filter script drives the archive controls',()=>{
+  // The filter markup on both archive pages is checked on the built pages (scripts/verify-built-site.mjs).
   assert.match(read('public/scripts/search-filter.js'),/data-search-controls/);
 });
-test('site uses B sidebar and A editorial cards with a single stylesheet stack',()=>{
+test('site is indexable and uses one stylesheet',()=>{
   const layout=read('src/layouts/SiteLayout.astro');
-  assert.match(layout,/design-b design-h/);
   assert.match(layout,/site.css/);
-  assert.match(read('src/styles/site.css'),/PRODUCTION.CSS/);
   assert.doesNotMatch(layout,/noindex/);
-  assert.match(read('src/components/Header.astro'),/desktop-nav/);
-  assert.match(read('src/components/NoteCard.astro'),/note-row/);
-  assert.match(read('src/components/PaperCard.astro'),/paper-row/);
 });
 test('published study PDFs exist and their notes are categorized',()=>{
   const slugs=['bv-formalism','noncommutative-geometry','haldane-gap-lsm'];

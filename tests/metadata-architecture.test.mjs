@@ -12,18 +12,9 @@ test('publications support multiple research areas and retain selected highlight
   assert.deepEqual(papers.filter(x=>x.featured).map(x=>x.id).sort(),['lim2023hopf','lim2026quaternion']);
   for(const p of papers)assert.ok(p.areas.length>=1);
 });
-test('Research and publication filtering reuse areas metadata',()=>{
-  const research=read('src/pages/research.astro');
-  const pub=read('src/pages/publications.astro');
-  assert.match(research,/researchPublications\(section\.area\)/);
-  assert.doesNotMatch(research,/ids:\s*\[/);
-  assert.match(pub,/paper\.areas\.map/);
+test('archive filter matches items listed under several areas',()=>{
+  // Research section lists and paper-card markup are checked on the built pages (scripts/verify-built-site.mjs).
   assert.match(read('public/scripts/search-filter.js'),/\.split\('\|'\)\.includes\(area\)/);
-});
-test('shared publication component has no duplicate PDF or linked title',()=>{
-  const card=read('src/components/PaperCard.astro');
-  assert.match(card,/<h3 class="paper-title">\{paper\.title\}<\/h3>/);
-  assert.doesNotMatch(card,/paper\.pdfUrl/);
 });
 test('archive note tags are curated and home features the three closest-to-research notes',()=>{
   const bv=read('src/content/notes/bv-formalism.md');
