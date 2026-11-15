@@ -5,8 +5,10 @@ import NoteCard from '../components/NoteCard.astro';
 import {researchPublications} from '../lib/publications.mjs';
 import {getCollection} from 'astro:content';
 const sections=[
-  {id:'geometry',label:'01 / ESTABLISHED RESEARCH',title:'Quantum Geometry',question:'Can the quantum geometry of noninteracting bands guide our understanding of correlated matter?',text:'Quantum geometry encodes how Bloch wave functions vary with momentum. For time-reversal-breaking Chern bands, Kähler geometry provides a framework for understanding ideal band geometry and its connection to fractional Chern insulators. Our work generalizes this geometric language to time-reversal-symmetric Kramers pairs: quaternion-Kähler structures and non-Abelian metric–curvature relations offer a starting point for asking analogous questions in systems that preserve time reversal.',note:'This framework provides a starting point for identifying geometric conditions relevant to time-reversal-symmetric correlated phases.',area:'Quantum Geometry'},
-  {id:'topology',label:'02 / ESTABLISHED RESEARCH',title:'Band Topology',question:'What topological information is lost when we look only at the occupied bands?',text:'Some band-topological structures depend on the wave functions of both occupied and unoccupied states. In the real Hopf insulator, we characterized delicate three-dimensional topology in four-band systems with spinless PT symmetry, including independent Hopf invariants and associated boundary phenomena. I am also interested in the structure of unconventional topological phase transitions.',note:'These results highlight why the full multiband wave-function structure matters for topological classification.',area:'Band Topology'},
+  {id:'geometry',label:'01 / ESTABLISHED RESEARCH',title:'Quantum Geometry',question:'Can the quantum geometry of noninteracting bands guide our understanding of correlated matter?',text:'Quantum geometry encodes how Bloch wave functions vary with momentum. For time-reversal-breaking Chern bands, Kähler geometry provides a framework for understanding ideal band geometry and its connection to fractional Chern insulators. Our work generalizes this geometric language to time-reversal-symmetric Kramers pairs: quaternion-Kähler structures and non-Abelian metric–curvature relations offer a starting point for asking analogous questions in systems that preserve time reversal.',note:'This framework provides a starting point for identifying geometric conditions relevant to time-reversal-symmetric correlated phases.',area:'Quantum Geometry',
+   figure:{src:'/research/quaternion-kahler-geometry.svg',width:4347,height:2172,ariaLabel:'Open the quaternion-Kähler geometry research illustration in a new tab',alt:'Scientific illustration comparing quantum metric and Berry curvature in a two-dimensional Brillouin zone with a quaternion-Kähler setting in four dimensions featuring three coupled Berry curvatures.',caption:'Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs.',paper:{url:'https://arxiv.org/abs/2608.03178',title:'Quaternion-Kähler geometry of time reversal symmetric crystals',year:2026}}},
+  {id:'topology',label:'02 / ESTABLISHED RESEARCH',title:'Band Topology',question:'What topological information is lost when we look only at the occupied bands?',text:'Some band-topological structures depend on the wave functions of both occupied and unoccupied states. In the real Hopf insulator, we characterized delicate three-dimensional topology in four-band systems with spinless PT symmetry, including independent Hopf invariants and associated boundary phenomena. I am also interested in the structure of unconventional topological phase transitions.',note:'These results highlight why the full multiband wave-function structure matters for topological classification.',area:'Band Topology',
+   figure:{src:'/research/hopf-insulator-phase-transition.svg',width:1022,height:486,ariaLabel:'Open the Hopf insulator phase-transition illustration in a new tab',alt:'Schematic of two topological phase transitions through a Weyl semimetal: (a) from a normal insulator with Chern number 0 to a three-dimensional Chern insulator with Chern number 1; (b) from a normal insulator (χ = 0) to a Hopf insulator (χ = −1).',caption:'Topological phase transitions through a Weyl semimetal: (a) normal insulator to 3D Chern insulator; (b) normal insulator to Hopf insulator.',paper:{url:'https://arxiv.org/abs/2410.04021',title:'Unconventional topological phase transition of the Hopf insulator',year:2024}}},
   {id:'manybody',label:'03 / BROADER RESEARCH INTERESTS',title:'Correlated Quantum Matter',question:'How do the traces of noninteracting band structure shape what emerges from electron correlations?',text:'My broader interests include correlations in electronic bands, topological order, symmetry-protected topological phases, and generalized symmetries. I hope to investigate how multiband quantum geometry can constrain or guide the emergence of time-reversal-symmetric correlated phases.',note:'A future direction is to connect single-particle geometric constraints with concrete many-body models and observables.',area:null}
 ];
 const publishedNotes=await getCollection('notes',({data})=>data.status==='published');
@@ -19,39 +21,21 @@ const relatedNotes=relatedNoteIds.map(id=>publishedNotes.find(n=>n.id===id)).fil
     {sections.map(section=><article class="research-chapter" id={section.id}>
       <span class="chapter-label">{section.label}</span>
       <div><h2>{section.title}</h2><p class="chapter-question">{section.question}</p><p>{section.text}</p><p class="research-direction-note">{section.note}</p>
-        {section.id==='geometry' && (
-          <figure class="geometry-research-figure">
-            <a class="geometry-figure-visual" href="/research/quaternion-kahler-geometry.svg" target="_blank" rel="noopener noreferrer" aria-label="Open the quaternion-Kähler geometry research illustration in a new tab">
+        {section.figure && (
+          <figure class="research-figure">
+            <a class="research-figure-visual" href={section.figure.src} target="_blank" rel="noopener noreferrer" aria-label={section.figure.ariaLabel}>
               <img
-                src="/research/quaternion-kahler-geometry.svg"
-                alt="Scientific illustration comparing quantum metric and Berry curvature in a two-dimensional Brillouin zone with a quaternion-Kähler setting in four dimensions featuring three coupled Berry curvatures."
-                width="4347" height="2172" loading="lazy" decoding="async"
+                src={section.figure.src}
+                alt={section.figure.alt}
+                width={section.figure.width} height={section.figure.height} loading="lazy" decoding="async"
               />
             </a>
             <figcaption>
               <div class="figure-caption-primary">
-                <p class="figure-comparison">Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs.</p>
-                <a class="geometry-figure-expand" href="/research/quaternion-kahler-geometry.svg" target="_blank" rel="noopener noreferrer">View larger ↗</a>
+                <p class="figure-comparison">{section.figure.caption}</p>
+                <a class="research-figure-expand" href={section.figure.src} target="_blank" rel="noopener noreferrer">View larger ↗</a>
               </div>
-              <p class="figure-source">Associated paper: <a href="https://arxiv.org/abs/2608.03178" target="_blank" rel="noopener noreferrer"><cite>Quaternion-Kähler geometry of time reversal symmetric crystals</cite> (2026) ↗</a></p>
-            </figcaption>
-          </figure>
-        )}
-        {section.id==='topology' && (
-          <figure class="geometry-research-figure">
-            <a class="geometry-figure-visual" href="/research/hopf-insulator-phase-transition.svg" target="_blank" rel="noopener noreferrer" aria-label="Open the Hopf insulator phase-transition illustration in a new tab">
-              <img
-                src="/research/hopf-insulator-phase-transition.svg"
-                alt="Schematic of two topological phase transitions through a Weyl semimetal: (a) from a normal insulator with Chern number 0 to a three-dimensional Chern insulator with Chern number 1; (b) from a normal insulator (χ = 0) to a Hopf insulator (χ = −1)."
-                width="1022" height="486" loading="lazy" decoding="async"
-              />
-            </a>
-            <figcaption>
-              <div class="figure-caption-primary">
-                <p class="figure-comparison">Topological phase transitions through a Weyl semimetal: (a) normal insulator to 3D Chern insulator; (b) normal insulator to Hopf insulator.</p>
-                <a class="geometry-figure-expand" href="/research/hopf-insulator-phase-transition.svg" target="_blank" rel="noopener noreferrer">View larger ↗</a>
-              </div>
-              <p class="figure-source">Associated paper: <a href="https://arxiv.org/abs/2410.04021" target="_blank" rel="noopener noreferrer"><cite>Unconventional topological phase transition of the Hopf insulator</cite> (2024) ↗</a></p>
+              <p class="figure-source">Associated paper: <a href={section.figure.paper.url} target="_blank" rel="noopener noreferrer"><cite>{section.figure.paper.title}</cite> ({section.figure.paper.year}) ↗</a></p>
             </figcaption>
           </figure>
         )}
@@ -63,12 +47,12 @@ const relatedNotes=relatedNoteIds.map(id=>publishedNotes.find(n=>n.id===id)).fil
 </SiteLayout>
 
 <style>
-  /* Research-only figure; no shared stylesheet changes. */
-  .geometry-research-figure {
+  /* Research figures (one per section with `figure` data); no shared stylesheet changes. */
+  .research-figure {
     width: min(100%, 820px);
     margin: 27px 0 33px;
   }
-  .geometry-figure-visual {
+  .research-figure-visual {
     display: block;
     padding: clamp(10px, 2.5vw, 22px);
     border: 1px solid var(--line, #d9d9cc);
@@ -76,51 +60,51 @@ const relatedNotes=relatedNoteIds.map(id=>publishedNotes.find(n=>n.id===id)).fil
     background: var(--surface, #fffcf6);
     transition: border-color .16s ease;
   }
-  .geometry-figure-visual:hover { border-color: var(--accent, #285b49); }
-  .geometry-figure-visual:focus-visible,
-  .geometry-research-figure figcaption a:focus-visible {
+  .research-figure-visual:hover { border-color: var(--accent, #285b49); }
+  .research-figure-visual:focus-visible,
+  .research-figure figcaption a:focus-visible {
     outline: 2px solid var(--accent, #285b49);
     outline-offset: 3px;
   }
-  .geometry-figure-visual img {
+  .research-figure-visual img {
     display: block;
     width: 100%;
     max-width: 100%;
     height: auto;
     object-fit: contain;
   }
-  .geometry-research-figure figcaption {
+  .research-figure figcaption {
     display: block;
     padding-top: 12px;
     color: var(--muted, #5c665f);
     font: 12px/1.6 var(--sans, sans-serif);
   }
   /* Let the caption text use all space not occupied by View larger. */
-  .geometry-research-figure .figure-caption-primary {
+  .research-figure .figure-caption-primary {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 12px;
   }
-  .geometry-research-figure .figure-comparison {
+  .research-figure .figure-comparison {
     flex: 1 1 auto;
     min-width: 0;
     max-width: none;
     margin: 0;
   }
-  .geometry-research-figure .geometry-figure-expand {
+  .research-figure .research-figure-expand {
     flex: 0 0 auto;
     position: relative;
   }
   /* Enlarges the tap target without moving the caption. */
-  .geometry-research-figure .geometry-figure-expand::after {
+  .research-figure .research-figure-expand::after {
     content: ""; position: absolute; inset: -4px -2px;
   }
-  .geometry-research-figure .figure-source {
+  .research-figure .figure-source {
     margin: 6px 0 0;
     font-size: 11.5px;
   }
-  .geometry-research-figure .figure-source cite { font-style:italic; }
+  .research-figure .figure-source cite { font-style:italic; }
   /* Keep the subsection heading in sentence case. */
   /* The notes block avoids the `related-papers` class: its descendant h3 rule in
      site.css would also shrink NoteCard's nested titles. */
@@ -148,21 +132,21 @@ const relatedNotes=relatedNoteIds.map(id=>publishedNotes.find(n=>n.id===id)).fil
     text-transform: none;
     letter-spacing: inherit;
   }
-  .geometry-research-figure figcaption a {
+  .research-figure figcaption a {
     color: var(--accent, #285b49);
     text-decoration: underline;
     text-underline-offset: 3px;
     white-space: nowrap;
   }
   /* Source links may wrap on phones without affecting the View larger link. */
-  .geometry-research-figure .figure-source a { white-space: normal; overflow-wrap: anywhere; }
+  .research-figure .figure-source a { white-space: normal; overflow-wrap: anywhere; }
   @media (max-width: 600px) {
-    .geometry-research-figure { margin: 23px 0 26px; }
-    .geometry-figure-visual { padding: 8px; }
-    .geometry-research-figure figcaption { font-size: 11.5px; }
-    .geometry-research-figure .figure-caption-primary { flex-wrap:wrap; gap:5px 14px; }
+    .research-figure { margin: 23px 0 26px; }
+    .research-figure-visual { padding: 8px; }
+    .research-figure figcaption { font-size: 11.5px; }
+    .research-figure .figure-caption-primary { flex-wrap:wrap; gap:5px 14px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .geometry-figure-visual { transition: none; }
+    .research-figure-visual { transition: none; }
   }
 </style>

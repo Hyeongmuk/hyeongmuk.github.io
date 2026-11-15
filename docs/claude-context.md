@@ -121,7 +121,7 @@ Error: Public-site verification found 1 problem(s).
   - `Comparison of Kähler geometry in Chern bands with quaternion-Kähler geometry of Kramers pairs.`
   - `View larger ↗` (SVG를 새 탭으로; 가능하면 캡션과 같은 행, 좁은 화면에서는 자연스럽게 줄바꿈)
   - `Associated paper: Quaternion-Kähler geometry of time reversal symmetric crystals (2026) ↗`
-- 캡션 스타일은 `src/pages/research.astro`의 scoped CSS(`.geometry-research-figure figcaption` 12px/1.6, `.figure-source` 11.5px). 요청 없이 바꾸지 않는다.
+- 캡션 스타일은 `src/pages/research.astro`의 scoped CSS(`.research-figure figcaption` 12px/1.6, `.figure-source` 11.5px). 요청 없이 바꾸지 않는다. 그림은 `sections` 데이터의 `figure` 항목에서 한 템플릿으로 그린다 (QK 캡션 문자열은 그 데이터에 그대로 있다).
 - 이 SVG는 벡터와 내장 raster image가 섞여 있다. 제목·label·transform 좌표를 자동 검색/치환하거나 파일을 재생성하지 않는다. 변경이 꼭 필요하면 사용자에게 정확한 원본/요청을 받고 → 여러 뷰포트에서 비교 → 작은 diff → 검증.
 - 과거 사용자가 새 그림을 별도로 제공했는데 반영되지 않았다는 지적이 있었다. 현재 저장소의 SVG가 그 최신 파일인지는 **확인된 바 없다**. 임의로 생성·대체하지 말고 필요하면 사용자 제공 원본과 비교한다.
 
@@ -185,7 +185,6 @@ Error: Public-site verification found 1 problem(s).
 ## 7. 기술부채 (별도 승인 전에는 손대지 않음)
 
 - `src/styles/site.css` (약 700줄): `BASE`, `B`, `HYBRID`, `PRODUCTION`, `REFINEMENT`, `VISITOR POLISH` 등 역사적 오버라이드가 누적됨. `<body>`에 `design-b design-h`가 항상 함께 붙어 기본·B·H 세 층이 동시에 적용되며, `.note-row h3` 같은 규칙은 최대 10번 다시 정의된다. 정리는 사이트 전역 변경이므로 범위 승인과 전후 스크린샷 비교가 필수. 실제로 층끼리 충돌한 사례: 600px 규칙이 690px 규칙을 덮어 에세이 마일스톤 연도가 수식 위에 겹침(PR #23), 홈 버튼 줄의 grid 규칙(PR #29), 자손 선택자 `.design-h .related-papers h3`가 안에 들어간 노트 카드 제목까지 12px로 줄임(PR #47). 새 규칙은 파일 끝에 날짜가 붙은 블록으로 추가해 왔다. 미사용 클래스 규칙은 PR #50에서 지웠다.
-- Research 그림 스타일 이름이 `geometry-*`인데 Band Topology 그림에도 쓰인다(`research.astro`의 scoped CSS). 보호 테스트는 `figure-comparison`, `View larger ↗`만 확인한다.
 - 큐레이션 목록이 페이지 코드에 박혀 있다: `index.astro`의 `featuredOrder`, `research.astro`의 `relatedNoteIds`와 연구 섹션 문구 배열.
 - 테스트 상당수가 소스 코드 문자열을 정규식으로 확인한다. 동작이 같아도 코드 모양만 바뀌면 실패한다(PR #44에서 실제로 발생).
 - `src/data/students-essay.html`: 큰 raw HTML. 자동 포매터나 정규식 치환이 도해·인용·수식을 망가뜨릴 수 있으므로 부분 수정 후 검증.
