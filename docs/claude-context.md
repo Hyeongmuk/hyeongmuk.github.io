@@ -184,7 +184,7 @@ Error: Public-site verification found 1 problem(s).
 
 ## 7. 기술부채 (별도 승인 전에는 손대지 않음)
 
-- `src/styles/site.css` (약 700줄): `BASE`, `B`, `HYBRID`, `PRODUCTION`, `REFINEMENT`, `VISITOR POLISH` 등 역사적 오버라이드가 누적됨. `<body>`에 `design-b design-h`가 항상 함께 붙어 기본·B·H 세 층이 동시에 적용되며, `.note-row h3` 같은 규칙은 최대 10번 다시 정의된다. 정리는 사이트 전역 변경이므로 범위 승인과 전후 스크린샷 비교가 필수. 실제로 층끼리 충돌한 사례: 600px 규칙이 690px 규칙을 덮어 에세이 마일스톤 연도가 수식 위에 겹침(PR #23), 홈 버튼 줄의 grid 규칙(PR #29), 자손 선택자 `.design-h .related-papers h3`가 안에 들어간 노트 카드 제목까지 12px로 줄임(PR #47). 새 규칙은 파일 끝에 날짜가 붙은 블록으로 추가해 왔다. 미사용 클래스 규칙은 PR #50에서 지웠다.
+- `src/styles/site.css` (약 610줄, PR #52에서 효과 없는 선언 정리): `BASE`, `B`, `HYBRID`, `PRODUCTION`, `REFINEMENT`, `VISITOR POLISH` 등 역사적 오버라이드가 누적됨. `<body>`에 `design-b design-h`가 항상 함께 붙어 기본·B·H 세 층이 동시에 적용되며, `.note-row h3` 같은 규칙은 최대 10번 다시 정의된다. 정리는 사이트 전역 변경이므로 범위 승인과 전후 스크린샷 비교가 필수. 실제로 층끼리 충돌한 사례: 600px 규칙이 690px 규칙을 덮어 에세이 마일스톤 연도가 수식 위에 겹침(PR #23), 홈 버튼 줄의 grid 규칙(PR #29), 자손 선택자 `.design-h .related-papers h3`가 안에 들어간 노트 카드 제목까지 12px로 줄임(PR #47). 새 규칙은 파일 끝에 날짜가 붙은 블록으로 추가해 왔다. 미사용 클래스 규칙은 PR #50·#52에서 지웠다. PR #52는 모든 페이지·11개 폭·상호작용 상태에서 계산된 스타일을 바꾸지 않는 선언만 지웠다(hover/focus 규칙, 인쇄·reduced-motion 규칙, `.sr-only` 같은 유틸리티는 손대지 않음). 세 층 구조 자체(접두사 선택자)는 그대로이며, 이를 하나로 합치려면 선택자 우선순위가 바뀌므로 별도 검토가 필요하다.
 - 테스트 상당수가 소스 파일 문자열을 정규식으로 확인한다. 코드 모양(컴포넌트 import, 클래스명, CSS 구간 주석)을 확인하던 단언은 빌드 결과 검사(`scripts/verify-built-site.mjs`)로 옮겼다. 남은 단언은 주로 내용·사용자 결정(과장 금지 문구, 대표 논문, 저자 정보)을 지킨다. 새 검사는 가능하면 빌드 결과 쪽에 추가한다.
 - `src/data/students-essay.html`: 큰 raw HTML. 자동 포매터나 정규식 치환이 도해·인용·수식을 망가뜨릴 수 있으므로 부분 수정 후 검증.
 - `.gitignore`에 `node_modules/`, `dist/`, `.astro/`, `.DS_Store`가 중복 선언됨 (기능상 문제 없음).
