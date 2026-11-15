@@ -21,7 +21,7 @@ test('story keeps six milestone boxes and clean clickable sources',()=>{
 });
 test('Students and Research share the exact QK SVG path',()=>{
   const story=read('src/data/students-essay.html');
-  const research=read('src/pages/research.astro');
+  const research=read('src/data/research.json');
   const p='public/research/quaternion-kahler-geometry.svg';
   assert.ok(existsSync(resolve(root,p)));
   assert.match(story,/\/research\/quaternion-kahler-geometry\.svg/);

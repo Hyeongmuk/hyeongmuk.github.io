@@ -5,7 +5,7 @@ date: 2026-10-25
 topic: 'Quantum Spin Chains'
 tags: ["Spin Chains", "Haldane Gap", "LSM Theorem", "Topological Phases"]
 category: 'condensed'
-featured: true
+featured: 2
 complete: true
 pages: 16
 status: published
