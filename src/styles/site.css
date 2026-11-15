@@ -259,7 +259,7 @@ em{font-weight:400}
    Preview only: import this after base.css and b.css. */
 .design-b.design-h{
   --paper:#f7f3eb; --surface:#fffdf8; --ink:#283a32;
-  --muted:#5c665d; --faint:#697367; --line:#d8d8cb;
+  --muted:#5c665d; --faint:#626b60; --line:#d8d8cb;
   --accent:#315c47; --tint:#edf0e3; --gold:#88633e;
 }
 .design-h .site-header{background:#f0eee5}
