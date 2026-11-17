@@ -597,3 +597,10 @@ html{scroll-padding-top:45px}
 .design-h .talks-section{margin-top:52px}
 .design-h .talks-section>h2{font-size:29px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .design-h .talks-section .talk-row:first-of-type{border-top:0}
+
+/* Paper cards: publication and talk rows use the same white card as the note rows. */
+.design-h .paper-row,.design-h .publication-results .paper-row{background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:0 2px 2px #283a3205;padding:20px 22px;margin:0 0 10px}
+.design-h .paper-row:last-child{border-bottom:1px solid var(--line)}
+.design-h .talks-section .talk-row:first-of-type{border-top:1px solid var(--line)}
+.design-h .talks-section>h2{border-bottom:0;padding-bottom:4px}
+@media(max-width:760px){.design-h .paper-row,.design-h .publication-results .paper-row{padding:17px 16px}}
