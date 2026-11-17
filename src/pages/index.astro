@@ -18,30 +18,42 @@ const featuredNotes=allNotes.filter(n=>n.data.featured)
     <div class="hero-main">
       <p class="eyebrow"><span class="dot"></span>THEORETICAL CONDENSED MATTER PHYSICS</p>
       <h1>Hyeongmuk Lim <span class="name-alias">(Mook · <span lang="ko">임형묵</span>)</span></h1>
+      <p class="home-affiliation">Ph.D. Candidate · Seoul National University · Expected August 2027</p>
       <p class="hero-copy">I study the topology and quantum geometry of electronic bands. A question guiding my work is how the wave-function structure of noninteracting electrons can shape correlated quantum matter.</p>
       <div class="hero-actions"><a class="button" href="/research/">Explore research →</a><a class="underlined-link" href={versioned("/downloads/Hyeongmuk_Lim_CV.pdf")} target="_blank" rel="noopener noreferrer">Academic CV ↗</a></div>
-      <p class="home-affiliation">Ph.D. Candidate · Seoul National University · Expected August 2027</p>
     </div>
-    <figure class="home-portrait"><img src="/profile-hyeongmuk-lim.webp" width="800" height="1120" alt="Portrait of Hyeongmuk Lim" fetchpriority="high"/><figcaption>Hyeongmuk Lim</figcaption></figure>
+    <figure class="home-portrait"><img src="/profile-hyeongmuk-lim.webp" width="800" height="1120" alt="Portrait of Hyeongmuk Lim" fetchpriority="high"/></figure>
   </section>
   <section class="home-research">
-    <div class="section-heading"><div><p class="eyebrow">RESEARCH</p><h2>Research &amp; directions</h2></div><a class="text-link" href="/research/">All research →</a></div>
+    <div class="section-heading"><h2>Research &amp; directions</h2><a class="text-link" href="/research/">All research →</a></div>
     <div class="research-strip">
-      <a href="/research/#geometry"><span class="eyebrow">01 / GEOMETRY</span><strong>Quantum Geometry</strong><span>From ideal Chern bands to quaternionic geometry of Kramers pairs.</span></a>
-      <a href="/research/#topology"><span class="eyebrow">02 / TOPOLOGY</span><strong>Band Topology</strong><span>Hopf invariants, delicate topology, and the role of unoccupied bands.</span></a>
-      <a href="/research/#manybody"><span class="eyebrow">03 / RESEARCH INTERESTS</span><strong>Correlated Quantum Matter</strong><span>Interactions in bands, topological order, SPT phases, and generalized symmetries.</span></a>
+      <a href="/research/#geometry"><strong>Quantum Geometry</strong><span>From ideal Chern bands to quaternionic geometry of Kramers pairs.</span></a>
+      <a href="/research/#topology"><strong>Band Topology</strong><span>Hopf invariants, delicate topology, and the role of unoccupied bands.</span></a>
+      <a href="/research/#manybody"><strong>Correlated Quantum Matter</strong><span>Interactions in bands, topological order, SPT phases, and generalized symmetries.</span></a>
     </div>
   </section>
   <section class="home-publications">
-    <div class="section-heading"><div><p class="eyebrow">SELECTED RESEARCH</p><h2>Selected publications</h2></div><a class="text-link" href="/publications/">All publications →</a></div>
-    <p class="section-intro">Two representative directions in my work: extending ideal quantum geometry to time-reversal-symmetric systems, and uncovering delicate band topology.</p>
-    <div class="papers-list">{featuredPublications.map(paper=><PaperCard paper={paper} />)}</div>
+    <div class="section-heading"><h2>Selected publications</h2><a class="text-link" href="/publications/">All publications →</a></div>
+    <div class="papers-list">{featuredPublications.map(paper=><PaperCard paper={paper} compact />)}</div>
   </section>
   <section class="home-notes">
-    <div class="section-heading"><div><p class="eyebrow">OPEN NOTES</p><h2>Learning in public</h2></div><a class="text-link" href="/notes/">All study notes →</a></div>
-    <p class="section-intro">My study notes span quantum field theory, mathematics, and condensed matter physics. Manuscripts can be read online or downloaded as PDFs.</p>
+    <div class="section-heading"><h2>Learning in public</h2><a class="text-link" href="/notes/">All study notes →</a></div>
     <div class="small-notes">
-      {featuredNotes.map(({note,category})=><div class="small-note"><div><p class="eyebrow">{category.title}</p><h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3><p class="small-note-blurb">{note.data.description}</p></div><a class="small-link" href={note.data.pdf ? versioned(note.data.pdf) : `/notes/${note.id}/`} target={note.data.pdf?'_blank':undefined} rel={note.data.pdf?'noopener noreferrer':undefined}>{note.data.pdf?'Read PDF ↗':'Details →'}</a></div>)}
+      {featuredNotes.map(({note,category})=><div class="small-note"><div><p class="eyebrow">{category.title}</p><h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3></div><a class="small-link" href={note.data.pdf ? versioned(note.data.pdf) : `/notes/${note.id}/`} target={note.data.pdf?'_blank':undefined} rel={note.data.pdf?'noopener noreferrer':undefined}>{note.data.pdf?'Read PDF ↗':'Details →'}</a></div>)}
     </div>
   </section>
 </SiteLayout>
+
+<style>
+  /* Draft: clearer section rhythm on Home. */
+  :global(.design-h) .home-hero-portrait .home-affiliation { margin: 10px 0 18px; }
+  :global(.design-h) .home-research,
+  :global(.design-h) .home-publications,
+  :global(.design-h) .home-notes { margin-top: 0; padding-top: 72px; }
+  :global(.design-h) .research-strip { border-top: 0; border-bottom: 0; }
+  @media (max-width: 760px) {
+    :global(.design-h) .home-hero-portrait .home-affiliation { grid-row: 3; margin: 14px 0 0; }
+    :global(.design-h) .home-hero-portrait .hero-copy { grid-row: 4; }
+    :global(.design-h) .home-hero-portrait .hero-actions { grid-row: 5; }
+  }
+</style>
