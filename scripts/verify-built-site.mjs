@@ -56,7 +56,8 @@ for(const [id,area] of [['geometry','Quantum Geometry'],['topology','Band Topolo
 
 // Home shows the featured notes in their frontmatter order.
 const expected=notes.filter(n=>n.published&&n.featured).sort((a,b)=>a.featured-b.featured).map(n=>n.slug);
-const shown=[...html('index.html').matchAll(/<div class="small-note"[^>]*>[\s\S]*?<h3[^>]*><a href="\/notes\/([^/]+)\//g)].map(m=>m[1]);
+const homeNotes=html('index.html').split('class="home-notes')[1]?.split('</section>')[0]??'';
+const shown=[...homeNotes.matchAll(/<h3[^>]*><a href="\/notes\/([^/]+)\//g)].map(m=>m[1]);
 if(JSON.stringify(shown)!==JSON.stringify(expected))fail(`Home featured notes ${JSON.stringify(shown)} != ${JSON.stringify(expected)}`);
 
 // Style decisions the owner made, checked on the built CSS whatever selector carries them.
